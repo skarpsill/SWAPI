@@ -12,9 +12,6 @@ api/
 extracted/
 API_HTML/
 
-# Generated index is reproducible from markdown.
-llm_index/
-
 # Local editor files
 .idea/
 .vscode/

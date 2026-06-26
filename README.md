@@ -6,7 +6,7 @@ This project converts official SOLIDWORKS API documentation from `.chm` files in
 
 The goal is to make it faster to write VBA macros and C# add-in applications without loading tens of thousands of documentation files into the model context.
 
-This public repository contains the pipeline scripts and an example generated `markdown/` corpus based on SOLIDWORKS API 2024. Original `.chm` files and intermediate extracted HTML files are not published.
+This public repository contains the pipeline scripts, an example generated `markdown/` corpus, and a ready-to-use `llm_index/` based on SOLIDWORKS API 2024. Original `.chm` files and intermediate extracted HTML files are not published.
 
 The project code is released under the MIT License and can be used in commercial projects. Generated Markdown may contain material derived from official SOLIDWORKS API documentation; see [NOTICE.md](NOTICE.md).
 
@@ -25,7 +25,7 @@ The project code is released under the MIT License and can be used in commercial
 ├── extracted/            # full CHM extraction, generated
 ├── API_HTML/             # only .htm/.html files, generated
 ├── markdown/             # Markdown documentation, published as a SOLIDWORKS API 2024 example
-├── llm_index/            # Codex/LLM index, generated
+├── llm_index/            # Codex/LLM index, published as a SOLIDWORKS API 2024 example
 ├── scripts/
 │   ├── unpack_chm_recursive.sh
 │   ├── collect_html.py
@@ -218,12 +218,12 @@ Usually commit:
 - `NOTICE.md`
 - `requirements.txt`
 - `markdown/`, if you intentionally publish a generated example corpus for a specific API version
+- `llm_index/`, if you intentionally publish a ready-to-use index for the included Markdown corpus
 
 Keep large/reproducible artifacts out of Git or publish them separately:
 
 - `api/`
 - `extracted/`
 - `API_HTML/`
-- `llm_index/`
 
-If you want to publish a ready-to-use knowledge base for a specific SOLIDWORKS version, consider attaching `markdown/` and `llm_index/` as release artifacts.
+If you do not want generated data in Git history, publish `markdown/` and `llm_index/` as release artifacts instead.
