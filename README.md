@@ -1,29 +1,31 @@
 # SOLIDWORKS API Knowledge Base for Codex
 
-Проект превращает официальную документацию SOLIDWORKS API из `.chm` в локальную базу Markdown-документов и компактный индекс для Codex/LLM-агентов.
+Language: English | [Русский](README.ru.md)
 
-Цель: быстро писать VBA-макросы и C# add-in приложения, не загружая в контекст десятки тысяч файлов документации.
+This project converts official SOLIDWORKS API documentation from `.chm` files into a local Markdown knowledge base and a compact navigation index for Codex/LLM agents.
 
-Этот публичный репозиторий содержит скрипты пайплайна и пример готового `markdown/` корпуса, сгенерированного на основе SOLIDWORKS API 2024. Оригинальные `.chm` файлы и промежуточные HTML-файлы не публикуются.
+The goal is to make it faster to write VBA macros and C# add-in applications without loading tens of thousands of documentation files into the model context.
 
-Код проекта распространяется под MIT License и может использоваться в коммерческих проектах. Сгенерированный Markdown может содержать материалы, производные от официальной документации SOLIDWORKS API; см. [NOTICE.md](NOTICE.md).
+This public repository contains the pipeline scripts and an example generated `markdown/` corpus based on SOLIDWORKS API 2024. Original `.chm` files and intermediate extracted HTML files are not published.
 
-## Что получается
+The project code is released under the MIT License and can be used in commercial projects. Generated Markdown may contain material derived from official SOLIDWORKS API documentation; see [NOTICE.md](NOTICE.md).
 
-- `API_HTML/` - HTML-файлы, извлечённые из CHM, без картинок/CSS/JS.
-- `markdown/` - Markdown-документация, один файл на один логический API-объект.
-- `llm_index/` - компактные индексы и граф связей для быстрого поиска.
-- `AGENTS.md` - инструкция для Codex, как пользоваться индексом и не тратить контекст.
+## Outputs
 
-## Структура проекта
+- `API_HTML/` - HTML files extracted from CHM, without images/CSS/JS.
+- `markdown/` - Markdown documentation, one logical API topic per file.
+- `llm_index/` - compact lookup and graph indexes for fast navigation.
+- `AGENTS.md` - instructions for Codex on how to use the index without wasting context.
+
+## Project Layout
 
 ```text
 .
-├── api/                  # исходные .chm файлы конкретной версии SOLIDWORKS API
-├── extracted/            # полная распаковка CHM, генерируется
-├── API_HTML/             # только .htm/.html, генерируется
-├── markdown/             # Markdown-документация, публикуется как пример SOLIDWORKS API 2024
-├── llm_index/            # индекс для Codex/LLM, генерируется
+├── api/                  # source .chm files for a specific SOLIDWORKS API version
+├── extracted/            # full CHM extraction, generated
+├── API_HTML/             # only .htm/.html files, generated
+├── markdown/             # Markdown documentation, published as a SOLIDWORKS API 2024 example
+├── llm_index/            # Codex/LLM index, generated
 ├── scripts/
 │   ├── unpack_chm_recursive.sh
 │   ├── collect_html.py
@@ -36,7 +38,7 @@
 └── README.md
 ```
 
-## Зависимости
+## Dependencies
 
 Python:
 
@@ -44,7 +46,7 @@ Python:
 python3 -m pip install -r requirements.txt
 ```
 
-Для распаковки CHM нужен `extract_chmLib` из `chmlib`.
+To extract CHM files, you need `extract_chmLib` from `chmlib`.
 
 Debian/Ubuntu:
 
@@ -64,30 +66,30 @@ Arch Linux:
 sudo pacman -S chmlib
 ```
 
-Проверка:
+Check the command:
 
 ```bash
 which extract_chmLib
 extract_chmLib 2>&1 | head
 ```
 
-Если пакет в вашем дистрибутиве не содержит `extract_chmLib`, установите `chmlib` из исходников или используйте любой совместимый CHM extractor, который умеет команду вида:
+If your distribution package does not provide `extract_chmLib`, install `chmlib` from source or use any compatible CHM extractor that supports this command shape:
 
 ```bash
 extract_chmLib input.chm output_directory
 ```
 
-## Полный пайплайн
+## Full Pipeline
 
-### 1. Положить CHM
+### 1. Add CHM Files
 
-Сложите `.chm` файлы нужной версии SOLIDWORKS API в папку:
+Put `.chm` files for the target SOLIDWORKS API version into:
 
 ```text
 api/
 ```
 
-Пример:
+Example:
 
 ```text
 api/sldworksapi.chm
@@ -96,49 +98,49 @@ api/swconst.chm
 api/cworksapi.chm
 ```
 
-### 2. Распаковать CHM рекурсивно
+### 2. Extract CHM Recursively
 
 ```bash
 ./scripts/unpack_chm_recursive.sh api extracted
 ```
 
-Скрипт делает несколько проходов, потому что внутри CHM могут лежать вложенные `.chm`.
+The script runs multiple passes because extracted CHM files can contain nested `.chm` files.
 
-### 3. Собрать только HTML
+### 3. Collect HTML Only
 
 ```bash
 python3 scripts/collect_html.py extracted -o API_HTML --clean
 ```
 
-Этот шаг удаляет картинки, CSS, JS и оставляет только `.htm/.html`, сохраняя структуру каталогов.
+This step removes images, CSS, JS, and other non-HTML files while preserving the directory structure.
 
-### 4. Конвертировать HTML в Markdown
+### 4. Convert HTML to Markdown
 
 ```bash
 python3 scripts/convert_sw_api_docs.py API_HTML -o markdown
 ```
 
-Конвертер специализирован под формат SOLIDWORKS/Innovasys help:
+The converter is specialized for the SOLIDWORKS/Innovasys help format:
 
-- удаляет служебную навигацию;
-- сохраняет заголовки, секции, таблицы, списки;
-- превращает блоки Syntax в fenced code blocks;
-- добавляет YAML-метаданные;
-- сохраняет связи через Markdown-ссылки.
+- removes navigation and service markup;
+- preserves headings, sections, tables, and lists;
+- converts Syntax blocks into fenced code blocks;
+- adds YAML metadata;
+- preserves relationships through Markdown links.
 
-### 5. Построить индекс для Codex/LLM
+### 5. Build the Codex/LLM Index
 
 ```bash
 python3 scripts/build_llm_index.py markdown -o llm_index
 ```
 
-Индекс нужен не для RAG, а для дешёвой навигации:
+The index is not meant to be a RAG database. It is a cheap navigation layer:
 
-- сначала найти символ;
-- затем найти интерфейс/соседей;
-- затем открыть только нужные Markdown-файлы.
+- find a symbol first;
+- inspect its interface or related topics;
+- open only the Markdown files that are actually needed.
 
-## Быстрая проверка
+## Quick Checks
 
 ```bash
 find markdown -type f -name '*.md' | wc -l
@@ -146,17 +148,17 @@ find llm_index -maxdepth 1 -type f | sort
 rg 'IModelDoc2\\.Save' llm_index/symbols.tsv
 ```
 
-## Как подключать к Codex в VSCode/VSCodium
+## Using with Codex in VSCode/VSCodium
 
-Откройте корень этого проекта как workspace или добавьте его как вторую папку в multi-root workspace рядом с вашим VBA/C# проектом.
+Open this repository as a workspace, or add it as a second folder in a multi-root workspace next to your VBA/C# project.
 
-Codex должен видеть:
+Codex should be able to see:
 
 - `AGENTS.md`
 - `llm_index/`
 - `markdown/`
 
-Пример запроса:
+Example prompt:
 
 ```text
 Use the SOLIDWORKS API knowledge base in this workspace.
@@ -164,7 +166,7 @@ Follow AGENTS.md.
 I am writing a VBA macro. Find the correct API docs before writing code.
 ```
 
-Для C# add-in:
+For a C# add-in:
 
 ```text
 Follow AGENTS.md.
@@ -172,55 +174,56 @@ I am writing a C# SOLIDWORKS add-in.
 Prefer .NET API docs and C# syntax blocks.
 ```
 
-## Как пользоваться индексом вручную
+## Manual Index Usage
 
-Найти символ:
+Find a symbol:
 
 ```bash
 rg 'IModelDoc2\\.Save' llm_index/symbols.tsv
 ```
 
-Найти члены интерфейса:
+Find members of an interface:
 
 ```bash
 rg '"interface": "IModelDoc2"' llm_index/interface_members.jsonl
 ```
 
-Открыть найденный документ:
+Open the selected document:
 
 ```bash
 sed -n '1,220p' markdown/sldworksapi/<file>.md
 ```
 
-## Файлы индекса
+## Index Files
 
-- `manifest.json` - общая статистика корпуса.
-- `symbols.tsv` - самый дешёвый поиск по API-символам.
-- `documents.tsv` - быстрый поиск по документам.
-- `symbols.jsonl` - структурный symbol lookup.
-- `documents.jsonl` - компактная карточка каждого Markdown-файла.
-- `nodes.jsonl` - узлы графа.
-- `edges.jsonl` - связи `has_member`, `member_of`, `links_to`.
-- `interface_members.jsonl` - интерфейс/объект -> методы/свойства.
-- `modules.json` - статистика по модулям API.
+- `manifest.json` - corpus summary.
+- `symbols.tsv` - cheapest API symbol lookup.
+- `documents.tsv` - fast document lookup.
+- `symbols.jsonl` - structured symbol lookup.
+- `documents.jsonl` - compact card for each Markdown file.
+- `nodes.jsonl` - graph nodes.
+- `edges.jsonl` - `has_member`, `member_of`, and `links_to` edges.
+- `interface_members.jsonl` - interface/object -> methods/properties.
+- `modules.json` - API module statistics.
 
-## Рекомендации для GitHub
+## GitHub Publishing Notes
 
-Обычно в репозиторий стоит коммитить:
+Usually commit:
 
 - `scripts/`
 - `README.md`
+- `README.ru.md`
 - `AGENTS.md`
 - `LICENSE`
 - `NOTICE.md`
 - `requirements.txt`
-- `markdown/`, если вы осознанно публикуете готовый пример корпуса для конкретной версии API
+- `markdown/`, if you intentionally publish a generated example corpus for a specific API version
 
-А большие/воспроизводимые артефакты держать вне Git или публиковать отдельно:
+Keep large/reproducible artifacts out of Git or publish them separately:
 
 - `api/`
 - `extracted/`
 - `API_HTML/`
 - `llm_index/`
 
-Если хотите опубликовать уже готовую базу для конкретной версии SOLIDWORKS, лучше положить `markdown/` и `llm_index/` в release artifact.
+If you want to publish a ready-to-use knowledge base for a specific SOLIDWORKS version, consider attaching `markdown/` and `llm_index/` as release artifacts.
