@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "solidworks-api-knowledge-mcp"
+version = "0.1.0"
+description = "MCP server and PostgreSQL loader for a local SOLIDWORKS API knowledge base."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "mcp[cli]>=1.2.0",
+]
+
+[project.optional-dependencies]
+postgres = ["psycopg[binary]>=3.1"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+swapi-mcp = "swapi_mcp.server:main"
+swapi-load-postgres = "scripts.load_postgres:main"
+
+[tool.setuptools.packages.find]
+include = ["swapi_mcp", "scripts"]

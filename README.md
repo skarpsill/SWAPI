@@ -16,6 +16,7 @@ The project code is released under the MIT License and can be used in commercial
 - `markdown/` - Markdown documentation, one logical API topic per file.
 - `llm_index/` - compact lookup and graph indexes for fast navigation.
 - `AGENTS.md` - instructions for Codex on how to use the index without wasting context.
+- `docs/MCP_SERVER.md` - documentation-only MCP server for API-assisted code writing.
 
 ## Project Layout
 
