@@ -1,0 +1,27 @@
+---
+title: "ISwAddin Interface Methods"
+project: "SOLIDWORKS Custom Interfaces API Help"
+interface: "ISwAddin_methods"
+member: ""
+kind: "methods"
+source: "swpublishedapi/SolidWorks.Interop.swpublished~SolidWorks.Interop.swpublished.ISwAddin_methods.html"
+---
+
+# ISwAddin Interface Methods
+
+For a list of all members of this type, see[ISwAddin members](SolidWorks.Interop.swpublished~SolidWorks.Interop.swpublished.ISwAddin_members.html).
+
+## Public Methods
+
+|  | Name | Description |
+| --- | --- | --- |
+| Method | ConnectToSW | Calls this method when the add-in is loaded. |
+| Method | DisconnectFromSW | Calls this method when SOLIDWORKS is about to be destroyed. |
+
+[Top](#topBookmark)
+
+## See Also
+
+[ISwAddin Interface](SolidWorks.Interop.swpublished~SolidWorks.Interop.swpublished.ISwAddin.html)
+
+[SolidWorks.Interop.swpublished Namespace](SolidWorks.Interop.swpublished~SolidWorks.Interop.swpublished_namespace.html)

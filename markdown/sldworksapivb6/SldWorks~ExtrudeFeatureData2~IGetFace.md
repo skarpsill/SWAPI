@@ -1,0 +1,20 @@
+---
+title: "IGetFace Method (ExtrudeFeatureData2)"
+project: "SOLIDWORKS Type Library"
+interface: "ExtrudeFeatureData2"
+member: "IGetFace"
+kind: "method"
+source: "sldworksapivb6/SldWorks~ExtrudeFeatureData2~IGetFace.html"
+---
+
+# IGetFace Method (ExtrudeFeatureData2)
+
+## Syntax
+
+### Visual Basic for Applications (VBA)
+
+```vb
+Public Function IGetFace( _
+   ByVal Forward As Boolean _
+) As Face2
+```

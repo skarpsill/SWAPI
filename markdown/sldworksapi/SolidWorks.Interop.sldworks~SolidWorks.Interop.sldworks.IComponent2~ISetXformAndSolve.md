@@ -1,0 +1,70 @@
+---
+title: "ISetXformAndSolve Method (IComponent2)"
+project: "SOLIDWORKS API Help"
+interface: "IComponent2"
+member: "ISetXformAndSolve"
+kind: "method"
+source: "sldworksapi/SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IComponent2~ISetXformAndSolve.html"
+---
+
+# ISetXformAndSolve Method (IComponent2)
+
+Obsolete. Superseded by
+
+[IComponent2::SetTransformAndSolve2](SOLIDWORKS.Interop.sldworks~SOLIDWORKS.Interop.sldworks.IComponent2~SetTransformAndSolve2.html)
+
+.
+
+## Syntax
+
+### Visual Basic (Declaration)
+
+```vb
+Function ISetXformAndSolve( _
+   ByRef XformIn As System.Double _
+) As System.Boolean
+```
+
+### Visual Basic (Usage)
+
+```vb
+Dim instance As IComponent2
+Dim XformIn As System.Double
+Dim value As System.Boolean
+
+value = instance.ISetXformAndSolve(XformIn)
+```
+
+### C#
+
+```csharp
+System.bool ISetXformAndSolve(
+   ref System.double XformIn
+)
+```
+
+### C++/CLI
+
+```cpp
+System.bool ISetXformAndSolve(
+   System.double% XformIn
+)
+```
+
+NOTE:
+
+See
+
+[Differences Between Unmanaged C++ and C++/CLI Code](DifferencesBetweenUnManagedAndCPPCLI.htm)
+
+.
+
+### Parameters
+
+- `XformIn`:
+
+## See Also
+
+[IComponent2 Interface](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IComponent2.html)
+
+[IComponent2 Members](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IComponent2_members.html)

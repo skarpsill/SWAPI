@@ -1,0 +1,88 @@
+---
+title: "GetDocumentDependencies Method (ISldWorks)"
+project: "SOLIDWORKS API Help"
+interface: "ISldWorks"
+member: "GetDocumentDependencies"
+kind: "method"
+source: "sldworksapi/SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ISldWorks~GetDocumentDependencies.html"
+---
+
+# GetDocumentDependencies Method (ISldWorks)
+
+Obsolete. Superseded by
+
+[ISldWorks::GetDocumentDependencies2](SOLIDWORKS.Interop.sldworks~SOLIDWORKS.Interop.sldworks.ISldWorks~GetDocumentDependencies2.html)
+
+.
+
+## Syntax
+
+### Visual Basic (Declaration)
+
+```vb
+Function GetDocumentDependencies( _
+   ByVal Document As System.String, _
+   ByVal Traverseflag As System.Integer, _
+   ByVal Searchflag As System.Integer _
+) As System.Object
+```
+
+### Visual Basic (Usage)
+
+```vb
+Dim instance As ISldWorks
+Dim Document As System.String
+Dim Traverseflag As System.Integer
+Dim Searchflag As System.Integer
+Dim value As System.Object
+
+value = instance.GetDocumentDependencies(Document, Traverseflag, Searchflag)
+```
+
+### C#
+
+```csharp
+System.object GetDocumentDependencies(
+   System.string Document,
+   System.int Traverseflag,
+   System.int Searchflag
+)
+```
+
+### C++/CLI
+
+```cpp
+System.Object^ GetDocumentDependencies(
+   System.String^ Document,
+   System.int Traverseflag,
+   System.int Searchflag
+)
+```
+
+NOTE:
+
+See
+
+[Differences Between Unmanaged C++ and C++/CLI Code](DifferencesBetweenUnManagedAndCPPCLI.htm)
+
+.
+
+### Parameters
+
+- `Document`:
+- `Traverseflag`:
+- `Searchflag`:
+
+## VBA Syntax
+
+See
+
+[SldWorks::GetDocumentDependencies](ms-its:sldworksapivb6.chm::/sldworks~SldWorks~GetDocumentDependencies.html)
+
+.
+
+## See Also
+
+[ISldWorks Interface](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ISldWorks.html)
+
+[ISldWorks Members](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ISldWorks_members.html)

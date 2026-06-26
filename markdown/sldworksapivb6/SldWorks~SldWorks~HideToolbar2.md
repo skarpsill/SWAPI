@@ -1,0 +1,21 @@
+---
+title: "HideToolbar2 Method (SldWorks)"
+project: "SOLIDWORKS Type Library"
+interface: "SldWorks"
+member: "HideToolbar2"
+kind: "method"
+source: "sldworksapivb6/SldWorks~SldWorks~HideToolbar2.html"
+---
+
+# HideToolbar2 Method (SldWorks)
+
+## Syntax
+
+### Visual Basic for Applications (VBA)
+
+```vb
+Public Function HideToolbar2( _
+   ByVal Cookie As Long, _
+   ByVal ToolbarId As Long _
+) As Boolean
+```

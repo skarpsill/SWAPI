@@ -1,0 +1,18 @@
+---
+title: "SupplementaryAngle Method (DisplayDimension)"
+project: "SOLIDWORKS Type Library"
+interface: "DisplayDimension"
+member: "SupplementaryAngle"
+kind: "method"
+source: "sldworksapivb6/SldWorks~DisplayDimension~SupplementaryAngle.html"
+---
+
+# SupplementaryAngle Method (DisplayDimension)
+
+## Syntax
+
+### Visual Basic for Applications (VBA)
+
+```vb
+Public Function SupplementaryAngle() As Boolean
+```

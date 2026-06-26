@@ -1,0 +1,113 @@
+---
+title: "ImportDiagnosisGapCloser Method (IPartDoc)"
+project: "SOLIDWORKS API Help"
+interface: "IPartDoc"
+member: "ImportDiagnosisGapCloser"
+kind: "method"
+source: "sldworksapi/SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IPartDoc~ImportDiagnosisGapCloser.html"
+---
+
+# ImportDiagnosisGapCloser Method (IPartDoc)
+
+Allows you to repair a gap by moving the vertices on the edges surrounding the gap to new positions to close the gap on the imported model.
+
+## Syntax
+
+### Visual Basic (Declaration)
+
+```vb
+Sub ImportDiagnosisGapCloser( _
+   ByVal OldX As System.Double, _
+   ByVal OldY As System.Double, _
+   ByVal OldZ As System.Double, _
+   ByVal NewX As System.Double, _
+   ByVal NewY As System.Double, _
+   ByVal NewZ As System.Double, _
+   ByVal LastMove As System.Boolean _
+)
+```
+
+### Visual Basic (Usage)
+
+```vb
+Dim instance As IPartDoc
+Dim OldX As System.Double
+Dim OldY As System.Double
+Dim OldZ As System.Double
+Dim NewX As System.Double
+Dim NewY As System.Double
+Dim NewZ As System.Double
+Dim LastMove As System.Boolean
+
+instance.ImportDiagnosisGapCloser(OldX, OldY, OldZ, NewX, NewY, NewZ, LastMove)
+```
+
+### C#
+
+```csharp
+void ImportDiagnosisGapCloser(
+   System.double OldX,
+   System.double OldY,
+   System.double OldZ,
+   System.double NewX,
+   System.double NewY,
+   System.double NewZ,
+   System.bool LastMove
+)
+```
+
+### C++/CLI
+
+```cpp
+void ImportDiagnosisGapCloser(
+   System.double OldX,
+   System.double OldY,
+   System.double OldZ,
+   System.double NewX,
+   System.double NewY,
+   System.double NewZ,
+   System.bool LastMove
+)
+```
+
+NOTE:
+
+See
+
+[Differences Between Unmanaged C++ and C++/CLI Code](DifferencesBetweenUnManagedAndCPPCLI.htm)
+
+.
+
+### Parameters
+
+- `OldX`: x coordinate of vertex to move
+- `OldY`: y coordinate of vertex to moveParamDesc
+- `OldZ`: z coordinate of vertex to moveParamDesc
+- `NewX`: x coordinate where to move the vertex
+- `NewY`: y coordinate where to move the vertexParamDesc
+- `NewZ`: z coordinate where to move the vertexParamDesc
+- `LastMove`: True if this move is the last move in a series of moves to close the gap, false if notParamDesc
+
+## VBA Syntax
+
+See
+
+[PartDoc::ImportDiagnosisGapCloser](ms-its:sldworksapivb6.chm::/sldworks~PartDoc~ImportDiagnosisGapCloser.html)
+
+.
+
+## See Also
+
+[IPartDoc Interface](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IPartDoc.html)
+
+[IPartDoc Members](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IPartDoc_members.html)
+
+[IPartDoc::ImportDiagnosis Method](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IPartDoc~ImportDiagnosis.html)
+
+[IBody2::Diagnose Method](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IBody2~Diagnose.html)
+
+[IDiagnoseResult Interface](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IDiagnoseResult.html)
+
+## Availability
+
+SOLIDWORKS 2006 FCS, Revision Number 14.0

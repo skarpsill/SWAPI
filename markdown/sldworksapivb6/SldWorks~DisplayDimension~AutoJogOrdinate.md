@@ -1,0 +1,18 @@
+---
+title: "AutoJogOrdinate Method (DisplayDimension)"
+project: "SOLIDWORKS Type Library"
+interface: "DisplayDimension"
+member: "AutoJogOrdinate"
+kind: "method"
+source: "sldworksapivb6/SldWorks~DisplayDimension~AutoJogOrdinate.html"
+---
+
+# AutoJogOrdinate Method (DisplayDimension)
+
+## Syntax
+
+### Visual Basic for Applications (VBA)
+
+```vb
+Public Function AutoJogOrdinate() As Boolean
+```

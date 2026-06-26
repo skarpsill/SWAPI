@@ -1,0 +1,31 @@
+---
+title: "IDimXpertCompositeSurfaceProfileTolerance Interface Properties"
+project: "SOLIDWORKS DimXpert API Help"
+interface: "IDimXpertCompositeSurfaceProfileTolerance_properties"
+member: ""
+kind: "properties"
+source: "swdimxpertapi/SolidWorks.Interop.swdimxpert~SolidWorks.Interop.swdimxpert.IDimXpertCompositeSurfaceProfileTolerance_properties.html"
+---
+
+# IDimXpertCompositeSurfaceProfileTolerance Interface Properties
+
+For a list of all members of this type, see[IDimXpertCompositeSurfaceProfileTolerance members](SolidWorks.Interop.swdimxpert~SolidWorks.Interop.swdimxpert.IDimXpertCompositeSurfaceProfileTolerance_members.html).
+
+## Public Properties
+
+|  | Name | Description |
+| --- | --- | --- |
+| Property | OuterToleranceValue | Gets the outer tolerance value for this DimXpert composite surface profile tolerance. |
+| Property | OuterToleranceValueLowerTier | Gets the outer tolerance value in the lower tier for this DimXpert composite surface profile tolerance. |
+| Property | PrimaryInLowerTier | Gets whether the primary datum is repeated in the lower tier for this DimXpert composite surface profile tolerance. |
+| Property | SecondaryInLowerTier | Gets whether the secondary datum is repeated in the lower tier for this DimXpert composite surface profile tolerance. |
+| Property | TertiaryInLowerTier | Gets whether the tertiary datum is repeated in the lower tier for this DimXpert composite surface profile tolerance. |
+| Property | ToleranceLowerTier | Gets the tolerance value in the lower tier for this DimXpert composite surface profile tolerance. |
+
+[Top](#topBookmark)
+
+## See Also
+
+[IDimXpertCompositeSurfaceProfileTolerance Interface](SolidWorks.Interop.swdimxpert~SolidWorks.Interop.swdimxpert.IDimXpertCompositeSurfaceProfileTolerance.html)
+
+[SolidWorks.Interop.swdimxpert Namespace](SolidWorks.Interop.swdimxpert~SolidWorks.Interop.swdimxpert_namespace.html)

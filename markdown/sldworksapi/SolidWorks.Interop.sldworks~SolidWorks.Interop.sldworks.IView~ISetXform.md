@@ -1,0 +1,102 @@
+---
+title: "ISetXform Method (IView)"
+project: "SOLIDWORKS API Help"
+interface: "IView"
+member: "ISetXform"
+kind: "method"
+source: "sldworksapi/SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IView~ISetXform.html"
+---
+
+# ISetXform Method (IView)
+
+Sets the matrix used for display of this drawing view.
+
+## Syntax
+
+### Visual Basic (Declaration)
+
+```vb
+Function ISetXform( _
+   ByRef Transform As System.Double _
+) As System.Boolean
+```
+
+### Visual Basic (Usage)
+
+```vb
+Dim instance As IView
+Dim Transform As System.Double
+Dim value As System.Boolean
+
+value = instance.ISetXform(Transform)
+```
+
+### C#
+
+```csharp
+System.bool ISetXform(
+   ref System.double Transform
+)
+```
+
+### C++/CLI
+
+```cpp
+System.bool ISetXform(
+   System.double% Transform
+)
+```
+
+NOTE:
+
+See
+
+[Differences Between Unmanaged C++ and C++/CLI Code](DifferencesBetweenUnManagedAndCPPCLI.htm)
+
+.
+
+### Parameters
+
+- `Transform`: Array of 3 doubles (see
+
+Remarks
+
+)
+
+### Return Value
+
+True if transform successfully set, false if not
+
+## VBA Syntax
+
+See
+
+[View::ISetXform](ms-its:sldworksapivb6.chm::/sldworks~View~ISetXform.html)
+
+.
+
+## Remarks
+
+The 3 doubles are the X and Y position of the view, relative to the sheet origin, and the scale of the view.
+
+Any view alignments that might affect this view are handled the same way as if you were using the user interface to draw the view to move it. If it is aligned with another view, then it will only move along the alignment vector. If it has child views that are aligned with it, then those views will also be moved along with this view.
+
+Calling this method is equivalent to setting the IView::Positionor[IView::IPosition](SOLIDWORKS.Interop.sldworks~SOLIDWORKS.Interop.sldworks.IView~IPosition.html)property (to set X and Y), and the IView::ScaleDecimalproperty (to set the scale).
+
+To get the view matrix, use IView::GetXformor[IView::IGetXform](SOLIDWORKS.Interop.sldworks~SOLIDWORKS.Interop.sldworks.IView~IGetXform.html)method.
+
+Using this method may cause changes to the graphics of the drawing. Once all the view-related changes have been made, the user should call[IModelDoc2::EditRebuild3](SOLIDWORKS.Interop.sldworks~SOLIDWORKS.Interop.sldworks.IModelDoc2~EditRebuild3.html)to regenerate the drawing, in order to see these changes.
+
+## See Also
+
+[IView Interface](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IView.html)
+
+[IView Members](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IView_members.html)
+
+[IView::SetXform Method](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IView~SetXform.html)
+
+[IView::GetViewXform Method](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IView~GetViewXform.html)
+
+[IView::IGetViewXform Method](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IView~IGetViewXform.html)
+
+[IView::ModelToViewTransform Property](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IView~ModelToViewTransform.html)

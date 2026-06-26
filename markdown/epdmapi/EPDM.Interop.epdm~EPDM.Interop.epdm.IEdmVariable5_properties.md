@@ -1,0 +1,31 @@
+---
+title: "IEdmVariable5 Interface Properties"
+project: "SOLIDWORKS PDM Professional API Help"
+interface: "IEdmVariable5_properties"
+member: ""
+kind: "properties"
+source: "epdmapi/EPDM.Interop.epdm~EPDM.Interop.epdm.IEdmVariable5_properties.html"
+---
+
+# IEdmVariable5 Interface Properties
+
+For a list of all members of this type, see[IEdmVariable5 members](EPDM.Interop.epdm~EPDM.Interop.epdm.IEdmVariable5_members.html).
+
+## Public Properties
+
+|  | Name | Description |
+| --- | --- | --- |
+| Property | Flags | Gets the style of this variable. |
+| Property | VariableType | Gets the type of data that can be stored in this variable. |
+
+[Top](#topBookmark)
+
+## See Also
+
+[IEdmVariable5 Interface](EPDM.Interop.epdm~EPDM.Interop.epdm.IEdmVariable5.html)
+
+[EPDM.Interop.epdm Namespace](EPDM.Interop.epdm~EPDM.Interop.epdm_namespace.html)
+
+[IEdmEnumeratorVariable5 Interface](EPDM.Interop.epdm~EPDM.Interop.epdm.IEdmEnumeratorVariable5.html)
+
+[IEdmAttribute5 Interface](EPDM.Interop.epdm~EPDM.Interop.epdm.IEdmAttribute5.html)

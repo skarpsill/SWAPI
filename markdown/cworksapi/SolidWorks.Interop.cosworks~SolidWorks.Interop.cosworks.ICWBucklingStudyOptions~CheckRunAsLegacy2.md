@@ -1,0 +1,74 @@
+---
+title: "CheckRunAsLegacy2 Property (ICWBucklingStudyOptions)"
+project: "SOLIDWORKS Simulation API Help"
+interface: "ICWBucklingStudyOptions"
+member: "CheckRunAsLegacy2"
+kind: "property"
+source: "cworksapi/SolidWorks.Interop.cosworks~SolidWorks.Interop.cosworks.ICWBucklingStudyOptions~CheckRunAsLegacy2.html"
+---
+
+# CheckRunAsLegacy2 Property (ICWBucklingStudyOptions)
+
+Gets or sets whether to run as legacy and import only the normal component of the pressure load from a SOLIDWORKS Flow Simulation results file.
+
+## Syntax
+
+### Visual Basic (Declaration)
+
+```vb
+Property CheckRunAsLegacy2 As System.Boolean
+```
+
+### Visual Basic (Usage)
+
+```vb
+Dim instance As ICWBucklingStudyOptions
+Dim value As System.Boolean
+
+instance.CheckRunAsLegacy2 = value
+
+value = instance.CheckRunAsLegacy2
+```
+
+### C#
+
+```csharp
+System.bool CheckRunAsLegacy2 {get; set;}
+```
+
+### C++/CLI
+
+```cpp
+property System.bool CheckRunAsLegacy2 {
+   System.bool get();
+   void set (    System.bool value);
+}
+```
+
+### Property Value
+
+-1 or true to run as legacy and import only the normal component of the pressure load, 0 or false to import all components including shear stress
+
+## Examples
+
+See the
+
+[ICWBucklingStudyOptions](SolidWorks.Interop.cosworks~SolidWorks.Interop.cosworks.ICWBucklingStudyOptions.html)
+
+examples.
+
+## Remarks
+
+This property is valid only if[ICWBucklingStudyOptions::CheckFlowPressure2](SolidWorks.Interop.cosworks~SolidWorks.Interop.cosworks.ICWBucklingStudyOptions~CheckFlowPressure2.html)is set to -1, and[ICWBucklingStudyOptions::FlowPressureFile](SolidWorks.Interop.cosworks~SolidWorks.Interop.cosworks.ICWBucklingStudyOptions~FlowPressureFile.html)is set to a SOLIDWORKS Flow Simulation results file.
+
+This property returns a boolean value which can be cast to an integer. To set this property, you can specify either the boolean or the integer.
+
+## See Also
+
+[ICWBucklingStudyOptions Interface](SolidWorks.Interop.cosworks~SolidWorks.Interop.cosworks.ICWBucklingStudyOptions.html)
+
+[ICWBucklingStudyOptions Members](SolidWorks.Interop.cosworks~SolidWorks.Interop.cosworks.ICWBucklingStudyOptions_members.html)
+
+## Availability
+
+SOLIDWORKS 2022 FCS, Revision Number 30

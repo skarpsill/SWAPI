@@ -1,0 +1,59 @@
+---
+title: "IFrame Interface Members"
+project: "SOLIDWORKS API Help"
+interface: "IFrame_members"
+member: ""
+kind: "members"
+source: "sldworksapi/SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IFrame_members.html"
+---
+
+# IFrame Interface Members
+
+The following tables list the members exposed by[IFrame](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IFrame.html).
+
+## Public Properties
+
+|  | Name | Description |
+| --- | --- | --- |
+| Property | KeepInvisible | Gets or sets whether to keep the SOLIDWORKS frame invisible. |
+| Property | MenuPinned | Gets or sets whether the SOLIDWORKS main menu is pinned. |
+| Property | ModelWindows | Gets the client model windows for this frame. |
+
+[Top](#topBookmark)
+
+## Public Methods
+
+|  | Name | Description |
+| --- | --- | --- |
+| Method | AddMenu | Adds a menu item. |
+| Method | AddMenuItem | Obsolete. Superseded by IFrame::AddMenuItem2 . |
+| Method | AddMenuItem2 | Adds a menu item and bitmap or a separator to an existing menu. |
+| Method | AddMenuPopupIcon | Adds an icon to a context-sensitive menu of a C++ SOLIDWORKS add-in. |
+| Method | AddMenuPopupIcon2 | Obsolete. Superseded by IFrame::AddMenuPopupIcon3 . |
+| Method | AddMenuPopupIcon3 | Adds an icon to a context-sensitive menu of a SOLIDWORKS add-in. |
+| Method | AddMenuPopupItem | Obsolete. Superseded by IFrame::AddMenuPopupItem2 . |
+| Method | AddMenuPopupItem2 | Adds a menu item or separator to a shortcut menu (i.e., a right-click pop-up menu). |
+| Method | GetHWnd | Gets the window handle for the main frame. |
+| Method | GetHWndx64 | Gets the window handle for the main frame in 64-bit applications. |
+| Method | GetMenu | Gets the menu handle for the main frame. |
+| Method | GetMenuState | Obsolete. Superseded by IFrame::AddMenuItem2 . |
+| Method | GetMenux64 | Gets the menu handle for the main frame in 64-bit applications. |
+| Method | GetModelWindowCount | Gets the number of child model windows for this frame. |
+| Method | GetStatusBarPane | Gets a pointer to one of up to five panes on the right side of the status bar. |
+| Method | GetSubMenuCount | Gets the number of submenus for this frame. |
+| Method | GetSubMenus | Gets the submenus for this frame. |
+| Method | IGetModelWindows | Gets the child model windows for this frame. |
+| Method | IGetSubMenus | Gets the submenus for this frame. |
+| Method | RemoveMenu | Removes a menu item. |
+| Method | RemoveMenuPopupIcon | Removes an icon from a context-sensitive shortcut (popup) menu. |
+| Method | RenameMenu | Renames a menu item. |
+| Method | SetStatusBarText | Displays a text string in the main status bar area to the left of the status bar. |
+| Method | ShowModelWindow | Shows a client model window. |
+
+[Top](#topBookmark)
+
+## See Also
+
+[IFrame Interface](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IFrame.html)
+
+[SolidWorks.Interop.sldworks Namespace](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks_namespace.html)

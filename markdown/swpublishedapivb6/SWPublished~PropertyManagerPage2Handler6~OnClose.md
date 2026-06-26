@@ -1,0 +1,20 @@
+---
+title: "OnClose Method (PropertyManagerPage2Handler6)"
+project: "SOLIDWORKS Custom Interfaces Type Library"
+interface: "PropertyManagerPage2Handler6"
+member: "OnClose"
+kind: "method"
+source: "swpublishedapivb6/SWPublished~PropertyManagerPage2Handler6~OnClose.html"
+---
+
+# OnClose Method (PropertyManagerPage2Handler6)
+
+## Syntax
+
+### Visual Basic for Applications (VBA)
+
+```vb
+Public Function OnClose( _
+   ByVal Reason As Long _
+) As HResult
+```

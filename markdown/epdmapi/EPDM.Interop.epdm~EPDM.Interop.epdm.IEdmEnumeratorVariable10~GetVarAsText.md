@@ -1,0 +1,106 @@
+---
+title: "GetVarAsText Method (IEdmEnumeratorVariable10)"
+project: "SOLIDWORKS PDM Professional API Help"
+interface: "IEdmEnumeratorVariable10"
+member: "GetVarAsText"
+kind: "method"
+source: "epdmapi/EPDM.Interop.epdm~EPDM.Interop.epdm.IEdmEnumeratorVariable10~GetVarAsText.html"
+---
+
+# GetVarAsText Method (IEdmEnumeratorVariable10)
+
+Gets the value of the specified variable in text format from this file or folder.
+
+## Syntax
+
+### Visual Basic
+
+```vb
+Function GetVarAsText( _
+   ByVal bsVarName As System.String, _
+   ByVal bsCfgName As System.String, _
+   ByVal lFolderID As System.Integer, _
+   ByRef poRetValue As System.Object _
+) As System.Boolean
+```
+
+### C#
+
+```csharp
+System.bool GetVarAsText(
+   System.string bsVarName,
+   System.string bsCfgName,
+   System.int lFolderID,
+   out System.object poRetValue
+)
+```
+
+### C++/CLI
+
+```cpp
+System.bool GetVarAsText(
+   System.String^ bsVarName,
+   System.String^ bsCfgName,
+   System.int lFolderID,
+   [Out] System.Object^ poRetValue
+)
+```
+
+### Parameters
+
+- `bsVarName`: Name of variable to read
+- `bsCfgName`: Name of configuration or layout from which to get the variable value; empty string for folders and file types that do not support configurations (see
+
+Remarks
+
+)
+- `lFolderID`: ID of parent folder
+- `poRetValue`: Variable value in text format
+
+### Return Value
+
+True if the variable is found, false if not
+
+## Remarks
+
+To specify bsCfgName:
+
+- Call
+
+  [IEdmFile5::GetConfigurations](EPDM.Interop.epdm~EPDM.Interop.epdm.IEdmFile5~GetConfigurations.html)
+
+  to get the available configuration names for this file.
+- If this method is used in your add-in's implementation of
+
+  [IEdmAddIn5::OnCmd](EPDM.Interop.epdm~EPDM.Interop.epdm.IEdmAddIn5~OnCmd.html)
+
+  , then a list of configuration names for the data card is returned in ppoData that can be cast to
+
+  [EdmCmdData](EPDM.Interop.epdm~EPDM.Interop.epdm.EdmCmdData.html)
+
+  . EdmCmdData.mpoExtra contains an
+
+  [IEdmStrLst5](EPDM.Interop.epdm~EPDM.Interop.epdm.IEdmStrLst5.html)
+
+  of configuration names.
+
+C++ users must initialize the VARIANT struct of poRetValue with a call to VariantInit before calling this method. They also must free the contents of the struct with a call to VariantClear.
+
+[Return codes](ReturnCodes.htm):
+
+- S_OK: The method successfully executed.
+- S_FALSE: The variable was not found.
+
+## See Also
+
+[IEdmEnumeratorVariable10 Interface](EPDM.Interop.epdm~EPDM.Interop.epdm.IEdmEnumeratorVariable10.html)
+
+[IEdmEnumeratorVariable10 Members](EPDM.Interop.epdm~EPDM.Interop.epdm.IEdmEnumeratorVariable10_members.html)
+
+[IEdmEnumeratorVariable10::GetVar2 Method ()](EPDM.Interop.epdm~EPDM.Interop.epdm.IEdmEnumeratorVariable10~GetVar2.html)
+
+[IEdmEnumeratorVariable5::SetVar Method ()](EPDM.Interop.epdm~EPDM.Interop.epdm.IEdmEnumeratorVariable5~SetVar.html)
+
+## Availability
+
+SOLIDWORKS PDM Professional 2015 SP04

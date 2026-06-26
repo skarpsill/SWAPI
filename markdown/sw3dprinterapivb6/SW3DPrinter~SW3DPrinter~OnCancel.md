@@ -1,0 +1,18 @@
+---
+title: "OnCancel Method (SW3DPrinter)"
+project: "SOLIDWORKS 3D Printer Type Library"
+interface: "SW3DPrinter"
+member: "OnCancel"
+kind: "method"
+source: "sw3dprinterapivb6/SW3DPrinter~SW3DPrinter~OnCancel.html"
+---
+
+# OnCancel Method (SW3DPrinter)
+
+## Syntax
+
+### Visual Basic for Applications (VBA)
+
+```vb
+Public Function OnCancel() As HResult
+```

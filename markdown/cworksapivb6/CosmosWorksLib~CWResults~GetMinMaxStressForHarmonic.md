@@ -1,0 +1,26 @@
+---
+title: "GetMinMaxStressForHarmonic Method (CWResults)"
+project: "SOLIDWORKS Simulation Type Library"
+interface: "CWResults"
+member: "GetMinMaxStressForHarmonic"
+kind: "method"
+source: "cworksapivb6/CosmosWorksLib~CWResults~GetMinMaxStressForHarmonic.html"
+---
+
+# GetMinMaxStressForHarmonic Method (CWResults)
+
+## Syntax
+
+### Visual Basic for Applications (VBA)
+
+```vb
+Public Function GetMinMaxStressForHarmonic( _
+   ByVal NComponent As Long, _
+   ByVal BByElementNumber As Long, _
+   ByVal BAvgOnBoundary As Long, _
+   ByVal NStepNum As Long, _
+   ByVal DispPlane As Object, _
+   ByVal NUnits As Long, _
+   ByRef ErrorCode As Long _
+) As Variant
+```

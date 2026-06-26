@@ -1,0 +1,73 @@
+---
+title: "OnOptionCheck Method (IPropertyManagerPage2Handler6)"
+project: "SOLIDWORKS Custom Interfaces API Help"
+interface: "IPropertyManagerPage2Handler6"
+member: "OnOptionCheck"
+kind: "method"
+source: "swpublishedapi/SolidWorks.Interop.swpublished~SolidWorks.Interop.swpublished.IPropertyManagerPage2Handler6~OnOptionCheck.html"
+---
+
+# OnOptionCheck Method (IPropertyManagerPage2Handler6)
+
+Obsoleted. Superseded by
+
+[IPropertyManagerPage2Handler7::OnOptionCheck](SOLIDWORKS.Interop.swpublished~SOLIDWORKS.Interop.swpublished.IPropertyManagerPage2Handler7~OnOptionCheck.html)
+
+.
+
+## Syntax
+
+### Visual Basic (Declaration)
+
+```vb
+Sub OnOptionCheck( _
+   ByVal Id As System.Integer _
+)
+```
+
+### Visual Basic (Usage)
+
+```vb
+Dim instance As IPropertyManagerPage2Handler6
+Dim Id As System.Integer
+
+instance.OnOptionCheck(Id)
+```
+
+### C#
+
+```csharp
+void OnOptionCheck(
+   System.int Id
+)
+```
+
+### C++/CLI
+
+```cpp
+void OnOptionCheck(
+   System.int Id
+)
+```
+
+### Parameters
+
+- `Id`: ID of option
+
+## VBA Syntax
+
+See
+
+[PropertyManagerPage2Handler6::OnOptionCheck](ms-its:swpublishedapivb6.chm::/swpublished~PropertyManagerPage2Handler6~OnOptionCheck.html)
+
+.
+
+## See Also
+
+[IPropertyManagerPage2Handler6 Interface](SolidWorks.Interop.swpublished~SolidWorks.Interop.swpublished.IPropertyManagerPage2Handler6.html)
+
+[IPropertyManagerPage2Handler6 Members](SolidWorks.Interop.swpublished~SolidWorks.Interop.swpublished.IPropertyManagerPage2Handler6_members.html)
+
+## Availability
+
+SOLIDWORKS 2009 FCS, Revision Number 17.0

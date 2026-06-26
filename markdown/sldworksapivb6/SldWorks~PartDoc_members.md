@@ -1,0 +1,255 @@
+---
+title: "PartDoc Object
+Members"
+project: "SOLIDWORKS Type Library"
+interface: "PartDoc_members"
+member: ""
+kind: "members"
+source: "sldworksapivb6/SldWorks~PartDoc_members.html"
+---
+
+# PartDoc Object
+Members
+
+## Public Methods
+
+| Public Method AddPropertyExtension |  |
+| --- | --- |
+| Public Method Body |  |
+| Public Method CreateExplodedView |  |
+| Public Method CreateFeatureFromBody |  |
+| Public Method CreateFeatureFromBody2 |  |
+| Public Method CreateFeatureFromBody3 |  |
+| Public Method CreateNewBody |  |
+| Public Method CreateSurfaceFeatureFromBody |  |
+| Public Method DeleteEntityName |  |
+| Public Method Dumpfacets |  |
+| Public Method EditRebuild |  |
+| Public Method EditRollback |  |
+| Public Method EditRollforward |  |
+| Public Method EditSuppress |  |
+| Public Method EditUnsuppress |  |
+| Public Method EditUnsuppressDependent |  |
+| Public Method EnumBodies |  |
+| Public Method EnumBodies2 |  |
+| Public Method EnumBodies3 |  |
+| Public Method EnumRelatedBodies |  |
+| Public Method EnumRelatedBodies2 |  |
+| Public Method EnumRelatedSectionedBodies |  |
+| Public Method EnumRelatedSectionedBodies2 |  |
+| Public Method ExportFlatPatternView |  |
+| Public Method ExportToDWG |  |
+| Public Method ExportToDWG2 |  |
+| Public Method FeatureById |  |
+| Public Method FeatureByName |  |
+| Public Method FeatureExtrusion |  |
+| Public Method FeatureExtrusion2 |  |
+| Public Method FeatureExtrusion3 |  |
+| Public Method FeatureExtrusionThin |  |
+| Public Method FeatureExtrusionThin2 |  |
+| Public Method FeatureExtrusionThin3 |  |
+| Public Method FeatureRevolve |  |
+| Public Method FeatureRevolve2 |  |
+| Public Method FeatureRevolveCut |  |
+| Public Method FeatureRevolveThin |  |
+| Public Method FeatureRevolveThin2 |  |
+| Public Method FeatureRevolveThinCut |  |
+| Public Method FeatureStock |  |
+| Public Method FeatureXpert |  |
+| Public Method FirstFeature |  |
+| Public Method ForceRebuild |  |
+| Public Method GetBodies |  |
+| Public Method GetBodies2 |  |
+| Public Method GetCorresponding |  |
+| Public Method GetCorrespondingEntity |  |
+| Public Method GetEntityByName |  |
+| Public Method GetEntityName |  |
+| Public Method GetExplodedViewConfigurationName |  |
+| Public Method GetExplodedViewCount |  |
+| Public Method GetExplodedViewNames |  |
+| Public Method GetMateReferenceEntity |  |
+| Public Method GetMaterialPropertyName |  |
+| Public Method GetMaterialPropertyName2 |  |
+| Public Method GetMaterialVisualProperties |  |
+| Public Method GetNamedEntities |  |
+| Public Method GetNamedEntitiesCount |  |
+| Public Method GetPartBox |  |
+| Public Method GetProcessedBody |  |
+| Public Method GetProcessedBodyWithSelFace |  |
+| Public Method GetPropertyExtension |  |
+| Public Method GetRelatedBodies |  |
+| Public Method GetRelatedSectionedBodies |  |
+| Public Method GetSectionedBody |  |
+| Public Method GetTessNorms |  |
+| Public Method GetTessTriangleCount |  |
+| Public Method GetTessTriangles |  |
+| Public Method GetTessTriStripEdges |  |
+| Public Method GetTessTriStripNorms |  |
+| Public Method GetTessTriStrips |  |
+| Public Method GetTessTriStripSize |  |
+| Public Method IBodyObject |  |
+| Public Method IBodyObject2 |  |
+| Public Method ICreateFeatureFromBody |  |
+| Public Method ICreateFeatureFromBody2 |  |
+| Public Method ICreateFeatureFromBody3 |  |
+| Public Method ICreateFeatureFromBody4 |  |
+| Public Method ICreateNewBody |  |
+| Public Method ICreateNewBody2 |  |
+| Public Method ICreateSurfaceFeatureFromBody |  |
+| Public Method ICreateSurfaceFeatureFromBodyCount |  |
+| Public Method ICreateSurfaceFeatureFromBodyCount2 |  |
+| Public Method IDeleteEntityName |  |
+| Public Method IExportToDWG |  |
+| Public Method IExportToDWG2 |  |
+| Public Method IFeatureById |  |
+| Public Method IFeatureByName |  |
+| Public Method IFirstFeature |  |
+| Public Method IGetCorrespondingEntity |  |
+| Public Method IGetEntityByName |  |
+| Public Method IGetEntityName |  |
+| Public Method IGetNamedEntities |  |
+| Public Method IGetPartBox |  |
+| Public Method IGetProcessedBody |  |
+| Public Method IGetProcessedBody2 |  |
+| Public Method IGetProcessedBodyWithSelFace |  |
+| Public Method IGetProcessedBodyWithSelFace2 |  |
+| Public Method IGetSectionedBody |  |
+| Public Method IGetSectionedBody2 |  |
+| Public Method IGetTessNorms |  |
+| Public Method IGetTessTriangles |  |
+| Public Method IGetTessTriStripEdges |  |
+| Public Method IGetTessTriStripEdgeSize |  |
+| Public Method IGetTessTriStripNorms |  |
+| Public Method IGetTessTriStrips |  |
+| Public Method IInsertCombineFeature |  |
+| Public Method ImportDiagnosis |  |
+| Public Method ImportDiagnosisGapCloser |  |
+| Public Method InsertBasePart |  |
+| Public Method InsertBendNotes |  |
+| Public Method InsertBends |  |
+| Public Method InsertBends2 |  |
+| Public Method InsertBendTable |  |
+| Public Method InsertCombineFeature |  |
+| Public Method InsertImportedFeature |  |
+| Public Method InsertMirrorAll |  |
+| Public Method InsertMirrorFeature |  |
+| Public Method InsertPart |  |
+| Public Method InsertPart2 |  |
+| Public Method InsertPart3 |  |
+| Public Method InsertStockTurned |  |
+| Public Method ISetEntityName |  |
+| Public Method IsMirrored |  |
+| Public Method IsWeldment |  |
+| Public Method MakeSection |  |
+| Public Method MirrorFeature |  |
+| Public Method MirrorPart |  |
+| Public Method MirrorPart2 |  |
+| Public Method RemoveAllDisplayStates |  |
+| Public Method ReorderFeature |  |
+| Public Method ResetPropertyExtension |  |
+| Public Method SaveToFile |  |
+| Public Method SaveToFile2 |  |
+| Public Method SaveToFile3 |  |
+| Public Method SetCosmosWorksMaterial |  |
+| Public Method SetDroppedFileName |  |
+| Public Method SetEntityName |  |
+| Public Method SetFaceMap |  |
+| Public Method SetLineColor |  |
+| Public Method SetLineStyle |  |
+| Public Method SetLineWidth |  |
+| Public Method SetMaterialPropertyName |  |
+| Public Method SetMaterialPropertyName2 |  |
+| Public Method SetMaterialVisualProperties |  |
+| Public Method ShowExploded |  |
+
+## Public Properties
+
+| Public Property IMaterialPropertyValues |  |
+| --- | --- |
+| Public Property MaterialIdName |  |
+| Public Property MaterialPropertyValues |  |
+| Public Property MaterialUserName |  |
+
+## Events
+
+| Public Event ActiveAnnotationViewChangeNotify |  |
+| --- | --- |
+| Public Event ActiveConfigChangeNotify |  |
+| Public Event ActiveConfigChangePostNotify |  |
+| Public Event ActiveDisplayStateChangePostNotify |  |
+| Public Event ActiveDisplayStateChangePreNotify |  |
+| Public Event ActiveViewChangeNotify |  |
+| Public Event AddCustomPropertyNotify |  |
+| Public Event AddDvePagePreNotify |  |
+| Public Event AddItemNotify |  |
+| Public Event AutoSaveNotify |  |
+| Public Event AutoSaveToStorageNotify |  |
+| Public Event AutoSaveToStorageStoreNotify |  |
+| Public Event BodyVisibleChangeNotify |  |
+| Public Event ChangeCustomPropertyNotify |  |
+| Public Event ClearSelectionsNotify |  |
+| Public Event CloseDesignTableNotify |  |
+| Public Event CommandManagerTabActivatedPreNotify |  |
+| Public Event ConfigurationChangeNotify |  |
+| Public Event ConvertToBodiesPostNotify |  |
+| Public Event ConvertToBodiesPreNotify |  |
+| Public Event DeleteCustomPropertyNotify |  |
+| Public Event DeleteItemNotify |  |
+| Public Event DeleteItemPreNotify |  |
+| Public Event DeleteSelectionPreNotify |  |
+| Public Event DestroyNotify |  |
+| Public Event DestroyNotify2 |  |
+| Public Event DimensionChangeNotify |  |
+| Public Event DragStateChangeNotify |  |
+| Public Event DynamicHighlightNotify |  |
+| Public Event EquationEditorPostNotify |  |
+| Public Event EquationEditorPreNotify |  |
+| Public Event FeatureEditPreNotify |  |
+| Public Event FeatureManagerFilterStringChangeNotify |  |
+| Public Event FeatureManagerTabActivatedNotify |  |
+| Public Event FeatureManagerTabActivatedPreNotify |  |
+| Public Event FeatureManagerTreeRebuildNotify |  |
+| Public Event FeatureSketchEditPreNotify |  |
+| Public Event FileDropPostNotify |  |
+| Public Event FileDropPreNotify |  |
+| Public Event FileReloadCancelNotify |  |
+| Public Event FileReloadNotify |  |
+| Public Event FileReloadPreNotify |  |
+| Public Event FileSaveAsNotify |  |
+| Public Event FileSaveAsNotify2 |  |
+| Public Event FileSaveNotify |  |
+| Public Event FileSavePostCancelNotify |  |
+| Public Event FileSavePostNotify |  |
+| Public Event FlipLoopNotify |  |
+| Public Event InsertTableNotify |  |
+| Public Event LightingDialogCreateNotify |  |
+| Public Event LoadFromStorageNotify |  |
+| Public Event LoadFromStorageStoreNotify |  |
+| Public Event ModifyNotify |  |
+| Public Event ModifyTableNotify |  |
+| Public Event NewSelectionNotify |  |
+| Public Event OpenDesignTableNotify |  |
+| Public Event PreRenameItemNotify |  |
+| Public Event PromptBodiesToKeepNotify |  |
+| Public Event PublishTo3DPDFNotify |  |
+| Public Event RedoPostNotify |  |
+| Public Event RedoPreNotify |  |
+| Public Event RegenNotify |  |
+| Public Event RegenPostNotify |  |
+| Public Event RegenPostNotify2 |  |
+| Public Event RenamedDocumentNotify |  |
+| Public Event RenameDisplayTitleNotify |  |
+| Public Event RenameItemNotify |  |
+| Public Event SaveToStorageNotify |  |
+| Public Event SaveToStorageStoreNotify |  |
+| Public Event SensorAlertPreNotify |  |
+| Public Event SketchSolveNotify |  |
+| Public Event SuppressionStateChangeNotify |  |
+| Public Event UndoPostNotify |  |
+| Public Event UndoPreNotify |  |
+| Public Event UnitsChangeNotify |  |
+| Public Event UserSelectionPostNotify |  |
+| Public Event UserSelectionPreNotify |  |
+| Public Event ViewNewNotify |  |
+| Public Event ViewNewNotify2 |  |
+| Public Event WeldmentCutListUpdatePostNotify |  |

@@ -1,0 +1,96 @@
+---
+title: "SetMaterialDataCurve3 Method (ICWMaterial)"
+project: "SOLIDWORKS Simulation API Help"
+interface: "ICWMaterial"
+member: "SetMaterialDataCurve3"
+kind: "method"
+source: "cworksapi/SolidWorks.Interop.cosworks~SolidWorks.Interop.cosworks.ICWMaterial~SetMaterialDataCurve3.html"
+---
+
+# SetMaterialDataCurve3 Method (ICWMaterial)
+
+Sets the material data curve.
+
+## Syntax
+
+### Visual Basic (Declaration)
+
+```vb
+Sub SetMaterialDataCurve3( _
+   ByVal NIndex As System.Integer, _
+   ByVal BUseCurve As System.Boolean, _
+   ByVal VarCurveData As System.Object, _
+   ByRef ErrorCode As System.Integer _
+)
+```
+
+### Visual Basic (Usage)
+
+```vb
+Dim instance As ICWMaterial
+Dim NIndex As System.Integer
+Dim BUseCurve As System.Boolean
+Dim VarCurveData As System.Object
+Dim ErrorCode As System.Integer
+
+instance.SetMaterialDataCurve3(NIndex, BUseCurve, VarCurveData, ErrorCode)
+```
+
+### C#
+
+```csharp
+void SetMaterialDataCurve3(
+   System.int NIndex,
+   System.bool BUseCurve,
+   System.object VarCurveData,
+   out System.int ErrorCode
+)
+```
+
+### C++/CLI
+
+```cpp
+void SetMaterialDataCurve3(
+   System.int NIndex,
+   System.bool BUseCurve,
+   System.Object^ VarCurveData,
+   [Out] System.int ErrorCode
+)
+```
+
+### Parameters
+
+- `NIndex`: 0-based index of material data curve
+- `BUseCurve`: - -1 or true = Use material data curve
+- 0 or false = Do not use material data curve
+- `VarCurveData`: Array of material curve data (see
+
+Remarks
+
+)
+- `ErrorCode`: Error as defined in[swsMaterialDataCurveError_e](SOLIDWORKS.Interop.cosworks~SOLIDWORKS.Interop.cosworks.swsMaterialDataCurveError_e.html)
+
+## Remarks
+
+Array of material curve data:
+
+**[**`n, x1, y1, x2, y2, x3, y3,...xn, yn`**]**
+
+where:
+
+- n = number of xi,yi pairs
+- x1 = X property value for point 1
+- y1 = Y property value for point 1
+- ...
+- xn = X property value for point n
+- yn = Y property value for point n
+
+## See Also
+
+[ICWMaterial Interface](SolidWorks.Interop.cosworks~SolidWorks.Interop.cosworks.ICWMaterial.html)
+
+[ICWMaterial Members](SolidWorks.Interop.cosworks~SolidWorks.Interop.cosworks.ICWMaterial_members.html)
+
+## Availability
+
+SOLIDWORKS 2022 FCS, Revision Number 30

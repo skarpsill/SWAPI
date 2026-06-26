@@ -1,0 +1,103 @@
+---
+title: "IAccessSelections Method (IChamferFeatureData2)"
+project: "SOLIDWORKS API Help"
+interface: "IChamferFeatureData2"
+member: "IAccessSelections"
+kind: "method"
+source: "sldworksapi/SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IChamferFeatureData2~IAccessSelections.html"
+---
+
+# IAccessSelections Method (IChamferFeatureData2)
+
+Accesses the selections that define this chamfer feature.
+
+## Syntax
+
+### Visual Basic (Declaration)
+
+```vb
+Function IAccessSelections( _
+   ByVal TopDoc As ModelDoc2, _
+   ByVal Component As Component2 _
+) As System.Boolean
+```
+
+### Visual Basic (Usage)
+
+```vb
+Dim instance As IChamferFeatureData2
+Dim TopDoc As ModelDoc2
+Dim Component As Component2
+Dim value As System.Boolean
+
+value = instance.IAccessSelections(TopDoc, Component)
+```
+
+### C#
+
+```csharp
+System.bool IAccessSelections(
+   ModelDoc2 TopDoc,
+   Component2 Component
+)
+```
+
+### C++/CLI
+
+```cpp
+System.bool IAccessSelections(
+   ModelDoc2^ TopDoc,
+   Component2^ Component
+)
+```
+
+NOTE:
+
+See
+
+[Differences Between Unmanaged C++ and C++/CLI Code](DifferencesBetweenUnManagedAndCPPCLI.htm)
+
+.
+
+### Parameters
+
+- `TopDoc`: Top-level document
+- `Component`: Component in which the feature is to be modified
+
+### Return Value
+
+True if the selections were successfully accessed
+
+## VBA Syntax
+
+See
+
+[ChamferFeatureData2::IAccessSelections](ms-its:sldworksapivb6.chm::/sldworks~ChamferFeatureData2~IAccessSelections.html)
+
+.
+
+## Remarks
+
+Remarks
+
+| To modify a feature in a... | Then... |
+| --- | --- |
+| Part | TopDoc argument is the IModelDoc2 for the part Component argument is NULL |
+| Assembly | TopDoc argument is the IModelDoc2 object for the assembly Component argument is the IComponent2 object in which the feature is to be modified |
+
+This method puts the model into a rollback state to allow access to the selections that define this feature. You must use either of the following methods to restore the rollback state:
+
+- [IFeature::IModifyDefinition2](SOLIDWORKS.Interop.sldworks~SOLIDWORKS.Interop.sldworks.IFeature~IModifyDefinition2.html)if you modified the feature
+- [IChamferFeatureData2::ReleaseSelectionAccess](SOLIDWORKS.Interop.sldworks~SOLIDWORKS.Interop.sldworks.IChamferFeatureData2~ReleaseSelectionAccess.html)if not
+
+## See Also
+
+[IChamferFeatureData2 Interface](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IChamferFeatureData2.html)
+
+[IChamferFeatureData2 Members](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IChamferFeatureData2_members.html)
+
+[IChamferFeatureData2::AccessSelections Method](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IChamferFeatureData2~AccessSelections.html)
+
+## Availability
+
+SOLIDWORKS 2001Plus FCS, Revision Number 10.0

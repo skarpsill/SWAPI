@@ -1,0 +1,28 @@
+---
+title: "IDimXpertDistanceBetweenDimTol Interface Methods"
+project: "SOLIDWORKS DimXpert API Help"
+interface: "IDimXpertDistanceBetweenDimTol_methods"
+member: ""
+kind: "methods"
+source: "swdimxpertapi/SolidWorks.Interop.swdimxpert~SolidWorks.Interop.swdimxpert.IDimXpertDistanceBetweenDimTol_methods.html"
+---
+
+# IDimXpertDistanceBetweenDimTol Interface Methods
+
+For a list of all members of this type, see[IDimXpertDistanceBetweenDimTol members](SolidWorks.Interop.swdimxpert~SolidWorks.Interop.swdimxpert.IDimXpertDistanceBetweenDimTol_members.html).
+
+## Public Methods
+
+|  | Name | Description |
+| --- | --- | --- |
+| Method | GetDirectionVector | Gets the direction vector for this DimXpert distance-between dimension tolerance. |
+| Method | GetFeature | Gets the feature to which this DimXpert distance-between dimension tolerance is applied. |
+| Method | GetOriginFeature | Gets the origin feature for this DimXpert distance-between dimension tolerance. |
+
+[Top](#topBookmark)
+
+## See Also
+
+[IDimXpertDistanceBetweenDimTol Interface](SolidWorks.Interop.swdimxpert~SolidWorks.Interop.swdimxpert.IDimXpertDistanceBetweenDimTol.html)
+
+[SolidWorks.Interop.swdimxpert Namespace](SolidWorks.Interop.swdimxpert~SolidWorks.Interop.swdimxpert_namespace.html)

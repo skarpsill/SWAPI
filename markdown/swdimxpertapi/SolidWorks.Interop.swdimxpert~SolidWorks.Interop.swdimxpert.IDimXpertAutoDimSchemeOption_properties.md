@@ -1,0 +1,31 @@
+---
+title: "IDimXpertAutoDimSchemeOption Interface Properties"
+project: "SOLIDWORKS DimXpert API Help"
+interface: "IDimXpertAutoDimSchemeOption_properties"
+member: ""
+kind: "properties"
+source: "swdimxpertapi/SolidWorks.Interop.swdimxpert~SolidWorks.Interop.swdimxpert.IDimXpertAutoDimSchemeOption_properties.html"
+---
+
+# IDimXpertAutoDimSchemeOption Interface Properties
+
+For a list of all members of this type, see[IDimXpertAutoDimSchemeOption members](SolidWorks.Interop.swdimxpert~SolidWorks.Interop.swdimxpert.IDimXpertAutoDimSchemeOption_members.html).
+
+## Public Properties
+
+|  | Name | Description |
+| --- | --- | --- |
+| Property | FeatureFilters | Gets and sets a feature filter bitmask for the Auto Dimension Scheme. |
+| Property | PartType | Gets and sets the type of part to dimension. |
+| Property | PatternType | Gets and sets the type of pattern to dimension. |
+| Property | PolarPatternHoleCount | Gets and sets the number of holes to dimension in the polar pattern. |
+| Property | ScopeAllFeature | Gets and sets whether to dimension all features. |
+| Property | ToleranceType | Gets and sets the type of tolerance to dimension. |
+
+[Top](#topBookmark)
+
+## See Also
+
+[IDimXpertAutoDimSchemeOption Interface](SolidWorks.Interop.swdimxpert~SolidWorks.Interop.swdimxpert.IDimXpertAutoDimSchemeOption.html)
+
+[SolidWorks.Interop.swdimxpert Namespace](SolidWorks.Interop.swdimxpert~SolidWorks.Interop.swdimxpert_namespace.html)

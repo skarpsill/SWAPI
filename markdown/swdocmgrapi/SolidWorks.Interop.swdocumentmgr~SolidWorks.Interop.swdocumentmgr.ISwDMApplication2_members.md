@@ -1,0 +1,34 @@
+---
+title: "ISwDMApplication2 Interface Members"
+project: "SOLIDWORKS Document Manager API Help"
+interface: "ISwDMApplication2_members"
+member: ""
+kind: "members"
+source: "swdocmgrapi/SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMApplication2_members.html"
+---
+
+# ISwDMApplication2 Interface Members
+
+The following tables list the members exposed by[ISwDMApplication2](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMApplication2.html).
+
+## Public Methods
+
+|  | Name | Description |
+| --- | --- | --- |
+| Method | GetDocument2 | Gets the specified document from an IStream or IStorage storage. |
+
+[Top](#topBookmark)
+
+## See Also
+
+[ISwDMApplication2 Interface](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMApplication2.html)
+
+[SolidWorks.Interop.swdocumentmgr Namespace](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr_namespace.html)
+
+[ISwDMApplication4 Interface](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMApplication4.html)
+
+[ISwDMClassFactory Interface](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMClassFactory.html)
+
+[ISwDMDocument Interface](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMDocument.html)
+
+[ISwDMSearchOption Interface](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMSearchOption.html)

@@ -1,0 +1,18 @@
+---
+title: "InnerCornerFilletRadius Property (ISMGussetFeatureData)"
+project: "SOLIDWORKS Type Library"
+interface: "ISMGussetFeatureData"
+member: "InnerCornerFilletRadius"
+kind: "property"
+source: "sldworksapivb6/SldWorks~ISMGussetFeatureData~InnerCornerFilletRadius.html"
+---
+
+# InnerCornerFilletRadius Property (ISMGussetFeatureData)
+
+## Syntax
+
+### Visual Basic for Applications (VBA)
+
+```vb
+Public Property InnerCornerFilletRadius As Double
+```

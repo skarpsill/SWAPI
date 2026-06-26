@@ -1,0 +1,110 @@
+---
+title: "GetPreviewPNGBitmap Method (ISwDMDocument10)"
+project: "SOLIDWORKS Document Manager API Help"
+interface: "ISwDMDocument10"
+member: "GetPreviewPNGBitmap"
+kind: "method"
+source: "swdocmgrapi/SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMDocument10~GetPreviewPNGBitmap.html"
+---
+
+# GetPreviewPNGBitmap Method (ISwDMDocument10)
+
+Gets the PNG preview bitmap (.png) for this document.
+
+## Syntax
+
+### Visual Basic (Declaration)
+
+```vb
+Function GetPreviewPNGBitmap( _
+   ByRef result As SwDmPreviewError _
+) As System.Object
+```
+
+### Visual Basic (Usage)
+
+```vb
+Dim instance As ISwDMDocument10
+Dim result As SwDmPreviewError
+Dim value As System.Object
+
+value = instance.GetPreviewPNGBitmap(result)
+```
+
+### C#
+
+```csharp
+System.object GetPreviewPNGBitmap(
+   out SwDmPreviewError result
+)
+```
+
+### C++/CLI
+
+```cpp
+System.Object^ GetPreviewPNGBitmap(
+   [Out] SwDmPreviewError result
+)
+```
+
+### Parameters
+
+- `result`: Success or error code as defined by
+
+[swDmPreviewError](SOLIDWORKS.Interop.swdocumentmgr~SOLIDWORKS.Interop.swdocumentmgr.SwDmPreviewError.html)
+
+### Return Value
+
+Pointer to the preview bitmap (.png) (an IPictureDisp*)
+
+## VBA Syntax
+
+See
+
+[SwDMDocument10::GetPreviewPNGBitmap](ms-its:swdocmgrapivb6.chm::/swdocumentmgr~SwDMDocument10~GetPreviewPNGBitmap.html)
+
+.
+
+## Examples
+
+[Get Preview Bitmap of Drawing Sheet (VB.NET)](Get_Preview_Bitmap_of_Drawing_Sheet_Example_VBNET.htm)
+
+[Get Preview Bitmap of Drawing Sheet (C#)](Get_Preview_Bitmap_of_Drawing_Sheet_Example_CSharp.htm)
+
+## Remarks
+
+This method does not work in out-of-process and some ASP.NET/IIS web applications.
+
+## See Also
+
+[ISwDMDocument10 Interface](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMDocument10.html)
+
+[ISwDMDocument10 Members](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMDocument10_members.html)
+
+[ISwDMDocument10::GetPreviewBitmap Method](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMDocument10~GetPreviewBitmap.html)
+
+[ISwDMDocument10::PreviewPNGStreamName Property](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMDocument10~PreviewPNGStreamName.html)
+
+[ISwDMDocument10::PreviewStreamName Property](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMDocument10~PreviewStreamName.html)
+
+[ISwDMConfiguration::GetPreviewBitmap Method](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMConfiguration~GetPreviewBitmap.html)
+
+[ISwDMConfiguration::PreviewStreamName Property](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMConfiguration~PreviewStreamName.html)
+
+[ISwDMConfiguration7::GetPreviewPNGBitmap Method](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMConfiguration7~GetPreviewPNGBitmap.html)
+
+[ISwDMConfiguration7::PreviewPNGStreamName Property](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMConfiguration7~PreviewPNGStreamName.html)
+
+[ISwDMConfiguration9::GetPreviewBitmapBytes Method](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMConfiguration9~GetPreviewBitmapBytes.html)
+
+[ISwDMConfiguration9::GetPreviewPNGBitmapBytes Method](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMConfiguration9~GetPreviewPNGBitmapBytes.html)
+
+[ISwDMSheet2::GetPreviewPNGBitmap Method](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMSheet2~GetPreviewPNGBitmap.html)
+
+[ISwDMSheet2::GetPreviewPNGBitmapBytes Method](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMSheet2~GetPreviewPNGBitmapBytes.html)
+
+[ISwDMSheet2::PreviewPNGStreamName Property](SolidWorks.Interop.swdocumentmgr~SolidWorks.Interop.swdocumentmgr.ISwDMSheet2~PreviewPNGStreamName.html)
+
+## Availability
+
+SOLIDWORKS Document Manager API 2008 FCS

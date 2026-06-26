@@ -1,0 +1,18 @@
+---
+title: "SketchConstrainCoincident Method (ModelDoc2)"
+project: "SOLIDWORKS Type Library"
+interface: "ModelDoc2"
+member: "SketchConstrainCoincident"
+kind: "method"
+source: "sldworksapivb6/SldWorks~ModelDoc2~SketchConstrainCoincident.html"
+---
+
+# SketchConstrainCoincident Method (ModelDoc2)
+
+## Syntax
+
+### Visual Basic for Applications (VBA)
+
+```vb
+Public Sub SketchConstrainCoincident()
+```

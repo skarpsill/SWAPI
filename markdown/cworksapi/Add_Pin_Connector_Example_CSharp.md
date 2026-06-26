@@ -1,0 +1,241 @@
+---
+title: "Add Pin Connector Example (C#)"
+project: ""
+interface: ""
+member: ""
+kind: "example"
+source: "cworksapi/Add_Pin_Connector_Example_CSharp.htm"
+---
+
+# Add Pin Connector Example (C#)
+
+This example shows how to add a pin connector to a static study.
+
+```vb
+  //----------------------------------------------------------------------------
+ // Preconditions:
+ // 1. Add the SOLIDWORKS Simulation as an add-in (in SOLIDWORKS, click
+ //    Tools > Add-ins > SOLIDWORKS Simulation > OK).
+ // 2. Add the SOLIDWORKS Simulation primary interop assembly as a reference
+ //    (in the IDE, click Project > Add Reference > .NET >
+ //    SolidWorks.Interop.cosworks > OK).
+  // 3. Ensure that the specified material library exists.
+ // 4. Open public_documents\samples\Simulation Examples\pliers.sldasm.
+ // 5. Open an Immediate window.
+ //
+ // Postconditions:
+ // 1. Opens the model.
+ // 2. Activates the Ready study.
+ // 3. Deletes the pin between branches connector.
+ // 4. Adds Pin Connector-3 to the Connectors folder in the Simulation study
+ //    tree.
+ // 5. Prints the properties of Pin Connector-3 to the Immediate window.
+ // 6. Meshes the model.
+ // 7. Analyzes Ready.
+  // 8. Inspect the Immediate window, the Simulation Study tree, and the
+ //    graphics area.
+ //
+  // NOTE: Because the model is used elsewhere, do not save changes.
+  // ---------------------------------------------------------------------------
+ using Microsoft.VisualBasic;
+ using System;
+ using System.Collections;
+ using System.Collections.Generic;
+ using System.Data;
+ using System.Diagnostics;
+ using SolidWorks.Interop.sldworks;
+ using SolidWorks.Interop.swconst;
+ using SolidWorks.Interop.cosworks;
+ using System.Runtime.InteropServices;
+ namespace AddPinConnector_CSharp.csproj
+ {
+     partial class SolidWorksMacro
+     {
+
+         ModelDoc2 Part;
+         CosmosWorks COSMOSWORKS;
+         CwAddincallback COSMOSObject;
+         CWModelDoc ActDoc;
+         CWStudyManager StudyMngr;
+         CWStudy Study;
+         CWLoadsAndRestraintsManager lrMngr;
+         CWPinConnector pinConnector;
+         CWMesh CwMesh;
+         string str3;
+         string str4;
+         object[] varArray1 = new object[1];
+         object[] varArray2 = new object[1];
+         object pDisp3;
+         object pDisp4;
+         byte[] var20;
+         byte[] var21;
+         int errCode;
+         double el;
+         double tl;
+         int longstatus;
+
+         public void Main()
+         {
+
+             Part = (ModelDoc2)swApp.ActiveDoc;
+
+             COSMOSObject = (CwAddincallback)swApp.GetAddInObject("SldWorks.Simulation");
+             if (COSMOSObject == null)
+                 ErrorMsg(swApp, "Failed to get the Simulation add-in");
+
+             COSMOSWORKS = COSMOSObject.CosmosWorks;
+             if (COSMOSWORKS == null)
+                 ErrorMsg(swApp, "Failed to get COSMOSWORKS");
+
+             ActDoc = COSMOSWORKS.ActiveDoc;
+             if (ActDoc == null)
+                 ErrorMsg(swApp, "Failed to get active document");
+
+             StudyMngr = ActDoc.StudyManager;
+             if (StudyMngr == null)
+                 ErrorMsg(swApp, "Failed to get CWStudyManager object");
+
+             Study = StudyMngr.GetStudy(0);
+             if (Study == null)
+                 ErrorMsg(swApp, "Failed to get frequency study");
+
+             StudyMngr.ActiveStudy = 0;
+
+             str3 = "64,31,0,0,3,0,0,0,255,254,255,22,115,0,101,0,99,0,111,0,110,0,100,0,32,0,98,0,114,0,97,0,110,0,99,0,104,0,45,0,49,0,64,0,112,0,108,0,105,0,101,0,114,0,115,0,4,0,0,0,16,0,0,0,1,0,0,0,1,0,0,0,12,0,0,0,255,255,1,0,11,0,109,111,70,97,99,101,82,101,102,95,99,1,0,0,0,0,0,0,0,5,0,0,0,0,3,0,0,0,0,0,0,125,195,148,37,173,73,178,84,125,195,148,37,173,73,178,84,0,0,255,255,1,0,23,0,109,111,70,114,111,109,83,107,116,69,110,116,83,117,114,102,73,100,82,101,112,95,99,0,0,255,255,1,0,6,0,109,111,70,82,95,99,255,255,1,0,13,0,109,111,69,120,116,79,98,106,101,99,116,95,99,255,255,1,0,17,0,109,111,67,83,116,114,105,110,103,72,97,110,100,108,101,95,99,255,254,255,84,67,0,58,0,92,0,80,0,114,0,111,0,103,0,114,0,97,0,109,0,32,0,70,0,105,0,108,0,101,0,115,0,92,0,83,0,79,0,76,0,73,0,68,0,87,0,79,0,82,0,75,0,83,0,32,0,67,0,111,0,114,0,112,0,92,0,83,0,79,0,76,0,73,0,68,0,87,0,79,0,82,0,75,0,83,0,92,0,83,0,105,0,109,0,117,0,108,0,97,0,116,0,105,0,111,0,110,0,92,0,69,0,120,0,97,0,109,0,112,0,108,0,10";
+             str3 = str3 + "1,0,115,0,92,0,115,0,101,0,99,0,111,0,110,0,100,0,32,0,98,0,114,0,97,0,110,0,99,0,104,0,46,0,115,0,108,0,100,0,112,0,114,0,116,0,9,128,255,254,255,13,115,0,101,0,99,0,111,0,110,0,100,0,32,0,98,0,114,0,97,0,110,0,99,0,104,0,2,0,0,164,247,240,62,0,33,23,28,65,1,0,0,0,0,0,0,0,4,0,0,0,255,254,255,7,68,0,101,0,102,0,97,0,117,0,108,0,116,0,0,0,0,0,0,0,0,0,33,23,28,65,29,0,0,0,70,252,240,62,34,0,0,0,255,255,1,0,20,0,109,111,69,110,100,70,97,99,101,83,117,114,102,73,100,82,101,112,95,99,0,0,5,128,8,0,29,0,0,0,70,252,240,62,0,0,0,0,1,0,0,0,0,0,255,255,1,0,24,0,109,111,69,110,100,70,97,99,101,51,73,110,116,83,117,114,102,73,100,82,101,112,95,99,0,0,5,128,8,0,39,0,0,0,85,255,240,62,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0";
+
+             str4 = "64,31,0,0,3,0,0,0,255,254,255,21,102,0,105,0,114,0,115,0,116,0,32,0,98,0,114,0,97,0,110,0,99,0,104,0,45,0,49,0,64,0,112,0,108,0,105,0,101,0,114,0,115,0,4,0,0,0,16,0,0,0,1,0,0,0,1,0,0,0,11,0,0,0,255,255,1,0,11,0,109,111,70,97,99,101,82,101,102,95,99,1,0,0,0,0,0,0,0,5,0,0,0,0,3,0,0,0,0,0,0,125,195,148,37,173,73,178,84,125,195,148,37,173,73,178,84,0,0,255,255,1,0,23,0,109,111,70,114,111,109,83,107,116,69,110,116,83,117,114,102,73,100,82,101,112,95,99,0,0,255,255,1,0,6,0,109,111,70,82,95,99,255,255,1,0,13,0,109,111,69,120,116,79,98,106,101,99,116,95,99,255,255,1,0,17,0,109,111,67,83,116,114,105,110,103,72,97,110,100,108,101,95,99,255,254,255,83,67,0,58,0,92,0,80,0,114,0,111,0,103,0,114,0,97,0,109,0,32,0,70,0,105,0,108,0,101,0,115,0,92,0,83,0,79,0,76,0,73,0,68,0,87,0,79,0,82,0,75,0,83,0,32,0,67,0,111,0,114,0,112,0,92,0,83,0,79,0,76,0,73,0,68,0,87,0,79,0,82,0,75,0,83,0,92,0,83,0,105,0,109,0,117,0,108,0,97,0,116,0,105,0,111,0,110,0,92,0,69,0,120,0,97,0,109,0,112,0,108,0,101,0";
+             str4 = str4 + ",115,0,92,0,102,0,105,0,114,0,115,0,116,0,32,0,98,0,114,0,97,0,110,0,99,0,104,0,46,0,115,0,108,0,100,0,112,0,114,0,116,0,9,128,255,254,255,12,102,0,105,0,114,0,115,0,116,0,32,0,98,0,114,0,97,0,110,0,99,0,104,0,2,0,0,164,247,240,62,0,1,22,28,65,1,0,0,0,0,0,0,0,6,0,0,0,255,254,255,7,68,0,101,0,102,0,97,0,117,0,108,0,116,0,0,0,0,0,0,0,0,0,1,22,28,65,29,0,0,0,70,252,240,62,34,0,0,0,255,255,1,0,24,0,109,111,69,110,100,70,97,99,101,51,73,110,116,83,117,114,102,73,100,82,101,112,95,99,0,0,5,128,8,0,38,0,0,0,165,255,240,62,1,0,0,0,0,0,0,0,0,0,0,0,0,0,255,255,1,0,20,0,109,111,69,110,100,70,97,99,101,83,117,114,102,73,100,82,101,112,95,99,0,0,5,128,8,0,29,0,0,0,70,252,240,62,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0";
+
+             StringtoArray(str3, ref var20);
+             pDisp3 = Part.Extension.GetObjectByPersistReference3((var20), out longstatus);
+
+             StringtoArray(str4, ref var21);
+             pDisp4 = Part.Extension.GetObjectByPersistReference3((var21), out longstatus);
+
+             varArray1[0] = pDisp3;
+             varArray2[0] = pDisp4;
+
+             lrMngr = Study.LoadsAndRestraintsManager;
+             lrMngr.DeleteLoadsAndRestraints("pin between branches");
+
+             // Add pin connector
+             pinConnector = lrMngr.AddPinConnector((varArray1), (varArray2), ref errCode);
+             pinConnector.PinConnectorBeginEdit();
+
+             pinConnector.IncludeStrengthData = true;
+             pinConnector.MaterialType = 1;
+             pinConnector.SetLibraryMaterial("c:\\Program Files\\SOLIDWORKS Corp\\SOLIDWORKS\\lang\\english\\sldmaterials\\solidworks materials.sldmat", "Alloy Steel");
+             pinConnector.TensileStressAreaValue = 1;
+             pinConnector.PinStrengthValue = 620422000;
+
+             Debug.Print("Number of entities in Pin Connector-3");
+             Debug.Print("   At first location: " + pinConnector.GetFirstLocationEntityCount());
+             Debug.Print("   At second location: " + pinConnector.GetSecondLocationEntityCount());
+
+             errCode = pinConnector.PinConnectorEndEdit();
+
+             Debug.Print("Units of axial and rotational stiffness as defined in swsUnitSystem_e: " + pinConnector.Unit);
+
+             Debug.Print("Prevent relative rotation between cylindrical faces? " + pinConnector.IncludeTypeWithKey);
+             if (pinConnector.IncludeTypeWithKey)
+             {
+                 Debug.Print("   Axial stiffness: " + pinConnector.AxialStiffnessValue);
+             }
+
+             Debug.Print("Prevent relative axial translation between cylindrical faces? " + pinConnector.IncludeTypeWithRetainerRing);
+             if (pinConnector.IncludeTypeWithRetainerRing)
+             {
+                 Debug.Print("   Rotational stiffness: " + pinConnector.RotationalStiffnessValue);
+             }
+
+             Debug.Print("Include mass in the analysis? " + pinConnector.IncludeMass);
+             if (pinConnector.IncludeMass)
+             {
+                 Debug.Print("  Mass: " + pinConnector.MassValue);
+             }
+             Debug.Print("Include strength data in the analysis? " + pinConnector.IncludeStrengthData);
+
+             if (pinConnector.IncludeStrengthData)
+             {
+                 Debug.Print("Material data:");
+                 string libName = null;
+                 string materialName = null;
+                 pinConnector.PinConnectorBeginEdit();
+                 pinConnector.GetLibraryMaterial(out libName, out materialName);
+                 pinConnector.PinConnectorEndEdit();
+                 Debug.Print("   Source (1=library, 0=user-defined): " + pinConnector.MaterialType);
+                 Debug.Print("   Library: " + libName);
+                 Debug.Print("   Name: " + materialName);
+                 Debug.Print("   Units as defined in swsUnitSystem_e: " + pinConnector.MaterialUnit);
+                 Debug.Print("   Poisson's Ratio: " + pinConnector.PoissonsRatio);
+                 Debug.Print("   Young's Modulus: " + pinConnector.YoungModulus);
+                 Debug.Print("   Coefficient of thermal expansion: " + pinConnector.ThermalCoefficient);
+                 Debug.Print("   Mass: " + pinConnector.MassValue);
+             }
+
+             Debug.Print("Strength data:");
+             Debug.Print("   Tensile stress area: " + pinConnector.TensileStressAreaValue);
+             Debug.Print("      Units as defined in swsTensileStressAreaUnit_e: " + pinConnector.TensileStressAreaUnit);
+             Debug.Print("   Pin strength: " + pinConnector.PinStrengthValue);
+             Debug.Print("      Units as defined in swsStrengthUnit_e: " + pinConnector.PinStrengthUnit);
+             Debug.Print("   Safety factor: " + pinConnector.SafetyFactor);
+
+             // Mesh model
+             CwMesh = Study.Mesh;
+             if (CwMesh == null)
+                 ErrorMsg(swApp, "Failed to get the CWMesh object");
+
+             CwMesh.Quality = 1;
+             CwMesh.GetDefaultElementSizeAndTolerance((int)swsLinearUnit_e.swsLinearUnitMillimeters, out el, out tl);
+
+             errCode = Study.CreateMesh((int)swsLinearUnit_e.swsLinearUnitMillimeters, el, tl);
+             if (errCode != 0)
+                 ErrorMsg(swApp, "Failed to create mesh");
+
+             // Run analysis
+             errCode = Study.RunAnalysis();
+             if (errCode != 0)
+                 ErrorMsg(swApp, "Analysis failed with error code as defined in swsRunAnalysisError_e: " + errCode);
+
+         }
+
+         private void StringtoArray(string inputSTR, ref byte[] varEntity)
+         {
+             string[] PIDArray = null;
+             byte[] PID = null;
+             int i;
+
+             // Parse string into an array
+             PIDArray = inputSTR.Split(new char[] { ',' });
+
+             //Convert string array to byte array
+             int sizeArray = PIDArray.Length;
+             PID = new byte[sizeArray];
+             for (i = 0; i < PIDArray.Length; i++)
+             {
+
+                 PID[i] = Convert.ToByte(PIDArray[i]);
+             }
+             varEntity = PID;
+         }
+
+         public void ErrorMsg(SldWorks SwApp, string Message)
+         {
+             SwApp.SendMsgToUser2(Message, 0, 0);
+             SwApp.RecordLine("'*** WARNING - General");
+             SwApp.RecordLine("'*** " + Message);
+             SwApp.RecordLine("");
+
+         }
+
+         /// <summary>
+         /// The SldWorks swApp variable is pre-assigned for you.
+         /// </summary>
+
+         public SldWorks swApp;
+
+     }
+
+ }
+```

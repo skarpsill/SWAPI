@@ -1,0 +1,90 @@
+---
+title: "DDrawingDocEvents_ChangeCustomPropertyNotifyEventHandler Delegate (SolidWorks.Interop.sldworks)"
+project: "SOLIDWORKS API Help"
+interface: "DDrawingDocEvents_ChangeCustomPropertyNotifyEventHandler"
+member: ""
+kind: "topic"
+source: "sldworksapi/SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.DDrawingDocEvents_ChangeCustomPropertyNotifyEventHandler.html"
+---
+
+# DDrawingDocEvents_ChangeCustomPropertyNotifyEventHandler Delegate (SolidWorks.Interop.sldworks)
+
+Post-notifies the user program when the user has changed a custom property.
+
+## Syntax
+
+### Visual Basic (Declaration)
+
+```vb
+Public Delegate Function DDrawingDocEvents_ChangeCustomPropertyNotifyEventHandler( _
+   ByVal propName As System.String, _
+   ByVal Configuration As System.String, _
+   ByVal oldValue As System.String, _
+   ByVal NewValue As System.String, _
+   ByVal valueType As System.Integer _
+) As System.Integer
+```
+
+### Visual Basic (Usage)
+
+```vb
+Dim instance As New DDrawingDocEvents_ChangeCustomPropertyNotifyEventHandler(AddressOf HandlerMethod)
+```
+
+### C#
+
+```csharp
+public delegate System.int DDrawingDocEvents_ChangeCustomPropertyNotifyEventHandler(
+   System.string propName,
+   System.string Configuration,
+   System.string oldValue,
+   System.string NewValue,
+   System.int valueType
+)
+```
+
+### C++/CLI
+
+```cpp
+public delegate System.int DDrawingDocEvents_ChangeCustomPropertyNotifyEventHandler(
+   System.String^ propName,
+   System.String^ Configuration,
+   System.String^ oldValue,
+   System.String^ NewValue,
+   System.int valueType
+)
+```
+
+NOTE:
+
+See
+
+[Differences Between Unmanaged C++ and C++/CLI Code](DifferencesBetweenUnManagedAndCPPCLI.htm)
+
+.
+
+### Parameters
+
+- `propName`: Name of the changed property
+- `Configuration`: Configuration that contains the property
+- `oldValue`: Previous value of the property
+- `NewValue`: New value of the property
+- `valueType`: Valid type for VARIANT; see Microsoft MSDN for a list of the valid VARIANT types
+
+## VBA Syntax
+
+See
+
+[ChangeCustomPropertyNotify Event (DrawingDoc)](ms-its:sldworksapivb6.chm::/SldWorks~DrawingDoc~ChangeCustomPropertyNotify_EV.html)
+
+.
+
+## Remarks
+
+The ValueType argument is one of the valid types that VARIANT can contain.
+
+If developing a C++ application, use[swDrawingChangeCustomPropertyNotify](ms-its:swconst.chm::/SOLIDWORKS.Interop.swconst~SOLIDWORKS.Interop.swconst.swDrawingNotify_e.html)to register for this notification.
+
+## Availability
+
+SOLIDWORKS 2001Plus SP1, Revision Number 10.1

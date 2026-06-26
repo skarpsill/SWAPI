@@ -1,0 +1,119 @@
+---
+title: "InsertBOMBalloon2 Method (IModelDoc2)"
+project: "SOLIDWORKS API Help"
+interface: "IModelDoc2"
+member: "InsertBOMBalloon2"
+kind: "method"
+source: "sldworksapi/SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IModelDoc2~InsertBOMBalloon2.html"
+---
+
+# InsertBOMBalloon2 Method (IModelDoc2)
+
+Obsolete. Superseded by
+
+[IModelDocExtension::InsertBOMBalloon](SOLIDWORKS.Interop.sldworks~SOLIDWORKS.Interop.sldworks.IModelDocExtension~InsertBOMBalloon.html)
+
+.
+
+## Syntax
+
+### Visual Basic (Declaration)
+
+```vb
+Function InsertBOMBalloon2( _
+   ByVal Style As System.Integer, _
+   ByVal Size As System.Integer, _
+   ByVal UpperTextStyle As System.Integer, _
+   ByVal UpperText As System.String, _
+   ByVal LowerTextStyle As System.Integer, _
+   ByVal LowerText As System.String _
+) As System.Object
+```
+
+### Visual Basic (Usage)
+
+```vb
+Dim instance As IModelDoc2
+Dim Style As System.Integer
+Dim Size As System.Integer
+Dim UpperTextStyle As System.Integer
+Dim UpperText As System.String
+Dim LowerTextStyle As System.Integer
+Dim LowerText As System.String
+Dim value As System.Object
+
+value = instance.InsertBOMBalloon2(Style, Size, UpperTextStyle, UpperText, LowerTextStyle, LowerText)
+```
+
+### C#
+
+```csharp
+System.object InsertBOMBalloon2(
+   System.int Style,
+   System.int Size,
+   System.int UpperTextStyle,
+   System.string UpperText,
+   System.int LowerTextStyle,
+   System.string LowerText
+)
+```
+
+### C++/CLI
+
+```cpp
+System.Object^ InsertBOMBalloon2(
+   System.int Style,
+   System.int Size,
+   System.int UpperTextStyle,
+   System.String^ UpperText,
+   System.int LowerTextStyle,
+   System.String^ LowerText
+)
+```
+
+NOTE:
+
+See
+
+[Differences Between Unmanaged C++ and C++/CLI Code](DifferencesBetweenUnManagedAndCPPCLI.htm)
+
+.
+
+### Parameters
+
+- `Style`: Balloon style as defined in[swBalloonStyle_e](ms-its:swconst.chm::/SOLIDWORKS.Interop.swconst~SOLIDWORKS.Interop.swconst.swBalloonStyle_e.html)
+- `Size`: Balloon size as defined in[swBalloonFit_e](ms-its:swconst.chm::/SOLIDWORKS.Interop.swconst~SOLIDWORKS.Interop.swconst.swBalloonFit_e.html)
+- `UpperTextStyle`: Text style for the upper text of the balloon as defined in[swBalloonTextContent_e](ms-its:swconst.chm::/SOLIDWORKS.Interop.swconst~SOLIDWORKS.Interop.swconst.swBalloonTextContent_e.html)
+- `UpperText`: Text string to be placed in the upper text of the balloon
+- `LowerTextStyle`: Text style for the lower text of the balloon as defined in[swBalloonTextContent_e](ms-its:swconst.chm::/Solidworks.Interop.swconst~SOLIDWORKS.Interop.swconst.swBalloonTextContent_e.html)
+- `LowerText`: Text string to be placed in the lower text of the balloon
+
+### Return Value
+
+Newly created
+
+[note](SOLIDWORKS.Interop.sldworks~SOLIDWORKS.Interop.sldworks.INote.html)
+
+## VBA Syntax
+
+See
+
+[ModelDoc2::InsertBOMBalloon2](ms-its:sldworksapivb6.chm::/sldworks~ModelDoc2~InsertBOMBalloon2.html)
+
+.
+
+## Examples
+
+[Insert BOM Balloon (VBA)](Insert_BOM_Balloon_Example_VB.htm)
+
+## See Also
+
+[IModelDoc2 Interface](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IModelDoc2.html)
+
+[IModelDoc2 Members](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IModelDoc2_members.html)
+
+[IModelDoc2::IInsertBOMBalloon2 Method](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IModelDoc2~IInsertBOMBalloon2.html)
+
+## Availability
+
+SOLIDWORKS 2001Plus FCS, Revision Number 10.0

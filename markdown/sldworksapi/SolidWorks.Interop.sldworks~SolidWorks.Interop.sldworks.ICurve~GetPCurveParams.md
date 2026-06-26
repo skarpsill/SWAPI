@@ -1,0 +1,129 @@
+---
+title: "GetPCurveParams Method (ICurve)"
+project: "SOLIDWORKS API Help"
+interface: "ICurve"
+member: "GetPCurveParams"
+kind: "method"
+source: "sldworksapi/SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ICurve~GetPCurveParams.html"
+---
+
+# GetPCurveParams Method (ICurve)
+
+Obsolete. Superseded by
+
+[ICurve::GetPCurveParams2](SOLIDWORKS.Interop.sldworks~SOLIDWORKS.Interop.sldworks.ICurve~GetPCurveParams2.html)
+
+.
+
+## Syntax
+
+### Visual Basic (Declaration)
+
+```vb
+Function GetPCurveParams() As System.Object
+```
+
+### Visual Basic (Usage)
+
+```vb
+Dim instance As ICurve
+Dim value As System.Object
+
+value = instance.GetPCurveParams()
+```
+
+### C#
+
+```csharp
+System.object GetPCurveParams()
+```
+
+### C++/CLI
+
+```cpp
+System.Object^ GetPCurveParams();
+```
+
+NOTE:
+
+See
+
+[Differences Between Unmanaged C++ and C++/CLI Code](DifferencesBetweenUnManagedAndCPPCLI.htm)
+
+.
+
+### Return Value
+
+Array of doubles describing the parameters of the curve (see**Remarks**)
+
+## VBA Syntax
+
+See
+
+[Curve::GetPCurveParams](ms-its:sldworksapivb6.chm::/sldworks~Curve~GetPCurveParams.html)
+
+.
+
+## Examples
+
+## Remarks
+
+This method returns the curve as a series of segments, each of which has this form:
+
+(w0*a0 + w1*a1*t + w2*a2*t**2 + w3*a3*t**3)
+
+p(t) = --------------------------------------------
+
+(w0 + w1*t + w2*t**2 + w3*t**3)
+
+Where w is the weight coefficient and a is the polynomial coefficient.
+
+The coefficients returned are vectors of dimensions "dim". For example, if the curve is rational, thendimension= 4, and the coefficients returned for each segment are as follows:
+
+(a0x,a0y,a0z,w0),(a1x,a1y,a1z,w1)...
+
+However, if the curve is returned as non-rational, thendimension= 3, and its coefficients are:
+
+(a0x,a0y,a0z),(a1x,a1y,a1z),...
+
+The size of the return value array is (3 +NumberKnots+NumberSegmentsxOrderxDimension).
+
+The array is as follows:
+
+[packedDouble1,packedDouble2,packedDouble3, knot1,knot2,...,CoefficientsSegment1[Dimension],CoefficientsSegment2[Dimension],...]
+
+where:
+
+packedDouble1: Integer pair containingReservedandOrder
+
+packedDouble2: Integer pair containingNumberSegmentsandPeriodicity
+
+packedDouble3: Integer pair containingNumberKnotsandDimension
+
+knot1
+
+knot2
+
+...
+
+CoefficientsSegment1[Dimension]
+
+CoefficientsSegment2[Dimension]
+
+...
+
+The coefficients for each segment start with the constant term and end with the term of highest degree (for example, ConstantX, ConstantY, ConstantZ, AX, AY, AZ, BX, BY, BZ). The total number of coefficients is:
+
+(NumberSegments) x (Order) x (Dimension).
+
+## See Also
+
+[ICurve Interface](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ICurve.html)
+
+[ICurve Members](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ICurve_members.html)
+
+[ICurve::Identity Method](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ICurve~Identity.html)
+
+[ICurve::IGetPCurveParams Method](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ICurve~IGetPCurveParams.html)
+
+[ICurve::IGetPCurveParamsSize Method](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ICurve~IGetPCurveParamsSize.html)

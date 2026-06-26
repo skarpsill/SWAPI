@@ -1,0 +1,78 @@
+---
+title: "GetFilletItemAtIndex Method (ISimpleFilletFeatureData)"
+project: "SOLIDWORKS API Help"
+interface: "ISimpleFilletFeatureData"
+member: "GetFilletItemAtIndex"
+kind: "method"
+source: "sldworksapi/SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ISimpleFilletFeatureData~GetFilletItemAtIndex.html"
+---
+
+# GetFilletItemAtIndex Method (ISimpleFilletFeatureData)
+
+Obsolete. Superseded by
+
+[ISimpleFilletFeatureData2::GetFilletItemAtIndex](SOLIDWORKS.Interop.sldworks~SOLIDWORKS.Interop.sldworks.ISimpleFilletFeatureData2~GetFilletItemAtIndex.html)
+
+.
+
+## Syntax
+
+### Visual Basic (Declaration)
+
+```vb
+Function GetFilletItemAtIndex( _
+   ByVal Index As System.Integer _
+) As System.Object
+```
+
+### Visual Basic (Usage)
+
+```vb
+Dim instance As ISimpleFilletFeatureData
+Dim Index As System.Integer
+Dim value As System.Object
+
+value = instance.GetFilletItemAtIndex(Index)
+```
+
+### C#
+
+```csharp
+System.object GetFilletItemAtIndex(
+   System.int Index
+)
+```
+
+### C++/CLI
+
+```cpp
+System.Object^ GetFilletItemAtIndex(
+   System.int Index
+)
+```
+
+NOTE:
+
+See
+
+[Differences Between Unmanaged C++ and C++/CLI Code](DifferencesBetweenUnManagedAndCPPCLI.htm)
+
+.
+
+### Parameters
+
+- `Index`:
+
+## VBA Syntax
+
+See
+
+[SimpleFilletFeatureData::GetFilletItemAtIndex](ms-its:sldworksapivb6.chm::/sldworks~SimpleFilletFeatureData~GetFilletItemAtIndex.html)
+
+.
+
+## See Also
+
+[ISimpleFilletFeatureData Interface](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ISimpleFilletFeatureData.html)
+
+[ISimpleFilletFeatureData Members](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ISimpleFilletFeatureData_members.html)

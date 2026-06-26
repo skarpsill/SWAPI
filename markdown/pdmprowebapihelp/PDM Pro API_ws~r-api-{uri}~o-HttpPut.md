@@ -1,0 +1,44 @@
+---
+title: "api/{uri} (Put)"
+project: ""
+interface: "r-api-{uri}"
+member: "o-HttpPut"
+kind: "topic"
+source: "pdmprowebapihelp/PDM Pro API_ws~r-api-{uri}~o-HttpPut.html"
+---
+
+# api/{uri} (Put)
+
+PDM Pro API Web Service
+
+| Put | api/{uri} |
+| --- | --- |
+
+Spacing
+
+Collapse All
+
+Expand All
+
+| PDM Pro API Web Service > Default Resource Group : api/{uri} (Put) |
+| --- |
+
+Description
+
+Uses the specified URI to save information.
+
+Parameters
+
+| Name | Description | Data Type |
+| --- | --- | --- |
+| uri | (URI parameter) Uniform resource identifier (required) | string |
+
+Response (application/json, text/json, application/xml, text/xml)
+
+See Also
+
+[Default Resource Group](PDM%20Pro%20API_ws~g-081b00cf-917a-401f-9276-9f29de5178b5.html)
+
+|
+
+[PDM Pro API Web Service](PDM%20Pro%20API_ws.html)

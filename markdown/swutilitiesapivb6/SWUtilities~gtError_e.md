@@ -1,0 +1,162 @@
+---
+title: "gtError_e Enumeration"
+project: "SWUtilitiesActiveX DLL"
+interface: "gtError_e"
+member: ""
+kind: "enum"
+source: "swutilitiesapivb6/SWUtilities~gtError_e.html"
+---
+
+# gtError_e Enumeration
+
+## Members
+
+| Member | Value | Description |
+| --- | --- | --- |
+| gtErrArgument1Incorrect | 11001 |  |
+| gtErrArgument2Incorrect | 11002 |  |
+| gtErrArgumentOutofRange | 22 |  |
+| gtErrAssemblyInEditPartMode | 26 |  |
+| gtErrBsdAlreadyOpen | 13001 |  |
+| gtErrBsdDefaultDrwTemplate | 13012 |  |
+| gtErrBsdDocNotSaved | 13004 |  |
+| gtErrBsdInvalidArg | 13005 |  |
+| gtErrBsdInvalidSaveLocationPath | 13007 |  |
+| gtErrBsdInvalidSheetFormatPath | 13006 |  |
+| gtErrBsdLowMemory | 13009 |  |
+| gtErrBsdNoActivePartDoc | 13002 |  |
+| gtErrBsdNoSheetMetalFeatureFound | 13004 |  |
+| gtErrBsdNotInitialized | 13003 |  |
+| gtErrBsdOpenedReadOnly | 13011 |  |
+| gtErrBsdUserCanceled | 13010 |  |
+| gtErrBsdVirtualComponent | 13008 |  |
+| gtErrCompareFacesFailed | 7001 |  |
+| gtErrCompareFeaturesFailed | 6001 |  |
+| gtErrCompareGeometryNotExecuted | 7007 |  |
+| gtErrCompareVolFailed | 7002 |  |
+| gtErrCompareVolumeNotExecuted | 7013 |  |
+| gtErrCompDocsAlreadyOpen | 5001 |  |
+| gtErrCompDocsInvalidModConfig | 5008 |  |
+| gtErrCompDocsInvalidModFile | 5006 |  |
+| gtErrCompDocsInvalidRefConfig | 5007 |  |
+| gtErrCompDocsInvalidRefFile | 5005 |  |
+| gtErrCompDocsNotExecuted | 5002 |  |
+| gtErrCompDocsOperationOptions | 5003 |  |
+| gtErrCompDocsResultOptions | 5004 |  |
+| gtErrCompDocsSameRefModFilesConfigs | 5009 |  |
+| gtErrCompFeatAlreadyRunning | 6004 |  |
+| gtErrCompFeatInvalidModConfig | 6010 |  |
+| gtErrCompFeatInvalidModFile | 6003 |  |
+| gtErrCompFeatInvalidRefConfig | 6009 |  |
+| gtErrCompFeatInvalidRefFile | 6002 |  |
+| gtErrCompFeatModNoSolidBodies | 6007 |  |
+| gtErrCompFeatNotExecuted | 6008 |  |
+| gtErrCompFeatRefNoSolidBodies | 6006 |  |
+| gtErrCompFeatResultOptions | 6005 |  |
+| gtErrCompFeatSameRefModFilesConfigs | 6011 |  |
+| gtErrCompGeomAlreadyOpen | 7008 |  |
+| gtErrCompGeomInvalidModConfig | 7015 |  |
+| gtErrCompGeomInvalidModFile | 7010 |  |
+| gtErrCompGeomInvalidRefConfig | 7014 |  |
+| gtErrCompGeomInvalidRefFile | 7009 |  |
+| gtErrCompGeomOperationOptions | 7011 |  |
+| gtErrCompGeomResultOptions | 7012 |  |
+| gtErrCompGeomSameRefModFilesConfigs | 7016 |  |
+| gtErrCouldNotCreateReportFolders | 14 |  |
+| gtErrDesignBinderReportAlreadyExists | 30 |  |
+| gtErrDoc1NotSelected | 33 |  |
+| gtErrDoc2NotSelected | 34 |  |
+| gtErrDocInEditSketchMode | 12 |  |
+| gtErrDocIsEmpty | 5 |  |
+| gtErrDocNotSelected | 2 |  |
+| gtErrDocOpenedViewOnly | 8 |  |
+| gtErrDocsAreSame | 4 |  |
+| gtErrDocsConfigNotExist | 29 |  |
+| gtErrDocsConfigsAreSame | 28 |  |
+| gtErrEdrawingFileAlreadyExists | 12018 |  |
+| gtErrFaceComparisonNotPossibleInAssemblies | 27 |  |
+| gtErrFacesIdentical | 7003 |  |
+| gtErrFileAlreadyExists | 20 |  |
+| gtErrFileNotFound | 18 |  |
+| gtErrFindText | 12019 |  |
+| gtErrGckAlreadyOpen | 8001 |  |
+| gtErrGckDRTError | 8003 |  |
+| gtErrGckInsufficientMemoryProvided | 8006 |  |
+| gtErrGckInvalidEntityParamater | 8008 |  |
+| gtErrGckNoActivePartDoc | 8002 |  |
+| gtErrGckNoGetCountFunctionCalled | 8005 |  |
+| gtErrGckNotInitialized | 8007 |  |
+| gtErrGckResultsAlreadyPresent | 8004 |  |
+| gtErrIncompatibleFile | 6 |  |
+| gtErrIncorrectFileName | 3 |  |
+| gtErrIncorrectReportPath | 15 |  |
+| gtErrInvalidFile | 17 |  |
+| gtErrNonSimilarParts | 7004 |  |
+| gtErrNoPartDocs | 25 |  |
+| gtErrNoSolidBodies | 19 |  |
+| gtErrNoSourceFeature | 11003 |  |
+| gtErrNoTargetFeature | 11004 |  |
+| gtErrNoUI | 12022 |  |
+| gtErrNoValidIndex | 12023 |  |
+| gtErrOpeningFile | 1 |  |
+| gtErrPslAlreadyRunning | 10014 |  |
+| gtErrPslAngleOutofRange | 10006 |  |
+| gtErrPslBothConvexConcaveNotSet | 10004 |  |
+| gtErrPslColorOutofRange | 10007 |  |
+| gtErrPslErrFilterTypeOutofRange | 10010 |  |
+| gtErrPslErrOperatorOutofRange | 10005 |  |
+| gtErrPslErrorInSelection | 10017 |  |
+| gtErrPslFeatureTypeOutofRange | 10008 |  |
+| gtErrPslIncorrectFeatureNameString | 10009 |  |
+| gtErrPslIncorrectFeatureTypeArray | 10018 |  |
+| gtErrPslNoActivePartDoc | 10016 |  |
+| gtErrPslNoFeatureTypeFilterSet | 10011 |  |
+| gtErrPslNoFilterSet | 10002 |  |
+| gtErrPslNoSelectEntitySet | 10001 |  |
+| gtErrPslNotInitialized | 10015 |  |
+| gtErrPslNotRun | 10013 |  |
+| gtErrPslResultOptions | 10019 |  |
+| gtErrPslSpecifiedFilterNotSet | 10003 |  |
+| gtErrPslUIRunning | 10012 |  |
+| gtErrReferenceBOMNotSelected | 31 |  |
+| gtErrReplaceText | 12020 |  |
+| gtErrReportAlreadyExists | 13 |  |
+| gtErrResultUIOn | 23 |  |
+| gtErrRollback | 11008 |  |
+| gtErrSameNameDocAlreadyOpen | 7 |  |
+| gtErrSameSourceTargetFeature | 11005 |  |
+| gtErrSavingFile | 16 |  |
+| gtErrSavingVolDiffResults | 7005 |  |
+| gtErrSharedByCompDocs | 11 |  |
+| gtErrSharedByFeatDiff | 10 |  |
+| gtErrSharedByGeomDiff | 9 |  |
+| gtErrSourceFeatErr | 11006 |  |
+| gtErrSourceFeatureRolledBack | 11009 |  |
+| gtErrSourceNoBodyFeature | 11011 |  |
+| gtErrTargetFeatErr | 11007 |  |
+| gtErrTargetFeatureRolledBack | 11010 |  |
+| gtErrTargetNoBodyFeature | 11012 |  |
+| gtErrtckBodyDoesNotExist | 12005 |  |
+| gtErrtckBodyNotSet | 12006 |  |
+| gtErrtckNoActivePartDoc | 12001 |  |
+| gtErrTckNotInitialized | 12004 |  |
+| gtErrTckNotPerformed | 12015 |  |
+| gtErrTckNotValid | 12016 |  |
+| gtErrTckResolution | 12003 |  |
+| gtErrTckResultOptions | 12002 |  |
+| gtErrtckTesselationFailed | 12008 |  |
+| gtErrTcktThickRegnLimitNotInRange | 12014 |  |
+| gtErrTcktTrgThicknessNotInRange | 12013 |  |
+| gtErrtckUIRunning | 12007 |  |
+| gtErrThicknessRangeNotValid | 12017 |  |
+| gtErrToBeComparedBOMNotSelected | 32 |  |
+| gtErrToolNotSupported | 21 |  |
+| gtErrUIInvoked | 12021 |  |
+| gtErrUtilityAlreadyRunning | 24 |  |
+| gtErrVolDiffResultsAlreadySaved | 7006 |  |
+| gtNOErr | 0 |  |
+| gtUnknownErr | -1 |  |
+| gtWarningTckThickAnalRangeAboveMaxThick | 12011 |  |
+| gtWarningTckThickAnalRangeBelowMaxThick | 12012 |  |
+| gtWarningTckThinAnalMinMaxThckSameAsTrg | 12010 |  |
+| gtWarningTckThinAnalRangeBelowMaxThick | 12009 |  |

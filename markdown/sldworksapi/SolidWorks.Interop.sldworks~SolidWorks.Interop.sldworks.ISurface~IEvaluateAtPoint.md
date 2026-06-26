@@ -1,0 +1,138 @@
+---
+title: "IEvaluateAtPoint Method (ISurface)"
+project: "SOLIDWORKS API Help"
+interface: "ISurface"
+member: "IEvaluateAtPoint"
+kind: "method"
+source: "sldworksapi/SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ISurface~IEvaluateAtPoint.html"
+---
+
+# IEvaluateAtPoint Method (ISurface)
+
+Evaluates a surface at the specified XYZ point.
+
+## Syntax
+
+### Visual Basic (Declaration)
+
+```vb
+Function IEvaluateAtPoint( _
+   ByVal PositionX As System.Double, _
+   ByVal PositionY As System.Double, _
+   ByVal PositionZ As System.Double _
+) As System.Double
+```
+
+### Visual Basic (Usage)
+
+```vb
+Dim instance As ISurface
+Dim PositionX As System.Double
+Dim PositionY As System.Double
+Dim PositionZ As System.Double
+Dim value As System.Double
+
+value = instance.IEvaluateAtPoint(PositionX, PositionY, PositionZ)
+```
+
+### C#
+
+```csharp
+System.double IEvaluateAtPoint(
+   System.double PositionX,
+   System.double PositionY,
+   System.double PositionZ
+)
+```
+
+### C++/CLI
+
+```cpp
+System.double IEvaluateAtPoint(
+   System.double PositionX,
+   System.double PositionY,
+   System.double PositionZ
+)
+```
+
+NOTE:
+
+See
+
+[Differences Between Unmanaged C++ and C++/CLI Code](DifferencesBetweenUnManagedAndCPPCLI.htm)
+
+.
+
+### Parameters
+
+- `PositionX`: X position
+- `PositionY`: Y position
+- `PositionZ`: Z position
+
+### Return Value
+
+Array of doubles (see
+
+Remarks
+
+)
+
+## VBA Syntax
+
+See
+
+[Surface::IEvaluateAtPoint](ms-its:sldworksapivb6.chm::/sldworks~Surface~IEvaluateAtPoint.html)
+
+.
+
+## Remarks
+
+This method calculates the normal, the principal directions, and the principal curvatures, of the surface at the specified point.
+
+Use[IFace2::FaceInSurfaceSense](SOLIDWORKS.Interop.sldworks~SOLIDWORKS.Interop.sldworks.IFace2~FaceInSurfaceSense.html)to check the directions of the face normal and surface normal. IFace2::FaceInSurfaceSense returns true when the face normal and surface normal point in opposite directions, and false when they point in the same direction.
+
+The return value is the following array of eleven doubles:
+
+[surfNorm[i, j, k], principalDir1[i, j, k], principalDir2[I, j, k], principalCurvature1, principalCurvature2]
+
+where:
+
+surfNorm[i, j, k] =normalized vector describing the surface normal
+
+principalDir1[i, j, k] = normalized vector describing the first principal direction
+
+principalDir2[i, j, k] = normalized vector describing the second principal direction
+
+principalCurvature1 =first principal curvature
+
+principalCurvature2 =second principal curvature
+
+Principal Curvature 1 is the minimum normal curvature at the point (largest radius). Principal Curvature 2 is the maximum normal curvature at the point.
+
+The tangent direction producing Principal Curvature 1 is called the first principal direction, and the tangent direction producing Principal Curvature 1 is called the second principal direction.
+
+It is a property of differentiable surfaces that principalDir1 and principalDir2 are orthogonal.
+
+A positive curvature by convention implies a centre of curvature on the side pointed away from by the surface normal (convex).
+
+See "Faux and Pratt Computational Geometry for Design and Manufacture" for more information.
+
+## See Also
+
+[ISurface Interface](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ISurface.html)
+
+[ISurface Members](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ISurface_members.html)
+
+[ISurface::EvaluateAtPoint Method](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ISurface~EvaluateAtPoint.html)
+
+[ISurface::Evaluate Method](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ISurface~Evaluate.html)
+
+[ISurface::IEvaluate Method](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ISurface~IEvaluate.html)
+
+[ISurface::IParameterization Method](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ISurface~IParameterization.html)
+
+[ISurface::IReverseEvaluate Method](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ISurface~IReverseEvaluate.html)
+
+[ISurface::Parameterization Method](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ISurface~Parameterization.html)
+
+[ISurface::ReverseEvaluate Method](SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.ISurface~ReverseEvaluate.html)

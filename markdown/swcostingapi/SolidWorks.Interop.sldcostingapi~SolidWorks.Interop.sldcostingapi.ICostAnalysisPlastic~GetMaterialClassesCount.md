@@ -1,0 +1,83 @@
+---
+title: "GetMaterialClassesCount Method (ICostAnalysisPlastic)"
+project: "SOLIDWORKS Costing API Help"
+interface: "ICostAnalysisPlastic"
+member: "GetMaterialClassesCount"
+kind: "method"
+source: "swcostingapi/SolidWorks.Interop.sldcostingapi~SolidWorks.Interop.sldcostingapi.ICostAnalysisPlastic~GetMaterialClassesCount.html"
+---
+
+# GetMaterialClassesCount Method (ICostAnalysisPlastic)
+
+Gets the number of material classes from the Costing template for this plastic Costing analysis.
+
+## Syntax
+
+### Visual Basic (Declaration)
+
+```vb
+Function GetMaterialClassesCount() As System.Integer
+```
+
+### Visual Basic (Usage)
+
+```vb
+Dim instance As ICostAnalysisPlastic
+Dim value As System.Integer
+
+value = instance.GetMaterialClassesCount()
+```
+
+### C#
+
+```csharp
+System.int GetMaterialClassesCount()
+```
+
+### C++/CLI
+
+```cpp
+System.int GetMaterialClassesCount();
+```
+
+### Return Value
+
+Number of material classes
+
+## VBA Syntax
+
+See
+
+[CostAnalysisPlastic::GetMaterialClassesCount](swcostingapivb6.chm::/SldCostingAPI~CostAnalysisPlastic~GetMaterialClassesCount.html)
+
+.
+
+## Examples
+
+See the
+
+[ICostAnalysisPlastic](SolidWorks.Interop.sldcostingapi~SolidWorks.Interop.sldcostingapi.ICostAnalysisPlastic.html)
+
+examples.
+
+## Remarks
+
+See
+
+[Getting Started](GettingStarted-swcostingapi.html)
+
+for details about Costing templates.
+
+## See Also
+
+[ICostAnalysisPlastic Interface](SolidWorks.Interop.sldcostingapi~SolidWorks.Interop.sldcostingapi.ICostAnalysisPlastic.html)
+
+[ICostAnalysisPlastic Members](SolidWorks.Interop.sldcostingapi~SolidWorks.Interop.sldcostingapi.ICostAnalysisPlastic_members.html)
+
+[ICostAnalysisPlastic::GetMaterialClasses Method ()](SolidWorks.Interop.sldcostingapi~SolidWorks.Interop.sldcostingapi.ICostAnalysisPlastic~GetMaterialClasses.html)
+
+[ICostAnalysisPlastic::CurrentMaterialClass Property ()](SolidWorks.Interop.sldcostingapi~SolidWorks.Interop.sldcostingapi.ICostAnalysisPlastic~CurrentMaterialClass.html)
+
+## Availability
+
+SOLIDWORKS Costing API 2015 SP0

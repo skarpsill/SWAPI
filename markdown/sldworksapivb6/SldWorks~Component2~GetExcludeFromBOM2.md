@@ -1,0 +1,21 @@
+---
+title: "GetExcludeFromBOM2 Method (Component2)"
+project: "SOLIDWORKS Type Library"
+interface: "Component2"
+member: "GetExcludeFromBOM2"
+kind: "method"
+source: "sldworksapivb6/SldWorks~Component2~GetExcludeFromBOM2.html"
+---
+
+# GetExcludeFromBOM2 Method (Component2)
+
+## Syntax
+
+### Visual Basic for Applications (VBA)
+
+```vb
+Public Function GetExcludeFromBOM2( _
+   ByVal Config_opt As Long, _
+   ByVal Config_names As Variant _
+) As Variant
+```
