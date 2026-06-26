@@ -3,10 +3,10 @@
 Pipeline order:
 
 ```bash
-./scripts/unpack_chm_recursive.sh api extracted
-python3 scripts/collect_html.py extracted -o API_HTML --clean
-python3 scripts/convert_sw_api_docs.py API_HTML -o markdown
-python3 scripts/build_llm_index.py markdown -o llm_index
+./scripts/unpack_chm_recursive.sh versions/2024/api versions/2024/extracted
+python3 scripts/collect_html.py versions/2024/extracted -o versions/2024/API_HTML --clean
+python3 scripts/convert_sw_api_docs.py versions/2024/API_HTML -o versions/2024/markdown
+python3 scripts/build_llm_index.py versions/2024/markdown -o versions/2024/llm_index
 ```
 
 ## `unpack_chm_recursive.sh`

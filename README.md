@@ -6,15 +6,16 @@ This project converts official SOLIDWORKS API documentation from `.chm` files in
 
 The goal is to make it faster to write VBA macros and C# add-in applications without loading tens of thousands of documentation files into the model context.
 
-This public repository contains the pipeline scripts, an example generated `markdown/` corpus, and a ready-to-use `llm_index/` based on SOLIDWORKS API 2024. Original `.chm` files and intermediate extracted HTML files are not published.
+This public repository contains the pipeline scripts, an example generated `versions/2024/markdown/` corpus, and a ready-to-use `versions/2024/llm_index/` based on SOLIDWORKS API 2024. Original `.chm` files and intermediate extracted HTML files are not published.
 
 The project code is released under the MIT License and can be used in commercial projects. Generated Markdown may contain material derived from official SOLIDWORKS API documentation; see [NOTICE.md](NOTICE.md).
 
 ## Outputs
 
-- `API_HTML/` - HTML files extracted from CHM, without images/CSS/JS.
-- `markdown/` - Markdown documentation, one logical API topic per file.
-- `llm_index/` - compact lookup and graph indexes for fast navigation.
+- `versions/<year>/API_HTML/` - HTML files extracted from CHM, without images/CSS/JS.
+- `versions/<year>/markdown/` - Markdown documentation, one logical API topic per file.
+- `versions/<year>/llm_index/` - compact lookup and graph indexes for fast navigation.
+- `versions/2024/` - the currently included generated corpus.
 - `AGENTS.md` - instructions for Codex on how to use the index without wasting context.
 - `docs/MCP_SERVER.md` - documentation-only MCP server for API-assisted code writing.
 
@@ -22,11 +23,12 @@ The project code is released under the MIT License and can be used in commercial
 
 ```text
 .
-├── api/                  # source .chm files for a specific SOLIDWORKS API version
-├── extracted/            # full CHM extraction, generated
-├── API_HTML/             # only .htm/.html files, generated
-├── markdown/             # Markdown documentation, published as a SOLIDWORKS API 2024 example
-├── llm_index/            # Codex/LLM index, published as a SOLIDWORKS API 2024 example
+├── versions/
+│   ├── 2022/
+│   ├── 2023/
+│   ├── 2024/             # current Markdown corpus and LLM index
+│   ├── 2025/
+│   └── 2026/
 ├── scripts/
 │   ├── unpack_chm_recursive.sh
 │   ├── collect_html.py
@@ -87,22 +89,22 @@ extract_chmLib input.chm output_directory
 Put `.chm` files for the target SOLIDWORKS API version into:
 
 ```text
-api/
+versions/2024/api/
 ```
 
 Example:
 
 ```text
-api/sldworksapi.chm
-api/sldworksapivb6.chm
-api/swconst.chm
-api/cworksapi.chm
+versions/2024/api/sldworksapi.chm
+versions/2024/api/sldworksapivb6.chm
+versions/2024/api/swconst.chm
+versions/2024/api/cworksapi.chm
 ```
 
 ### 2. Extract CHM Recursively
 
 ```bash
-./scripts/unpack_chm_recursive.sh api extracted
+./scripts/unpack_chm_recursive.sh versions/2024/api versions/2024/extracted
 ```
 
 The script runs multiple passes because extracted CHM files can contain nested `.chm` files.
@@ -110,7 +112,7 @@ The script runs multiple passes because extracted CHM files can contain nested `
 ### 3. Collect HTML Only
 
 ```bash
-python3 scripts/collect_html.py extracted -o API_HTML --clean
+python3 scripts/collect_html.py versions/2024/extracted -o versions/2024/API_HTML --clean
 ```
 
 This step removes images, CSS, JS, and other non-HTML files while preserving the directory structure.
@@ -118,7 +120,7 @@ This step removes images, CSS, JS, and other non-HTML files while preserving the
 ### 4. Convert HTML to Markdown
 
 ```bash
-python3 scripts/convert_sw_api_docs.py API_HTML -o markdown
+python3 scripts/convert_sw_api_docs.py versions/2024/API_HTML -o versions/2024/markdown
 ```
 
 The converter is specialized for the SOLIDWORKS/Innovasys help format:
@@ -132,7 +134,7 @@ The converter is specialized for the SOLIDWORKS/Innovasys help format:
 ### 5. Build the Codex/LLM Index
 
 ```bash
-python3 scripts/build_llm_index.py markdown -o llm_index
+python3 scripts/build_llm_index.py versions/2024/markdown -o versions/2024/llm_index
 ```
 
 The index is not meant to be a RAG database. It is a cheap navigation layer:
@@ -144,9 +146,9 @@ The index is not meant to be a RAG database. It is a cheap navigation layer:
 ## Quick Checks
 
 ```bash
-find markdown -type f -name '*.md' | wc -l
-find llm_index -maxdepth 1 -type f | sort
-rg 'IModelDoc2\\.Save' llm_index/symbols.tsv
+find versions/2024/markdown -type f -name '*.md' | wc -l
+find versions/2024/llm_index -maxdepth 1 -type f | sort
+rg 'IModelDoc2\\.Save' versions/2024/llm_index/symbols.tsv
 ```
 
 ## Using with Codex in VSCode/VSCodium
@@ -156,8 +158,8 @@ Open this repository as a workspace, or add it as a second folder in a multi-roo
 Codex should be able to see:
 
 - `AGENTS.md`
-- `llm_index/`
-- `markdown/`
+- `versions/2024/llm_index/`
+- `versions/2024/markdown/`
 
 Example prompt:
 
@@ -180,19 +182,19 @@ Prefer .NET API docs and C# syntax blocks.
 Find a symbol:
 
 ```bash
-rg 'IModelDoc2\\.Save' llm_index/symbols.tsv
+rg 'IModelDoc2\\.Save' versions/2024/llm_index/symbols.tsv
 ```
 
 Find members of an interface:
 
 ```bash
-rg '"interface": "IModelDoc2"' llm_index/interface_members.jsonl
+rg '"interface": "IModelDoc2"' versions/2024/llm_index/interface_members.jsonl
 ```
 
 Open the selected document:
 
 ```bash
-sed -n '1,220p' markdown/sldworksapi/<file>.md
+sed -n '1,220p' versions/2024/markdown/sldworksapi/<file>.md
 ```
 
 ## Index Files
@@ -219,13 +221,13 @@ Usually commit:
 - `LICENSE`
 - `NOTICE.md`
 - `requirements.txt`
-- `markdown/`, if you intentionally publish a generated example corpus for a specific API version
-- `llm_index/`, if you intentionally publish a ready-to-use index for the included Markdown corpus
+- `versions/<year>/markdown/`, if you intentionally publish a generated example corpus for a specific API version
+- `versions/<year>/llm_index/`, if you intentionally publish a ready-to-use index for the included Markdown corpus
 
 Keep large/reproducible artifacts out of Git or publish them separately:
 
-- `api/`
-- `extracted/`
-- `API_HTML/`
+- `versions/<year>/api/`
+- `versions/<year>/extracted/`
+- `versions/<year>/API_HTML/`
 
-If you do not want generated data in Git history, publish `markdown/` and `llm_index/` as release artifacts instead.
+If you do not want generated data in Git history, publish `versions/<year>/markdown/` and `versions/<year>/llm_index/` as release artifacts instead.

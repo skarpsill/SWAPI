@@ -8,8 +8,9 @@ not connect to SOLIDWORKS and does not execute code.
 
 ### Local index mode
 
-Uses the generated files in `llm_index/` and `markdown/` directly. This is the
-default and requires no database.
+Uses the generated files in `versions/<year>/llm_index/` and
+`versions/<year>/markdown/` directly. This is the default and requires no
+database.
 
 ```bash
 python -m pip install -e .
@@ -58,8 +59,8 @@ Local index mode:
       "command": "python",
       "args": ["-m", "swapi_mcp.server"],
       "env": {
-        "SWAPI_ROOT": "C:/path/to/SWAPI",
-        "SWAPI_DEFAULT_VERSION": "2024"
+  "SWAPI_ROOT": "C:/path/to/SWAPI",
+  "SWAPI_DEFAULT_VERSION": "2024"
       }
     }
   }
@@ -109,8 +110,8 @@ The intended workflow is:
 
 1. Install PostgreSQL and VSCode/Codex on Windows.
 2. Install WSL for CHM extraction and index generation.
-3. Put the SOLIDWORKS API `.chm` files for the target version in `api/`.
-4. Run the existing pipeline in WSL to produce `markdown/` and `llm_index/`.
+3. Put the SOLIDWORKS API `.chm` files for the target version in `versions/<year>/api/`.
+4. Run the existing pipeline in WSL to produce `versions/<year>/markdown/` and `versions/<year>/llm_index/`.
 5. Optionally load the generated corpus into PostgreSQL.
 6. Register the MCP server in VSCode/Codex and use it from any macro/add-in
    project without copying the generated docs into that project.

@@ -181,7 +181,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--database-url", required=True, help="PostgreSQL connection URL.")
     parser.add_argument("--version", default="2024", help="SOLIDWORKS API version label.")
-    parser.add_argument("--root", type=Path, default=Path.cwd(), help="Project root containing markdown/ and llm_index/.")
+    parser.add_argument("--root", type=Path, default=Path.cwd(), help="Project root containing versions/<year>/markdown and versions/<year>/llm_index.")
     parser.add_argument("--index", type=Path, default=None, help="Override llm_index directory.")
     parser.add_argument("--markdown", type=Path, default=None, help="Override markdown directory.")
     parser.add_argument("--batch-size", type=int, default=1000)
@@ -198,8 +198,11 @@ def main() -> None:
         raise SystemExit("Install PostgreSQL support with: python -m pip install 'psycopg[binary]>=3.1'") from exc
 
     root = args.root.resolve()
-    index_root = (args.index or root / "llm_index").resolve()
-    markdown_root = (args.markdown or root / "markdown").resolve()
+    version_root = root / "versions" / args.version
+    default_index = version_root / "llm_index" if (version_root / "llm_index").exists() else root / "llm_index"
+    default_markdown = version_root / "markdown" if (version_root / "markdown").exists() else root / "markdown"
+    index_root = (args.index or default_index).resolve()
+    markdown_root = (args.markdown or default_markdown).resolve()
 
     with psycopg.connect(args.database_url) as conn:
         load_schema(conn)
