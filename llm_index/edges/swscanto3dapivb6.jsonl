@@ -1,0 +1,6 @@
+{"label": "method", "source": "swscanto3dapivb6/Scanto3DLib~Scanto3D", "target": "swscanto3dapivb6/Scanto3DLib~Scanto3D~GetMeshCount", "type": "has_member"}
+{"label": "Scanto3D", "source": "swscanto3dapivb6/Scanto3DLib~Scanto3D~GetMeshCount", "target": "swscanto3dapivb6/Scanto3DLib~Scanto3D", "type": "member_of"}
+{"label": "method", "source": "swscanto3dapivb6/Scanto3DLib~Scanto3D", "target": "swscanto3dapivb6/Scanto3DLib~Scanto3D~GetMeshDataAtIndex", "type": "has_member"}
+{"label": "Scanto3D", "source": "swscanto3dapivb6/Scanto3DLib~Scanto3D~GetMeshDataAtIndex", "target": "swscanto3dapivb6/Scanto3DLib~Scanto3D", "type": "member_of"}
+{"label": "method", "source": "swscanto3dapivb6/Scanto3DLib~Scanto3D", "target": "swscanto3dapivb6/Scanto3DLib~Scanto3D~GetMeshDataCountAtIndex", "type": "has_member"}
+{"label": "Scanto3D", "source": "swscanto3dapivb6/Scanto3DLib~Scanto3D~GetMeshDataCountAtIndex", "target": "swscanto3dapivb6/Scanto3DLib~Scanto3D", "type": "member_of"}

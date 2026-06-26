@@ -1,0 +1,4 @@
+{"label": "SolidWorks.Interop.swcommands Namespace", "source": "swcommands/SolidWorks.Interop.swcommands~SolidWorks.Interop.swcommands.swCommands_e", "target": "swcommands/SolidWorks.Interop.swcommands~SolidWorks.Interop.swcommands_namespace", "type": "links_to"}
+{"label": "SolidWorks.Interop.swcommands Namespace", "source": "swcommands/SolidWorks.Interop.swcommands~SolidWorks.Interop.swcommands.swMouse_e", "target": "swcommands/SolidWorks.Interop.swcommands~SolidWorks.Interop.swcommands_namespace", "type": "links_to"}
+{"label": "SolidWorks.Interop.swcommands Assembly", "source": "swcommands/SolidWorks.Interop.swcommands~SolidWorks.Interop.swcommands_namespace", "target": "swcommands/SolidWorks.Interop.swcommands", "type": "links_to"}
+{"label": "SolidWorks.Interop.swcommands Assembly", "source": "swcommands/SolidWorks.Interop.swcommands~SolidWorks.Interop.swcommands_namespace_hierarchy", "target": "swcommands/SolidWorks.Interop.swcommands", "type": "links_to"}

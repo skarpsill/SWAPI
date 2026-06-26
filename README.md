@@ -202,7 +202,8 @@ sed -n '1,220p' markdown/sldworksapi/<file>.md
 - `symbols.jsonl` - structured symbol lookup.
 - `documents.jsonl` - compact card for each Markdown file.
 - `nodes.jsonl` - graph nodes.
-- `edges.jsonl` - `has_member`, `member_of`, and `links_to` edges.
+- `edges/` - sharded `has_member`, `member_of`, and `links_to` graph edges by source module.
+- `edges_manifest.json` - edge shard counts and type summaries.
 - `interface_members.jsonl` - interface/object -> methods/properties.
 - `modules.json` - API module statistics.
 

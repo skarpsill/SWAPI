@@ -1,6 +1,7 @@
 {
   "document_count": 53994,
   "edge_count": 212836,
+  "edge_shard_count": 47,
   "interface_member_groups": 2470,
   "kind_counts": {
     "class": 33,
@@ -17,7 +18,7 @@
     "property": 11315,
     "topic": 4135
   },
-  "markdown_root": "/home/sprat/api_html/markdown",
+  "markdown_root": "/home/sprat/SWAPI/markdown",
   "module_count": 47,
   "modules": [
     "API_GB",

@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import shutil
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path, PurePosixPath
@@ -247,6 +248,48 @@ def write_tsv(path: Path, header: list[str], rows: Iterable[list[object]]) -> in
     return count
 
 
+def edge_module(edge: dict[str, object]) -> str:
+    source = str(edge.get("source", ""))
+    module = source.split("/", 1)[0].strip()
+    return module or "_root"
+
+
+def write_edge_shards(output_root: Path, edges: list[dict[str, object]]) -> dict[str, object]:
+    edges_root = output_root / "edges"
+    if edges_root.exists():
+        shutil.rmtree(edges_root)
+    edges_root.mkdir(parents=True, exist_ok=True)
+
+    by_module: dict[str, list[dict[str, object]]] = defaultdict(list)
+    by_type: Counter[str] = Counter()
+    for edge in edges:
+        by_module[edge_module(edge)].append(edge)
+        by_type[str(edge.get("type", ""))] += 1
+
+    shards: dict[str, dict[str, object]] = {}
+    for module, module_edges in sorted(by_module.items()):
+        path = edges_root / f"{module}.jsonl"
+        type_counts = Counter(str(edge.get("type", "")) for edge in module_edges)
+        write_jsonl(path, module_edges)
+        shards[module] = {
+            "path": path.relative_to(output_root).as_posix(),
+            "edges": len(module_edges),
+            "types": dict(sorted(type_counts.items())),
+        }
+
+    manifest = {
+        "total_edges": len(edges),
+        "shard_count": len(shards),
+        "by_type": dict(sorted(by_type.items())),
+        "shards": shards,
+    }
+    (output_root / "edges_manifest.json").write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True),
+        encoding="utf-8",
+    )
+    return manifest
+
+
 def write_readme(output_root: Path) -> None:
     readme = """# SOLIDWORKS API LLM Index
 
@@ -257,7 +300,7 @@ Recommended agent flow:
 1. Read `manifest.json` to understand corpus size and available modules.
 2. Search `symbols.jsonl` for exact API names such as `IModelDoc2.SaveAs3` or `swOpenDocOptions_e`.
 3. If the symbol is an interface/class/object, read its row in `interface_members.jsonl` before opening full docs.
-4. Follow `edges.jsonl` links only for the selected symbol neighborhood.
+4. Follow `edges/<module>.jsonl` links only for the selected symbol neighborhood.
 5. Open full Markdown files from `../markdown/` only after the candidate set is small.
 
 Files:
@@ -268,7 +311,8 @@ Files:
 - `documents.tsv`: cheapest path/title/kind/module lookup.
 - `symbols.tsv`: cheapest exact/substring symbol lookup.
 - `nodes.jsonl`: graph nodes, currently one node per document.
-- `edges.jsonl`: typed graph edges: `has_member`, `member_of`, `links_to`.
+- `edges/`: typed graph edge shards by source module.
+- `edges_manifest.json`: edge shard counts and type summaries.
 - `interface_members.jsonl`: compact interface/object to members map.
 - `modules.json`: per-module counts.
 """
@@ -372,7 +416,10 @@ def main() -> int:
             for record in records
         ),
     )
-    write_jsonl(output_root / "edges.jsonl", edges)
+    edges_manifest = write_edge_shards(output_root, edges)
+    old_edges = output_root / "edges.jsonl"
+    if old_edges.exists():
+        old_edges.unlink()
     write_jsonl(output_root / "interface_members.jsonl", members_by_interface.values())
     write_tsv(
         output_root / "documents.tsv",
@@ -395,6 +442,7 @@ def main() -> int:
         "markdown_root": markdown_root.as_posix(),
         "document_count": len(records),
         "edge_count": len(edges),
+        "edge_shard_count": edges_manifest["shard_count"],
         "interface_member_groups": len(members_by_interface),
         "kind_counts": dict(sorted(kind_counts.items())),
         "module_count": len(modules),

@@ -1,0 +1,14 @@
+{"label": "method", "source": "fworksapivb6/FeatureWorks~FeatureWorksApp", "target": "fworksapivb6/FeatureWorks~FeatureWorksApp~BubbleTipCallback", "type": "has_member"}
+{"label": "FeatureWorksApp", "source": "fworksapivb6/FeatureWorks~FeatureWorksApp~BubbleTipCallback", "target": "fworksapivb6/FeatureWorks~FeatureWorksApp", "type": "member_of"}
+{"label": "method", "source": "fworksapivb6/FeatureWorks~FeatureWorksApp", "target": "fworksapivb6/FeatureWorks~FeatureWorksApp~CreateFeatures", "type": "has_member"}
+{"label": "FeatureWorksApp", "source": "fworksapivb6/FeatureWorks~FeatureWorksApp~CreateFeatures", "target": "fworksapivb6/FeatureWorks~FeatureWorksApp", "type": "member_of"}
+{"label": "method", "source": "fworksapivb6/FeatureWorks~FeatureWorksApp", "target": "fworksapivb6/FeatureWorks~FeatureWorksApp~HelpErrCallback", "type": "has_member"}
+{"label": "FeatureWorksApp", "source": "fworksapivb6/FeatureWorks~FeatureWorksApp~HelpErrCallback", "target": "fworksapivb6/FeatureWorks~FeatureWorksApp", "type": "member_of"}
+{"label": "method", "source": "fworksapivb6/FeatureWorks~FeatureWorksApp", "target": "fworksapivb6/FeatureWorks~FeatureWorksApp~RecognizeFeatureAutomatic", "type": "has_member"}
+{"label": "FeatureWorksApp", "source": "fworksapivb6/FeatureWorks~FeatureWorksApp~RecognizeFeatureAutomatic", "target": "fworksapivb6/FeatureWorks~FeatureWorksApp", "type": "member_of"}
+{"label": "method", "source": "fworksapivb6/FeatureWorks~FeatureWorksApp", "target": "fworksapivb6/FeatureWorks~FeatureWorksApp~RecognizeFeatureInteractive", "type": "has_member"}
+{"label": "FeatureWorksApp", "source": "fworksapivb6/FeatureWorks~FeatureWorksApp~RecognizeFeatureInteractive", "target": "fworksapivb6/FeatureWorks~FeatureWorksApp", "type": "member_of"}
+{"label": "method", "source": "fworksapivb6/FeatureWorks~FeatureWorksApp", "target": "fworksapivb6/FeatureWorks~FeatureWorksApp~SetAdvancedOptions", "type": "has_member"}
+{"label": "FeatureWorksApp", "source": "fworksapivb6/FeatureWorks~FeatureWorksApp~SetAdvancedOptions", "target": "fworksapivb6/FeatureWorks~FeatureWorksApp", "type": "member_of"}
+{"label": "method", "source": "fworksapivb6/FeatureWorks~FeatureWorksApp", "target": "fworksapivb6/FeatureWorks~FeatureWorksApp~SetPerformanceOptions", "type": "has_member"}
+{"label": "FeatureWorksApp", "source": "fworksapivb6/FeatureWorks~FeatureWorksApp~SetPerformanceOptions", "target": "fworksapivb6/FeatureWorks~FeatureWorksApp", "type": "member_of"}
