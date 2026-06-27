@@ -102,7 +102,7 @@ def main() -> None:
                 resolve_under(paths.repo_root, args.output_dir),
                 "--workpath",
                 resolve_under(paths.repo_root, args.work_dir),
-                paths.pyinstaller_packaging / "swapi_release_manager.py",
+                paths.pyinstaller_packaging / "swapi_release_manager_gui.py",
             ],
             paths.repo_root,
             log,

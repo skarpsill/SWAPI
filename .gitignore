@@ -34,3 +34,5 @@ Thumbs.db
 
 # Bundled third-party installers (large binaries, distribute separately)
 02_mcp_server/packaging/windows/*.exe
+
+02_mcp_server/build/

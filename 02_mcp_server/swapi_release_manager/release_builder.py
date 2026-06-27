@@ -19,27 +19,26 @@ def _pyinstaller_build(
     work_dir: Path,
     log: LogFn,
 ) -> None:
-    run_command(
-        [
-            paths.python_exe,
-            "-m",
-            "PyInstaller",
-            "--clean",
-            "--noconfirm",
-            "--onefile",
-            "--name",
-            name,
-            "--paths",
-            paths.product_root,
-            "--distpath",
-            package_dir,
-            "--workpath",
-            work_dir,
-            entry_point,
-        ],
-        paths.repo_root,
-        log,
-    )
+    cmd = [
+        paths.python_exe,
+        "-m",
+        "PyInstaller",
+        "--clean",
+        "--noconfirm",
+        "--onefile",
+        "--name",
+        name,
+        "--paths",
+        str(paths.product_root),
+        "--specpath",
+        str(work_dir),
+        "--distpath",
+        str(package_dir),
+        "--workpath",
+        str(work_dir),
+        str(entry_point),
+    ]
+    run_command(cmd, paths.product_root, log)
 
 
 def build_server_package(
@@ -58,8 +57,8 @@ def build_server_package(
         raise FileNotFoundError(f"PostgreSQL installer not found: {postgresql_installer}")
 
     run_command(
-        [paths.python_exe, "-m", "pip", "install", "-e", f"{paths.repo_root}[postgres,release]"],
-        paths.repo_root,
+        [paths.python_exe, "-m", "pip", "install", "-e", f"{paths.product_root}[postgres,release]"],
+        paths.product_root,
         log,
     )
 
@@ -91,8 +90,8 @@ def build_server_package(
         log=log,
     )
 
-    for name in ("README.md",):
-        shutil.copy2(paths.windows_packaging / name, package_dir / name)
+    for item in ("README.md",):
+        shutil.copy2(paths.windows_packaging / item, package_dir / item)
 
     if database_dump:
         shutil.copy2(database_dump, package_dir / f"solidworks_api_{api_version}.dump")
