@@ -33,6 +33,67 @@ def find_postgres_tool(name: str) -> Path:
     raise FileNotFoundError(f"{name} was not found. Install PostgreSQL or add its bin directory to PATH.")
 
 
+def find_pg_hba_conf() -> Path:
+    for version in POSTGRES_VERSIONS:
+        p = Path(f"C:/Program Files/PostgreSQL/{version}/data/pg_hba.conf")
+        if p.exists():
+            return p
+    raise FileNotFoundError("pg_hba.conf not found in any PostgreSQL installation.")
+
+
+def configure_trust_auth(
+    *,
+    database: str,
+    user: str,
+    host: str,
+    port: int,
+    password: str | None,
+    log: LogFn,
+) -> None:
+    """Add a trust auth rule for localhost so no password is needed."""
+    try:
+        hba = find_pg_hba_conf()
+    except FileNotFoundError as exc:
+        log(f"⚠  {exc} — пропуск настройки trust auth")
+        return
+
+    rule = f"host  {database}  {user}  127.0.0.1/32  trust"
+    content = hba.read_text(encoding="utf-8")
+    if rule in content:
+        log("✓  Trust auth уже настроен")
+        return
+
+    # Insert before the first non-commented host line so our rule wins
+    lines = content.splitlines(keepends=True)
+    insert_at = len(lines)
+    for i, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped.startswith("host") and not stripped.startswith("#"):
+            insert_at = i
+            break
+    lines.insert(insert_at, rule + "\n")
+    hba.write_text("".join(lines), encoding="utf-8")
+    log(f"✓  Добавлено правило trust auth в {hba}")
+
+    # Reload PostgreSQL config
+    try:
+        psql = find_postgres_tool("psql")
+        pg_env = {"PGPASSWORD": password} if password else None
+        run_command(
+            [
+                psql, "--host", host, "--port", str(port),
+                "--username", user, "--dbname", "postgres",
+                "--command", "SELECT pg_reload_conf()",
+            ],
+            cwd=Path("."),
+            log=log,
+            extra_env=pg_env,
+        )
+        log("✓  PostgreSQL конфиг перезагружен")
+    except Exception as exc:
+        log(f"⚠  Не удалось перезагрузить конфиг PostgreSQL: {exc}")
+
+
 def is_postgres_installed() -> bool:
     """Return True if PostgreSQL binaries are available (any supported version)."""
     if shutil.which("pg_restore"):

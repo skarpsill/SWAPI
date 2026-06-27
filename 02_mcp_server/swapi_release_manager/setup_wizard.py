@@ -18,6 +18,7 @@ from .mcp_config import (
     write_vscodium_config,
 )
 from .postgres_tools import (
+    configure_trust_auth,
     install_postgres_silent,
     is_database_populated,
     is_postgres_installed,
@@ -246,7 +247,7 @@ class SetupWizard(tk.Tk):
             self._step_postgres(bundle, password)
             self._step_restore_db(bundle, password)
             self._step_copy_exe(bundle)
-            self._step_mcp_config(password)
+            self._step_mcp_config()
             self._log("\n✓  Установка завершена успешно!")
             self.after(0, lambda: self.title(_TITLE + " — Готово"))
             self.after(0, lambda: self._progress.set_finish_command(self.destroy))
@@ -259,20 +260,29 @@ class SetupWizard(tk.Tk):
 
     def _step_postgres(self, bundle: Path, password: str) -> None:
         self._log("── Проверка PostgreSQL 18 ────────────────────────")
-        if is_postgres_installed():
+        if not is_postgres_installed():
+            installers = sorted(bundle.glob("postgresql-18*.exe"))
+            if not installers:
+                raise FileNotFoundError(
+                    "PostgreSQL 18 не найден, а установочный файл\n"
+                    "postgresql-18*.exe отсутствует рядом с setup.exe."
+                )
+            self._log(f"Запуск установщика: {installers[0].name}")
+            install_postgres_silent(installers[0], password, self._log)
+            self._log("Ожидание запуска службы PostgreSQL...")
+            wait_for_postgres_service(timeout=120, log=self._log)
+            self._log("✓  PostgreSQL 18 установлен и запущен")
+        else:
             self._log("✓  PostgreSQL 18 уже установлен")
-            return
-        installers = sorted(bundle.glob("postgresql-18*.exe"))
-        if not installers:
-            raise FileNotFoundError(
-                "PostgreSQL 18 не найден, а установочный файл\n"
-                "postgresql-18*.exe отсутствует рядом с setup.exe."
-            )
-        self._log(f"Запуск установщика: {installers[0].name}")
-        install_postgres_silent(installers[0], password, self._log)
-        self._log("Ожидание запуска службы PostgreSQL...")
-        wait_for_postgres_service(timeout=120, log=self._log)
-        self._log("✓  PostgreSQL 18 установлен и запущен")
+        self._log("Настройка доступа без пароля для локальных подключений...")
+        configure_trust_auth(
+            database=_DATABASE,
+            user=_DB_USER,
+            host=_DB_HOST,
+            port=_DB_PORT,
+            password=password or None,
+            log=self._log,
+        )
 
     def _step_restore_db(self, bundle: Path, password: str) -> None:
         self._log("\n── Восстановление базы данных ───────────────────")
@@ -312,11 +322,10 @@ class SetupWizard(tk.Tk):
         shutil.copy2(src, _INSTALL_DIR / "swapi-mcp-server.exe")
         self._log(f"✓  Установлен в {_INSTALL_DIR}")
 
-    def _step_mcp_config(self, password: str) -> None:
+    def _step_mcp_config(self) -> None:
         self._log("\n── Настройка MCP-клиентов ───────────────────────")
         exe = _INSTALL_DIR / "swapi-mcp-server.exe"
-        auth = f"{_DB_USER}:{password}" if password else _DB_USER
-        db_url = f"postgresql://{auth}@{_DB_HOST}:{_DB_PORT}/{_DATABASE}"
+        db_url = f"postgresql://{_DB_USER}@{_DB_HOST}:{_DB_PORT}/{_DATABASE}"
         env = {
             "SWAPI_DATABASE_URL": db_url,
             "SWAPI_DEFAULT_VERSION": _API_VERSION,
