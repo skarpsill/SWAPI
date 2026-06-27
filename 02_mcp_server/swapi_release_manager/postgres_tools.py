@@ -57,13 +57,16 @@ def configure_trust_auth(
         log(f"⚠  {exc} — пропуск настройки trust auth")
         return
 
-    rule = f"host  {database}  {user}  127.0.0.1/32  trust"
+    rule_ipv4 = f"host  {database}  {user}  127.0.0.1/32  trust"
+    rule_ipv6 = f"host  {database}  {user}  ::1/128  trust"
     content = hba.read_text(encoding="utf-8")
-    if rule in content:
+
+    missing = [r for r in (rule_ipv4, rule_ipv6) if r not in content]
+    if not missing:
         log("✓  Trust auth уже настроен")
         return
 
-    # Insert before the first non-commented host line so our rule wins
+    # Insert missing rules before the first non-commented host line so they win
     lines = content.splitlines(keepends=True)
     insert_at = len(lines)
     for i, line in enumerate(lines):
@@ -71,7 +74,8 @@ def configure_trust_auth(
         if stripped.startswith("host") and not stripped.startswith("#"):
             insert_at = i
             break
-    lines.insert(insert_at, rule + "\n")
+    for rule in reversed(missing):
+        lines.insert(insert_at, rule + "\n")
     hba.write_text("".join(lines), encoding="utf-8")
     log(f"✓  Добавлено правило trust auth в {hba}")
 
