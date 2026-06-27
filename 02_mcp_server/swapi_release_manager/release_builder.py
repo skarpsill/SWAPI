@@ -10,28 +10,15 @@ from .paths import ProjectPaths
 from .runner import LogFn, run_command
 
 
-def build_server_package(
+def _pyinstaller_build(
     *,
     paths: ProjectPaths,
-    version: str,
-    api_version: str,
-    database_dump: Path | None,
-    output_dir: Path,
+    name: str,
+    entry_point: Path,
+    package_dir: Path,
+    work_dir: Path,
     log: LogFn,
-) -> Path:
-    if database_dump and not database_dump.exists():
-        raise FileNotFoundError(f"Database dump not found: {database_dump}")
-
-    run_command([paths.python_exe, "-m", "pip", "install", "-e", f"{paths.repo_root}[postgres,release]"], paths.repo_root, log)
-
-    build_root = output_dir
-    package_name = f"solidworks-api-mcp-{version}-windows-x64"
-    package_dir = build_root / package_name
-    work_dir = build_root / "pyinstaller-work"
-    if package_dir.exists():
-        shutil.rmtree(package_dir)
-    package_dir.mkdir(parents=True, exist_ok=True)
-
+) -> None:
     run_command(
         [
             paths.python_exe,
@@ -41,24 +28,78 @@ def build_server_package(
             "--noconfirm",
             "--onefile",
             "--name",
-            "swapi-mcp-server",
+            name,
             "--paths",
             paths.product_root,
             "--distpath",
             package_dir,
             "--workpath",
             work_dir,
-            paths.pyinstaller_packaging / "swapi_mcp_server.py",
+            entry_point,
         ],
         paths.repo_root,
         log,
     )
 
-    for name in ("install.ps1", "restore-db.ps1", "README.md"):
+
+def build_server_package(
+    *,
+    paths: ProjectPaths,
+    version: str,
+    api_version: str,
+    database_dump: Path | None,
+    postgresql_installer: Path | None,
+    output_dir: Path,
+    log: LogFn,
+) -> Path:
+    if database_dump and not database_dump.exists():
+        raise FileNotFoundError(f"Database dump not found: {database_dump}")
+    if postgresql_installer and not postgresql_installer.exists():
+        raise FileNotFoundError(f"PostgreSQL installer not found: {postgresql_installer}")
+
+    run_command(
+        [paths.python_exe, "-m", "pip", "install", "-e", f"{paths.repo_root}[postgres,release]"],
+        paths.repo_root,
+        log,
+    )
+
+    build_root = output_dir
+    package_name = f"solidworks-api-mcp-{version}-windows-x64"
+    package_dir = build_root / package_name
+    work_dir = build_root / "pyinstaller-work"
+    if package_dir.exists():
+        shutil.rmtree(package_dir)
+    package_dir.mkdir(parents=True, exist_ok=True)
+
+    log("Building swapi-mcp-server.exe...")
+    _pyinstaller_build(
+        paths=paths,
+        name="swapi-mcp-server",
+        entry_point=paths.pyinstaller_packaging / "swapi_mcp_server.py",
+        package_dir=package_dir,
+        work_dir=work_dir,
+        log=log,
+    )
+
+    log("Building swapi-setup.exe...")
+    _pyinstaller_build(
+        paths=paths,
+        name="swapi-setup",
+        entry_point=paths.pyinstaller_packaging / "swapi_setup.py",
+        package_dir=package_dir,
+        work_dir=work_dir,
+        log=log,
+    )
+
+    for name in ("README.md",):
         shutil.copy2(paths.windows_packaging / name, package_dir / name)
 
     if database_dump:
         shutil.copy2(database_dump, package_dir / f"solidworks_api_{api_version}.dump")
+
+    if postgresql_installer:
+        shutil.copy2(postgresql_installer, package_dir / postgresql_installer.name)
+        log(f"Bundled PostgreSQL installer: {postgresql_installer.name}")
 
     zip_path = build_root / f"{package_name}.zip"
     if zip_path.exists():

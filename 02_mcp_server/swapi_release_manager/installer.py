@@ -30,7 +30,7 @@ def install_local_package(
     if not exe.exists():
         raise FileNotFoundError(f"Package exe not found: {exe}")
     install_dir.mkdir(parents=True, exist_ok=True)
-    for name in ("swapi-mcp-server.exe", "restore-db.ps1", "README.md"):
+    for name in ("swapi-mcp-server.exe", "README.md"):
         source = package_dir / name
         if source.exists():
             shutil.copy2(source, install_dir / name)

@@ -25,6 +25,10 @@ def default_vscode_config() -> Path:
     return Path(os.environ.get("APPDATA", Path.home() / "AppData" / "Roaming")) / "Code" / "User" / "mcp.json"
 
 
+def default_vscodium_config() -> Path:
+    return Path(os.environ.get("APPDATA", Path.home() / "AppData" / "Roaming")) / "VSCodium" / "User" / "mcp.json"
+
+
 def write_codex_config(config_path: Path, command: Path, env: dict[str, str]) -> None:
     config_path.parent.mkdir(parents=True, exist_ok=True)
     env_parts = ", ".join(f"{key} = {toml_literal(env[key])}" for key in sorted(env))
@@ -55,4 +59,8 @@ def write_vscode_config(config_path: Path, command: Path, env: dict[str, str]) -
     config.setdefault("mcpServers", {})
     config["mcpServers"][SERVER_NAME] = {"command": str(command), "env": dict(sorted(env.items()))}
     config_path.write_text(json.dumps(config, indent=2), encoding="utf-8")
+
+
+def write_vscodium_config(config_path: Path, command: Path, env: dict[str, str]) -> None:
+    write_vscode_config(config_path, command, env)
 

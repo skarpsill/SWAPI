@@ -27,6 +27,7 @@ def parse_args() -> argparse.Namespace:
     build.add_argument("--version", default="0.1.0")
     build.add_argument("--api-version", default="2024")
     build.add_argument("--database-dump", type=Path, default=None)
+    build.add_argument("--postgresql-installer", type=Path, default=None, help="Path to postgresql-18*.exe to bundle into the package.")
     build.add_argument("--output-dir", type=Path, default=Path("02_mcp_server/dist"))
 
     export = sub.add_parser("export-dump", help="Export a PostgreSQL custom-format dump.")
@@ -60,6 +61,7 @@ def main() -> None:
             version=args.version,
             api_version=args.api_version,
             database_dump=args.database_dump.resolve() if args.database_dump else None,
+            postgresql_installer=args.postgresql_installer.resolve() if args.postgresql_installer else None,
             output_dir=resolve_under(paths.repo_root, args.output_dir),
             log=log,
         )

@@ -17,6 +17,12 @@ class ProjectPaths:
     pyinstaller_packaging: Path
     python_exe: Path
 
+    @property
+    def postgresql_installer(self) -> Path | None:
+        """Auto-detect bundled postgresql-18*.exe in the windows_packaging directory."""
+        matches = sorted(self.windows_packaging.glob("postgresql-18*.exe"))
+        return matches[0] if matches else None
+
 
 def _source_repo_root() -> Path:
     return Path(__file__).resolve().parents[2]

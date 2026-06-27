@@ -31,3 +31,6 @@ API_HTML/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Bundled third-party installers (large binaries, distribute separately)
+02_mcp_server/packaging/windows/*.exe

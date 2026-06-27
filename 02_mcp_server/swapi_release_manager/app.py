@@ -39,6 +39,8 @@ class ReleaseManagerApp(tk.Tk):
         self.database_host = tk.StringVar(value="localhost")
         self.database_port = tk.IntVar(value=5432)
         self.dump_path = tk.StringVar(value=str(self.paths.parsing_root / "release-assets" / "solidworks_api_2024.dump"))
+        _pg = self.paths.postgresql_installer
+        self.pg_installer_path = tk.StringVar(value=str(_pg) if _pg else "")
         self.dump_output_dir = tk.StringVar(value=str(self.paths.parsing_root / "release-assets"))
         self.package_output_dir = tk.StringVar(value=str(self.paths.product_root / "dist"))
         self.package_path = tk.StringVar(value=str(self.paths.product_root / "dist" / "solidworks-api-mcp-0.1.0-alpha.1-windows-x64.zip"))
@@ -90,6 +92,16 @@ class ReleaseManagerApp(tk.Tk):
         self._entry_row(frame, "Package version", self.version)
         self._entry_row(frame, "API version", self.api_version)
         self._path_row(frame, "Database dump", self.dump_path, lambda: self._choose_file(self.dump_path, [("Dump files", "*.dump"), ("All files", "*.*")]))
+        self._path_row(
+            frame,
+            "PG installer",
+            self.pg_installer_path,
+            lambda: self._choose_file(
+                self.pg_installer_path,
+                [("PostgreSQL installer", "postgresql-18*.exe"), ("All files", "*.*")],
+            ),
+        )
+        ttk.Label(frame, text="  (необязательно) postgresql-18*.exe для бандлинга в пакет", foreground="gray", font=("Segoe UI", 8)).pack(anchor=tk.W, padx=4)
         self._path_row(frame, "Output directory", self.package_output_dir, lambda: self._choose_dir(self.package_output_dir))
         ttk.Button(frame, text="Build Release Package", command=self.build_package).pack(anchor=tk.W, pady=10)
 
@@ -201,11 +213,13 @@ class ReleaseManagerApp(tk.Tk):
 
     def build_package(self) -> None:
         def task() -> None:
+            pg_installer_str = self.pg_installer_path.get().strip()
             zip_path = build_server_package(
                 paths=self.paths,
                 version=self.version.get(),
                 api_version=self.api_version.get(),
                 database_dump=Path(self.dump_path.get()).expanduser() if self.dump_path.get().strip() else None,
+                postgresql_installer=Path(pg_installer_str).expanduser() if pg_installer_str else None,
                 output_dir=resolve_under(self.paths.product_root, self.package_output_dir.get()),
                 log=self._log,
             )
