@@ -21,10 +21,12 @@ dev = ["pytest>=8.0"]
 [project.scripts]
 swapi-mcp = "swapi_mcp.server:main"
 swapi-load-postgres = "scripts.load_postgres:main"
+swapi-release-manager = "swapi_release_manager.app:main"
+swapi-release-manager-cli = "swapi_release_manager.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["02_mcp_server", "01_parsing_API"]
-include = ["swapi_mcp", "scripts"]
+include = ["swapi_mcp", "swapi_release_manager", "scripts"]
 
 [tool.setuptools.package-data]
 swapi_mcp = ["schema.sql"]

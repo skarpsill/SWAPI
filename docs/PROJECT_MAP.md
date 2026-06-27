@@ -69,14 +69,21 @@ pipeline подготовки API-документации не смешивае
 |   |-- schema.sql         # PostgreSQL schema
 |   |-- __main__.py
 |   `-- __init__.py
+|-- swapi_release_manager/
+|   |-- app.py             # Tkinter release manager GUI
+|   |-- release_builder.py # PyInstaller release zip builder
+|   |-- postgres_tools.py  # dump export and restore helpers
+|   |-- installer.py       # local install flow
+|   |-- mcp_config.py      # Codex / VS Code config writers
+|   |-- publisher.py       # GitHub Release publishing through gh
+|   |-- paths.py
+|   `-- runner.py
 `-- packaging/
     |-- pyinstaller/
-    |   `-- swapi_mcp_server.py
+    |   |-- swapi_mcp_server.py
+    |   `-- swapi_release_manager.py
     `-- windows/
-        |-- build-release.ps1
-        |-- export-postgres-dump.ps1
         |-- install.ps1
-        |-- publish-github-release.ps1
         |-- restore-db.ps1
         `-- README.md
 ```
@@ -89,10 +96,11 @@ pipeline подготовки API-документации не смешивае
 - Local mode reads `01_parsing_API/<year>/llm_index/` and
   `01_parsing_API/<year>/markdown/`.
 - PostgreSQL mode uses `DATABASE_URL` or `SWAPI_DATABASE_URL`.
-- `build-release.ps1` installs the root package, builds
-  `swapi-mcp-server.exe`, and writes release output to `02_mcp_server/dist/`.
 - `install.ps1` installs the exe, restores the bundled dump, and can write
   Codex/VS Code MCP config.
+- `swapi_release_manager` is the Python GUI replacement for the maintainer
+  PowerShell workflow: export dump, build package, install locally, and publish
+  a release.
 
 ## Python package links
 

@@ -20,19 +20,44 @@ conversion pipeline.
 
 ## Build The Package
 
+Preferred maintainer flow is the Python GUI:
+
+```powershell
+.\02_mcp_server\dist\release-manager\swapi-release-manager.exe
+```
+
+The GUI can export the PostgreSQL dump, build the release zip, install a local
+package, and publish a draft GitHub Release.
+
+Build the GUI exe from repository root:
+
+```powershell
+.\.venv\Scripts\python.exe -m PyInstaller `
+  --clean `
+  --noconfirm `
+  --onefile `
+  --windowed `
+  --name swapi-release-manager `
+  --distpath .\02_mcp_server\dist\release-manager `
+  --workpath .\02_mcp_server\dist\pyinstaller-work `
+  .\02_mcp_server\packaging\pyinstaller\swapi_release_manager.py
+```
+
+Automation CLI flow:
+
 Export a PostgreSQL dump:
 
 ```powershell
-.\02_mcp_server\packaging\windows\export-postgres-dump.ps1 -ApiVersion 2024
+.\.venv\Scripts\python.exe -m swapi_release_manager.cli export-dump --api-version 2024
 ```
 
 Build the Windows package:
 
 ```powershell
-.\02_mcp_server\packaging\windows\build-release.ps1 `
-  -Version 0.1.0-alpha.1 `
-  -ApiVersion 2024 `
-  -DatabaseDump .\01_parsing_API\release-assets\solidworks_api_2024.dump
+.\.venv\Scripts\python.exe -m swapi_release_manager.cli build-package `
+  --version 0.1.0-alpha.1 `
+  --api-version 2024 `
+  --database-dump .\01_parsing_API\release-assets\solidworks_api_2024.dump
 ```
 
 The output path is:
@@ -87,10 +112,10 @@ v0.1.0-alpha.1
 With GitHub CLI installed:
 
 ```powershell
-.\02_mcp_server\packaging\windows\publish-github-release.ps1 `
-  -Tag v0.1.0-alpha.1 `
-  -PackagePath .\dist\solidworks-api-mcp-0.1.0-alpha.1-windows-x64.zip `
-  -Draft
+.\.venv\Scripts\python.exe -m swapi_release_manager.cli publish-release `
+  --tag v0.1.0-alpha.1 `
+  --package-path .\02_mcp_server\dist\solidworks-api-mcp-0.1.0-alpha.1-windows-x64.zip `
+  --draft
 ```
 
 The GitHub Actions workflow can build the executable package, but it does not

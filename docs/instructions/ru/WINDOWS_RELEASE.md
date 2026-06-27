@@ -17,19 +17,44 @@ solidworks-api-mcp-<version>-windows-x64.zip
 
 ## Сборка
 
+Предпочтительный maintainer flow - Python GUI:
+
+```powershell
+.\02_mcp_server\dist\release-manager\swapi-release-manager.exe
+```
+
+GUI умеет экспортировать PostgreSQL dump, собирать release zip, устанавливать
+package локально и публиковать draft GitHub Release.
+
+Сборка GUI exe из repository root:
+
+```powershell
+.\.venv\Scripts\python.exe -m PyInstaller `
+  --clean `
+  --noconfirm `
+  --onefile `
+  --windowed `
+  --name swapi-release-manager `
+  --distpath .\02_mcp_server\dist\release-manager `
+  --workpath .\02_mcp_server\dist\pyinstaller-work `
+  .\02_mcp_server\packaging\pyinstaller\swapi_release_manager.py
+```
+
+Automation CLI flow:
+
 Экспорт dump:
 
 ```powershell
-.\02_mcp_server\packaging\windows\export-postgres-dump.ps1 -ApiVersion 2024
+.\.venv\Scripts\python.exe -m swapi_release_manager.cli export-dump --api-version 2024
 ```
 
 Сборка package:
 
 ```powershell
-.\02_mcp_server\packaging\windows\build-release.ps1 `
-  -Version 0.1.0-alpha.1 `
-  -ApiVersion 2024 `
-  -DatabaseDump .\01_parsing_API\release-assets\solidworks_api_2024.dump
+.\.venv\Scripts\python.exe -m swapi_release_manager.cli build-package `
+  --version 0.1.0-alpha.1 `
+  --api-version 2024 `
+  --database-dump .\01_parsing_API\release-assets\solidworks_api_2024.dump
 ```
 
 Результат:
