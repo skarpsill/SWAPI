@@ -7,6 +7,9 @@ __pycache__/
 .venv/
 venv/
 *.egg-info/
+*.spec
+dist/
+release-assets/
 
 # Generated / large documentation artifacts
 api/

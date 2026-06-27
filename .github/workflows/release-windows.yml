@@ -1,0 +1,43 @@
+name: Build Windows Release Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Release version without leading v
+        required: true
+        default: 0.1.0
+      api_version:
+        description: SOLIDWORKS API version label
+        required: true
+        default: "2024"
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Create virtual environment
+        shell: pwsh
+        run: |
+          python -m venv .venv
+          .\.venv\Scripts\python.exe -m pip install --upgrade pip
+
+      - name: Build executable package
+        shell: pwsh
+        run: |
+          .\packaging\windows\build-release.ps1 `
+            -Version "${{ inputs.version }}" `
+            -ApiVersion "${{ inputs.api_version }}"
+
+      - name: Upload package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: solidworks-api-mcp-${{ inputs.version }}-windows-x64
+          path: dist/solidworks-api-mcp-${{ inputs.version }}-windows-x64.zip
