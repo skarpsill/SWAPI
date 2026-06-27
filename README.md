@@ -14,6 +14,8 @@ loading tens of thousands of API documentation files into the model context.
 
 - [Instruction hub](docs/instructions/README.md) - full project documentation
   and task-oriented guides.
+- [Russian instruction hub](docs/instructions/ru/README.md) - Russian copy of
+  the same instruction set.
 - [Project overview](docs/instructions/PROJECT_OVERVIEW.md) - architecture,
   repository layout, data flow, and included artifacts.
 - [Build pipeline](docs/instructions/BUILD_PIPELINE.md) - CHM extraction,

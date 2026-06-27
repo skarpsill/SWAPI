@@ -14,6 +14,8 @@ Windows-релиза с PostgreSQL.
 
 - [Папка инструкций](docs/instructions/README.md) - полная документация проекта
   и практические руководства.
+- [Папка инструкций на русском](docs/instructions/ru/README.md) - русская копия
+  набора инструкций.
 - [Обзор проекта](docs/instructions/PROJECT_OVERVIEW.md) - архитектура,
   структура репозитория, поток данных и артефакты.
 - [Build pipeline](docs/instructions/BUILD_PIPELINE.md) - извлечение CHM,

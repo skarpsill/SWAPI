@@ -3,6 +3,8 @@
 This folder contains the project documentation for the SOLIDWORKS API Knowledge
 Base and its MCP server.
 
+[Русская версия](ru/README.md)
+
 ## Guides
 
 - [Project overview](PROJECT_OVERVIEW.md) - what the project contains, how the
