@@ -112,6 +112,35 @@ def export_dump(
     return dump_path
 
 
+def is_database_populated(
+    *,
+    database: str,
+    user: str,
+    host: str,
+    port: int,
+    password: str | None = None,
+) -> bool:
+    """Return True if the database exists and documents table has rows."""
+    try:
+        psql = find_postgres_tool("psql")
+        pg_env = {"PGPASSWORD": password} if password else None
+        result = capture_command(
+            [
+                psql,
+                "--host", host, "--port", str(port), "--username", user,
+                "--dbname", database,
+                "--tuples-only", "--no-align",
+                "--command", "SELECT count(*) FROM documents LIMIT 1",
+            ],
+            cwd=Path("."),
+            log=lambda _: None,
+            extra_env=pg_env,
+        )
+        return result.strip().isdigit() and int(result.strip()) > 0
+    except Exception:
+        return False
+
+
 def restore_dump(
     *,
     dump_path: Path,

@@ -19,6 +19,7 @@ from .mcp_config import (
 )
 from .postgres_tools import (
     install_postgres_silent,
+    is_database_populated,
     is_postgres_installed,
     restore_dump,
     wait_for_postgres_service,
@@ -267,6 +268,15 @@ class SetupWizard(tk.Tk):
 
     def _step_restore_db(self, bundle: Path, password: str) -> None:
         self._log("\n── Восстановление базы данных ───────────────────")
+        if is_database_populated(
+            database=_DATABASE,
+            user=_DB_USER,
+            host=_DB_HOST,
+            port=_DB_PORT,
+            password=password,
+        ):
+            self._log("✓  База данных уже установлена — пропуск восстановления")
+            return
         dumps = sorted(bundle.glob("solidworks_api_*.dump"))
         if not dumps:
             raise FileNotFoundError(
