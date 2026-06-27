@@ -1,233 +1,49 @@
 # SOLIDWORKS API Knowledge Base for Codex
 
-Language: English | [Русский](README.ru.md)
-
-This project converts official SOLIDWORKS API documentation from `.chm` files into a local Markdown knowledge base and a compact navigation index for Codex/LLM agents.
-
-The goal is to make it faster to write VBA macros and C# add-in applications without loading tens of thousands of documentation files into the model context.
-
-This public repository contains the pipeline scripts, an example generated `versions/2024/markdown/` corpus, and a ready-to-use `versions/2024/llm_index/` based on SOLIDWORKS API 2024. Original `.chm` files and intermediate extracted HTML files are not published.
-
-The project code is released under the MIT License and can be used in commercial projects. Generated Markdown may contain material derived from official SOLIDWORKS API documentation; see [NOTICE.md](NOTICE.md).
-
-## Outputs
-
-- `versions/<year>/API_HTML/` - HTML files extracted from CHM, without images/CSS/JS.
-- `versions/<year>/markdown/` - Markdown documentation, one logical API topic per file.
-- `versions/<year>/llm_index/` - compact lookup and graph indexes for fast navigation.
-- `versions/2024/` - the currently included generated corpus.
-- `AGENTS.md` - instructions for Codex on how to use the index without wasting context.
-- `docs/MCP_SERVER.md` - documentation-only MCP server for API-assisted code writing.
-
-## Project Layout
-
-```text
-.
-├── versions/
-│   ├── 2022/
-│   ├── 2023/
-│   ├── 2024/             # current Markdown corpus and LLM index
-│   ├── 2025/
-│   └── 2026/
-├── scripts/
-│   ├── unpack_chm_recursive.sh
-│   ├── collect_html.py
-│   ├── convert_sw_api_docs.py
-│   └── build_llm_index.py
-├── AGENTS.md
-├── NOTICE.md
-├── LICENSE
-├── requirements.txt
-└── README.md
-```
-
-## Dependencies
-
-Python:
-
-```bash
-python3 -m pip install -r requirements.txt
-```
-
-To extract CHM files, you need `extract_chmLib` from `chmlib`.
-
-Debian/Ubuntu:
-
-```bash
-sudo apt install libchm-bin
-```
-
-Fedora:
-
-```bash
-sudo dnf install chmlib
-```
-
-Arch Linux:
-
-```bash
-sudo pacman -S chmlib
-```
-
-Check the command:
-
-```bash
-which extract_chmLib
-extract_chmLib 2>&1 | head
-```
-
-If your distribution package does not provide `extract_chmLib`, install `chmlib` from source or use any compatible CHM extractor that supports this command shape:
-
-```bash
-extract_chmLib input.chm output_directory
-```
-
-## Full Pipeline
-
-### 1. Add CHM Files
-
-Put `.chm` files for the target SOLIDWORKS API version into:
-
-```text
-versions/2024/api/
-```
-
-Example:
-
-```text
-versions/2024/api/sldworksapi.chm
-versions/2024/api/sldworksapivb6.chm
-versions/2024/api/swconst.chm
-versions/2024/api/cworksapi.chm
-```
-
-### 2. Extract CHM Recursively
-
-```bash
-./scripts/unpack_chm_recursive.sh versions/2024/api versions/2024/extracted
-```
-
-The script runs multiple passes because extracted CHM files can contain nested `.chm` files.
-
-### 3. Collect HTML Only
-
-```bash
-python3 scripts/collect_html.py versions/2024/extracted -o versions/2024/API_HTML --clean
-```
-
-This step removes images, CSS, JS, and other non-HTML files while preserving the directory structure.
-
-### 4. Convert HTML to Markdown
-
-```bash
-python3 scripts/convert_sw_api_docs.py versions/2024/API_HTML -o versions/2024/markdown
-```
-
-The converter is specialized for the SOLIDWORKS/Innovasys help format:
-
-- removes navigation and service markup;
-- preserves headings, sections, tables, and lists;
-- converts Syntax blocks into fenced code blocks;
-- adds YAML metadata;
-- preserves relationships through Markdown links.
-
-### 5. Build the Codex/LLM Index
-
-```bash
-python3 scripts/build_llm_index.py versions/2024/markdown -o versions/2024/llm_index
-```
-
-The index is not meant to be a RAG database. It is a cheap navigation layer:
-
-- find a symbol first;
-- inspect its interface or related topics;
-- open only the Markdown files that are actually needed.
-
-## Quick Checks
-
-```bash
-find versions/2024/markdown -type f -name '*.md' | wc -l
-find versions/2024/llm_index -maxdepth 1 -type f | sort
-rg 'IModelDoc2\\.Save' versions/2024/llm_index/symbols.tsv
-```
-
-## Using with Codex in VSCode/VSCodium
-
-Open this repository as a workspace, or add it as a second folder in a multi-root workspace next to your VBA/C# project.
-
-Codex should be able to see:
-
-- `AGENTS.md`
-- `versions/2024/llm_index/`
-- `versions/2024/markdown/`
-
-Example prompt:
-
-```text
-Use the SOLIDWORKS API knowledge base in this workspace.
-Follow AGENTS.md.
-I am writing a VBA macro. Find the correct API docs before writing code.
-```
-
-For a C# add-in:
-
-```text
-Follow AGENTS.md.
-I am writing a C# SOLIDWORKS add-in.
-Prefer .NET API docs and C# syntax blocks.
-```
-
-## Manual Index Usage
-
-Find a symbol:
-
-```bash
-rg 'IModelDoc2\\.Save' versions/2024/llm_index/symbols.tsv
-```
-
-Find members of an interface:
-
-```bash
-rg '"interface": "IModelDoc2"' versions/2024/llm_index/interface_members.jsonl
-```
-
-Open the selected document:
-
-```bash
-sed -n '1,220p' versions/2024/markdown/sldworksapi/<file>.md
-```
-
-## Index Files
-
-- `manifest.json` - corpus summary.
-- `symbols.tsv` - cheapest API symbol lookup.
-- `documents.tsv` - fast document lookup.
-- `symbols.jsonl` - structured symbol lookup.
-- `documents.jsonl` - compact card for each Markdown file.
-- `nodes.jsonl` - graph nodes.
-- `edges/` - sharded `has_member`, `member_of`, and `links_to` graph edges by source module.
-- `edges_manifest.json` - edge shard counts and type summaries.
-- `interface_members.jsonl` - interface/object -> methods/properties.
-- `modules.json` - API module statistics.
-
-## GitHub Publishing Notes
-
-Usually commit:
-
-- `scripts/`
-- `README.md`
-- `README.ru.md`
-- `AGENTS.md`
-- `LICENSE`
-- `NOTICE.md`
-- `requirements.txt`
-- `versions/<year>/markdown/`, if you intentionally publish a generated example corpus for a specific API version
-- `versions/<year>/llm_index/`, if you intentionally publish a ready-to-use index for the included Markdown corpus
-
-Keep large/reproducible artifacts out of Git or publish them separately:
-
-- `versions/<year>/api/`
-- `versions/<year>/extracted/`
-- `versions/<year>/API_HTML/`
-
-If you do not want generated data in Git history, publish `versions/<year>/markdown/` and `versions/<year>/llm_index/` as release artifacts instead.
+Language: English | [Russian](README.ru.md)
+
+This repository contains a local SOLIDWORKS API knowledge base for Codex and
+other LLM agents. It includes a generated SOLIDWORKS API 2024 Markdown corpus,
+compact lookup indexes, a documentation-only MCP server, and release tooling for
+a Windows MCP package backed by PostgreSQL.
+
+The project is designed to help agents write VBA macros and C# add-ins without
+loading tens of thousands of API documentation files into the model context.
+
+## Start Here
+
+- [Instruction hub](docs/instructions/README.md) - full project documentation
+  and task-oriented guides.
+- [Project overview](docs/instructions/PROJECT_OVERVIEW.md) - architecture,
+  repository layout, data flow, and included artifacts.
+- [Build pipeline](docs/instructions/BUILD_PIPELINE.md) - CHM extraction,
+  Markdown conversion, LLM index generation, and PostgreSQL loading.
+- [Using the knowledge base](docs/instructions/USING_KNOWLEDGE_BASE.md) - how
+  to query indexes manually and how agents should navigate the corpus.
+- [Windows release guide](docs/instructions/WINDOWS_RELEASE.md) - package,
+  install, and publish the Windows MCP server release.
+- [MCP server details](docs/MCP_SERVER.md) - server modes, environment
+  variables, tools, and config examples.
+
+## What Is Included
+
+- `versions/2024/markdown/` - generated Markdown API documentation.
+- `versions/2024/llm_index/` - compact lookup and relationship indexes.
+- `swapi_mcp/` - MCP server, local index backend, PostgreSQL backend, and SQL
+  schema.
+- `scripts/` - private/maintainer pipeline scripts for rebuilding the corpus.
+- `packaging/windows/` - Windows release packaging and install scripts.
+- `AGENTS.md` - local instructions for Codex when this repository is used as a
+  workspace knowledge base.
+
+Original `.chm` files and intermediate extracted HTML are not published. The
+project code is MIT licensed. Generated Markdown may contain material derived
+from official SOLIDWORKS API documentation; see [NOTICE.md](NOTICE.md).
+
+## Quick Use
+
+Open this repository as a workspace, or add it as a second folder next to your
+SOLIDWORKS VBA/C# project. Ask Codex to follow `AGENTS.md` before writing code.
+
+For detailed commands and workflows, use the
+[instruction hub](docs/instructions/README.md).
