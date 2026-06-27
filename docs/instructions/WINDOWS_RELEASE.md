@@ -1,4 +1,4 @@
-# Windows Release
+﻿# Windows Release
 
 This guide covers the installable Windows MCP package.
 
@@ -23,22 +23,22 @@ conversion pipeline.
 Export a PostgreSQL dump:
 
 ```powershell
-.\packaging\windows\export-postgres-dump.ps1 -ApiVersion 2024
+.\02_mcp_server\packaging\windows\export-postgres-dump.ps1 -ApiVersion 2024
 ```
 
 Build the Windows package:
 
 ```powershell
-.\packaging\windows\build-release.ps1 `
+.\02_mcp_server\packaging\windows\build-release.ps1 `
   -Version 0.1.0-alpha.1 `
   -ApiVersion 2024 `
-  -DatabaseDump .\release-assets\solidworks_api_2024.dump
+  -DatabaseDump .\01_parsing_API\release-assets\solidworks_api_2024.dump
 ```
 
 The output path is:
 
 ```text
-dist/solidworks-api-mcp-0.1.0-alpha.1-windows-x64.zip
+02_mcp_server/dist/solidworks-api-mcp-0.1.0-alpha.1-windows-x64.zip
 ```
 
 ## Install From The Zip
@@ -87,7 +87,7 @@ v0.1.0-alpha.1
 With GitHub CLI installed:
 
 ```powershell
-.\packaging\windows\publish-github-release.ps1 `
+.\02_mcp_server\packaging\windows\publish-github-release.ps1 `
   -Tag v0.1.0-alpha.1 `
   -PackagePath .\dist\solidworks-api-mcp-0.1.0-alpha.1-windows-x64.zip `
   -Draft

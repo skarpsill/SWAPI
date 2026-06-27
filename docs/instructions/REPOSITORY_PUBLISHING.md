@@ -1,4 +1,4 @@
-# Repository Publishing
+﻿# Repository Publishing
 
 This guide separates public repository contents from private or release-only
 artifacts.
@@ -13,22 +13,22 @@ Usually commit:
 - `LICENSE`
 - `NOTICE.md`
 - `docs/`
-- `scripts/`
-- `swapi_mcp/`
-- `packaging/`
+- `01_parsing_API/scripts/`
+- `02_mcp_server/swapi_mcp/`
+- `02_mcp_server/packaging/`
 - `requirements.txt`
 - `pyproject.toml`
-- `versions/<year>/markdown/`, if publishing an example generated corpus
-- `versions/<year>/llm_index/`, if publishing a ready-to-use index for that
+- `01_parsing_API/<year>/markdown/`, if publishing an example generated corpus
+- `01_parsing_API/<year>/llm_index/`, if publishing a ready-to-use index for that
   corpus
 
 ## Keep Private Or Release Separately
 
 Do not normally commit:
 
-- `versions/<year>/api/`
-- `versions/<year>/extracted/`
-- `versions/<year>/API_HTML/`
+- `01_parsing_API/<year>/api/`
+- `01_parsing_API/<year>/extracted/`
+- `01_parsing_API/<year>/API_HTML/`
 - local PostgreSQL data directories
 - PyInstaller build directories
 - release zips and database dumps

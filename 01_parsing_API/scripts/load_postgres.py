@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from importlib import resources
 from pathlib import Path
 from typing import Iterable
 
@@ -36,7 +37,7 @@ def read_markdown(markdown_root: Path, relative_path: str) -> str:
 
 
 def load_schema(conn) -> None:
-    schema_path = Path(__file__).resolve().parents[1] / "swapi_mcp" / "schema.sql"
+    schema_path = resources.files("swapi_mcp").joinpath("schema.sql")
     with conn.cursor() as cur:
         cur.execute(schema_path.read_text(encoding="utf-8"))
     conn.commit()
@@ -181,7 +182,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--database-url", required=True, help="PostgreSQL connection URL.")
     parser.add_argument("--version", default="2024", help="SOLIDWORKS API version label.")
-    parser.add_argument("--root", type=Path, default=Path.cwd(), help="Project root containing versions/<year>/markdown and versions/<year>/llm_index.")
+    parser.add_argument("--root", type=Path, default=Path.cwd(), help="Repository root containing 01_parsing_API/<year>/markdown and 01_parsing_API/<year>/llm_index.")
     parser.add_argument("--index", type=Path, default=None, help="Override llm_index directory.")
     parser.add_argument("--markdown", type=Path, default=None, help="Override markdown directory.")
     parser.add_argument("--batch-size", type=int, default=1000)
@@ -198,7 +199,7 @@ def main() -> None:
         raise SystemExit("Install PostgreSQL support with: python -m pip install 'psycopg[binary]>=3.1'") from exc
 
     root = args.root.resolve()
-    version_root = root / "versions" / args.version
+    version_root = root / "01_parsing_API" / args.version
     default_index = version_root / "llm_index" if (version_root / "llm_index").exists() else root / "llm_index"
     default_markdown = version_root / "markdown" if (version_root / "markdown").exists() else root / "markdown"
     index_root = (args.index or default_index).resolve()

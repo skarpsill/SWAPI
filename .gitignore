@@ -10,11 +10,17 @@ venv/
 *.spec
 dist/
 release-assets/
+02_mcp_server/dist/
+02_mcp_server/*.egg-info/
+01_parsing_API/release-assets/
 
 # Generated / large documentation artifacts
 api/
 extracted/
 API_HTML/
+01_parsing_API/*/api/
+01_parsing_API/*/extracted/
+01_parsing_API/*/API_HTML/
 
 # Local editor files
 .idea/

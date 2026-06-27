@@ -1,4 +1,4 @@
-# Using The Knowledge Base
+﻿# Using The Knowledge Base
 
 This guide explains how humans and agents should navigate the generated
 SOLIDWORKS API documentation.
@@ -10,13 +10,13 @@ topic only after narrowing the target.
 
 Recommended flow:
 
-1. Search `versions/2024/llm_index/symbols.tsv` for an exact or substring API
+1. Search `01_parsing_API/2024/llm_index/symbols.tsv` for an exact or substring API
    symbol match.
-2. Use `versions/2024/llm_index/interface_members.jsonl` when the question is
+2. Use `01_parsing_API/2024/llm_index/interface_members.jsonl` when the question is
    about an interface, object, class, or available members.
-3. Use `versions/2024/llm_index/edges/` only after a small candidate set has
+3. Use `01_parsing_API/2024/llm_index/edges/` only after a small candidate set has
    been identified.
-4. Open files from `versions/2024/markdown/` only after lookup.
+4. Open files from `01_parsing_API/2024/markdown/` only after lookup.
 5. Prefer the API flavor that matches the task:
    - VBA macros: `*apivb6` modules and VBA syntax blocks.
    - C# add-ins: .NET modules such as `sldworksapi`, `cworksapi`,
@@ -27,19 +27,19 @@ Recommended flow:
 Find a symbol:
 
 ```bash
-rg 'IModelDoc2\\.Save' versions/2024/llm_index/symbols.tsv
+rg 'IModelDoc2\\.Save' 01_parsing_API/2024/llm_index/symbols.tsv
 ```
 
 Find members of an interface:
 
 ```bash
-rg '"interface": "IModelDoc2"' versions/2024/llm_index/interface_members.jsonl
+rg '"interface": "IModelDoc2"' 01_parsing_API/2024/llm_index/interface_members.jsonl
 ```
 
 Open a narrowed document:
 
 ```bash
-sed -n '1,220p' versions/2024/markdown/sldworksapi/<file>.md
+sed -n '1,220p' 01_parsing_API/2024/markdown/sldworksapi/<file>.md
 ```
 
 ## Index Files
@@ -64,8 +64,8 @@ Codex should be able to see:
 
 ```text
 AGENTS.md
-versions/2024/llm_index/
-versions/2024/markdown/
+01_parsing_API/2024/llm_index/
+01_parsing_API/2024/markdown/
 ```
 
 Example prompt for a VBA macro:

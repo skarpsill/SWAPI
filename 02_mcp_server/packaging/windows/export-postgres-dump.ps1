@@ -4,7 +4,7 @@ param(
     [string]$HostName = "localhost",
     [int]$Port = 5432,
     [string]$ApiVersion = "2024",
-    [string]$OutputDir = "release-assets"
+    [string]$OutputDir = "01_parsing_API\release-assets"
 )
 
 $ErrorActionPreference = "Stop"
@@ -29,8 +29,13 @@ function Find-PostgresTool([string]$Name) {
     throw "$Name was not found. Install PostgreSQL or add its bin directory to PATH."
 }
 
-$Root = Resolve-Path (Join-Path $PSScriptRoot "..\..")
-$Out = Join-Path $Root $OutputDir
+$RepoRoot = Resolve-Path (Join-Path $PSScriptRoot "..\..\..")
+if ([System.IO.Path]::IsPathRooted($OutputDir)) {
+    $Out = $OutputDir
+}
+else {
+    $Out = Join-Path $RepoRoot $OutputDir
+}
 New-Item -ItemType Directory -Force -Path $Out | Out-Null
 
 $DumpPath = Join-Path $Out "solidworks_api_$ApiVersion.dump"

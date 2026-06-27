@@ -7,15 +7,16 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$Root = Resolve-Path (Join-Path $PSScriptRoot "..\..")
-$Python = Join-Path $Root ".venv\Scripts\python.exe"
+$ProductRoot = Resolve-Path (Join-Path $PSScriptRoot "..\..")
+$RepoRoot = Resolve-Path (Join-Path $PSScriptRoot "..\..\..")
+$Python = Join-Path $RepoRoot ".venv\Scripts\python.exe"
 if (-not (Test-Path $Python)) {
     throw "Virtual environment not found. Create it first: python -m venv .venv"
 }
 
-& $Python -m pip install -e ".[postgres,release]"
+& $Python -m pip install -e "$($RepoRoot)[postgres,release]"
 
-$BuildRoot = Join-Path $Root $OutputDir
+$BuildRoot = Join-Path $ProductRoot $OutputDir
 $PackageName = "solidworks-api-mcp-$Version-windows-x64"
 $PackageDir = Join-Path $BuildRoot $PackageName
 $ExeWork = Join-Path $BuildRoot "pyinstaller-work"
@@ -33,11 +34,11 @@ New-Item -ItemType Directory -Force -Path $PackageDir | Out-Null
     --name swapi-mcp-server `
     --distpath $PackageDir `
     --workpath $ExeWork `
-    (Join-Path $Root "packaging\pyinstaller\swapi_mcp_server.py")
+    (Join-Path $ProductRoot "packaging\pyinstaller\swapi_mcp_server.py")
 
-Copy-Item -LiteralPath (Join-Path $Root "packaging\windows\install.ps1") -Destination $PackageDir
-Copy-Item -LiteralPath (Join-Path $Root "packaging\windows\restore-db.ps1") -Destination $PackageDir
-Copy-Item -LiteralPath (Join-Path $Root "packaging\windows\README.md") -Destination $PackageDir
+Copy-Item -LiteralPath (Join-Path $ProductRoot "packaging\windows\install.ps1") -Destination $PackageDir
+Copy-Item -LiteralPath (Join-Path $ProductRoot "packaging\windows\restore-db.ps1") -Destination $PackageDir
+Copy-Item -LiteralPath (Join-Path $ProductRoot "packaging\windows\README.md") -Destination $PackageDir
 
 if ($DatabaseDump) {
     if (-not (Test-Path $DatabaseDump)) {

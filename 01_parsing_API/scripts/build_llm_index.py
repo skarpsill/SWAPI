@@ -301,7 +301,7 @@ Recommended agent flow:
 2. Search `symbols.jsonl` for exact API names such as `IModelDoc2.SaveAs3` or `swOpenDocOptions_e`.
 3. If the symbol is an interface/class/object, read its row in `interface_members.jsonl` before opening full docs.
 4. Follow `edges/<module>.jsonl` links only for the selected symbol neighborhood.
-5. Open full Markdown files from the matching `versions/<year>/markdown/` only after the candidate set is small.
+5. Open full Markdown files from the matching `01_parsing_API/<year>/markdown/` only after the candidate set is small.
 
 Files:
 

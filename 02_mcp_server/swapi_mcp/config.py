@@ -19,15 +19,15 @@ class Settings:
 
 
 def _default_root() -> Path:
-    return Path(__file__).resolve().parents[1]
+    return Path(__file__).resolve().parents[2]
 
 
 def load_settings() -> Settings:
     root = Path(os.environ.get("SWAPI_ROOT", _default_root())).expanduser().resolve()
     default_version = os.environ.get("SWAPI_DEFAULT_VERSION", "2024")
-    version_root = Path(os.environ.get("SWAPI_VERSION_ROOT", root / "versions" / default_version)).expanduser()
-    legacy_index_dir = root / "llm_index"
-    legacy_markdown_dir = root / "markdown"
+    version_root = Path(os.environ.get("SWAPI_VERSION_ROOT", root / "01_parsing_API" / default_version)).expanduser()
+    legacy_index_dir = root / "01_parsing_API" / "llm_index"
+    legacy_markdown_dir = root / "01_parsing_API" / "markdown"
     default_index_dir = version_root / "llm_index" if (version_root / "llm_index").exists() else legacy_index_dir
     default_markdown_dir = version_root / "markdown" if (version_root / "markdown").exists() else legacy_markdown_dir
     index_dir = Path(os.environ.get("SWAPI_LLM_INDEX_DIR", default_index_dir)).expanduser().resolve()

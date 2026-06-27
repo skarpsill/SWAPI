@@ -23,4 +23,8 @@ swapi-mcp = "swapi_mcp.server:main"
 swapi-load-postgres = "scripts.load_postgres:main"
 
 [tool.setuptools.packages.find]
+where = ["02_mcp_server", "01_parsing_API"]
 include = ["swapi_mcp", "scripts"]
+
+[tool.setuptools.package-data]
+swapi_mcp = ["schema.sql"]

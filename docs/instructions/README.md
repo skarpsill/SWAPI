@@ -1,4 +1,4 @@
-# Instruction Hub
+﻿# Instruction Hub
 
 This folder contains the project documentation for the SOLIDWORKS API Knowledge
 Base and its MCP server.
@@ -7,6 +7,7 @@ Base and its MCP server.
 
 ## Guides
 
+- [Project map](../PROJECT_MAP.md) - detailed folder, file, and dependency map.
 - [Project overview](PROJECT_OVERVIEW.md) - what the project contains, how the
   parts fit together, and which artifacts are public.
 - [Build pipeline](BUILD_PIPELINE.md) - how maintainers rebuild the corpus from
@@ -22,7 +23,7 @@ Base and its MCP server.
 
 - [MCP server reference](../MCP_SERVER.md)
 - [Product release plan](../PRODUCT_RELEASE.md)
-- [Script reference](../../scripts/README.md)
+- [Script reference](../../01_parsing_API/scripts/README.md)
 - [Agent instructions](../../AGENTS.md)
 
 ## Recommended Reading Order

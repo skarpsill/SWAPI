@@ -1,47 +1,35 @@
 # Публикация репозитория
 
-Это руководство разделяет содержимое public repository и private или
-release-only artifacts.
-
 [English version](../REPOSITORY_PUBLISHING.md)
 
-## Коммитить в Git
-
-Обычно стоит коммитить:
+## Обычно коммитим
 
 - `README.md`
-- `README.ru.md`, если поддерживается
+- `README.ru.md`
 - `AGENTS.md`
+- `docs/`
+- `01_parsing_API/scripts/`
+- `01_parsing_API/<year>/markdown/`, если corpus публикуется
+- `01_parsing_API/<year>/llm_index/`, если index публикуется
+- `02_mcp_server/swapi_mcp/`
+- `02_mcp_server/packaging/`
+- `pyproject.toml`
+- `requirements.txt`
 - `LICENSE`
 - `NOTICE.md`
-- `docs/`
-- `scripts/`
-- `swapi_mcp/`
-- `packaging/`
-- `requirements.txt`
-- `pyproject.toml`
-- `versions/<year>/markdown/`, если публикуется example generated corpus
-- `versions/<year>/llm_index/`, если публикуется ready-to-use index для этого
-  corpus
 
-## Держать приватно или публиковать отдельно
+## Обычно не коммитим
 
-Обычно не стоит коммитить:
+- `.venv/`
+- `__pycache__/`
+- `*.egg-info/`
+- `*.spec`
+- `02_mcp_server/dist/`
+- `01_parsing_API/release-assets/`
+- `01_parsing_API/<year>/api/`
+- `01_parsing_API/<year>/extracted/`
+- `01_parsing_API/<year>/API_HTML/`
 
-- `versions/<year>/api/`
-- `versions/<year>/extracted/`
-- `versions/<year>/API_HTML/`
-- local PostgreSQL data directories
-- PyInstaller build directories
-- release zips и database dumps
-
-Публичный продукт должен скрывать CHM parsing и index generation от конечных
-пользователей. Для installable MVP публикуйте только MCP executable, PostgreSQL
-dump, install scripts и release README.
-
-## Legal notice
-
-Project source code распространяется по MIT license. Generated Markdown может
-содержать материалы, производные от официальной документации SOLIDWORKS API.
-Оставляйте [NOTICE.md](../../../NOTICE.md) видимым в repository и release
-materials.
+Публичный продукт должен скрывать CHM parsing и generation pipeline от конечного
+пользователя. В release достаточно exe, PostgreSQL dump, install scripts и
+README.

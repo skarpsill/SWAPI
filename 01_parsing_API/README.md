@@ -1,9 +1,9 @@
-# SOLIDWORKS API Versions
+﻿# SOLIDWORKS API Versions
 
 This directory stores generated API corpora by SOLIDWORKS release year.
 
 ```text
-versions/
+01_parsing_API/
   2022/
     api/        # source CHM files, local only
     extracted/  # full CHM extraction, generated

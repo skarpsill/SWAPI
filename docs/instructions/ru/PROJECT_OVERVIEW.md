@@ -1,92 +1,32 @@
 # Обзор проекта
 
-Этот проект превращает документацию SOLIDWORKS API в локальную базу знаний,
-которую Codex и другие LLM-агенты могут просматривать дешево и предсказуемо.
-
 [English version](../PROJECT_OVERVIEW.md)
 
-У репозитория две связанные цели:
+Проект разделён на две главные зоны:
 
-- предоставить готовый Markdown-корпус SOLIDWORKS API 2024 и lookup index;
-- предоставить documentation-only MCP server, который открывает доступ к
-  корпусу через search и lookup tools.
+- `01_parsing_API/` - подготовка и хранение корпуса SOLIDWORKS API.
+- `02_mcp_server/` - конечный MCP server и Windows release packaging.
 
-## Основной поток данных
+## Поток данных
 
 ```text
-SOLIDWORKS API .chm
+CHM files
   -> extracted HTML
-  -> cleaned API_HTML tree
-  -> Markdown topic files
-  -> compact LLM indexes
-  -> optional PostgreSQL database
-  -> optional Windows release package
+  -> API_HTML
+  -> markdown
+  -> llm_index
+  -> PostgreSQL dump
+  -> Windows MCP package
 ```
 
-Публичный release package не обязан раскрывать весь приватный build pipeline.
-Конечные пользователи могут получить executable MCP server, PostgreSQL dump и
-install scripts.
+## Основные связи
 
-## Структура репозитория
-
-```text
-.
-|-- AGENTS.md
-|-- README.md
-|-- docs/
-|   |-- MCP_SERVER.md
-|   |-- PRODUCT_RELEASE.md
-|   `-- instructions/
-|-- packaging/
-|   |-- pyinstaller/
-|   `-- windows/
-|-- scripts/
-|-- swapi_mcp/
-`-- versions/
-    |-- 2022/
-    |-- 2023/
-    |-- 2024/
-    |-- 2025/
-    `-- 2026/
-```
-
-## Версионированная структура корпуса
-
-Каждый поддерживаемый год API использует одну и ту же структуру:
-
-```text
-versions/<year>/api/        # private input CHM files
-versions/<year>/extracted/  # generated full CHM extraction
-versions/<year>/API_HTML/   # generated HTML-only source tree
-versions/<year>/markdown/   # generated Markdown documentation
-versions/<year>/llm_index/  # generated lookup and graph indexes
-```
-
-Текущий включенный корпус находится в `versions/2024/`.
-
-## Runtime components
-
-- `swapi_mcp/server.py` определяет MCP tool surface.
-- `swapi_mcp/local_index.py` читает `versions/<year>/llm_index/` и
-  `versions/<year>/markdown/` напрямую.
-- `swapi_mcp/postgres_index.py` читает тот же корпус после загрузки в
+- `01_parsing_API/scripts/` строит `01_parsing_API/<year>/markdown/` и
+  `01_parsing_API/<year>/llm_index/`.
+- `02_mcp_server/swapi_mcp/` читает готовый corpus напрямую или через
   PostgreSQL.
-- `swapi_mcp/config.py` вычисляет default paths и environment overrides.
-- `swapi_mcp/schema.sql` определяет PostgreSQL tables.
+- `pyproject.toml` связывает оба мира: runtime command `swapi-mcp` указывает на
+  MCP server, а maintainer command `swapi-load-postgres` указывает на loader.
+- `02_mcp_server/packaging/windows/` собирает installable Windows zip.
 
-## Environment overrides
-
-Версия по умолчанию: `2024`. Эти переменные окружения могут переопределить
-пути:
-
-```text
-SWAPI_DEFAULT_VERSION
-SWAPI_VERSION_ROOT
-SWAPI_LLM_INDEX_DIR
-SWAPI_MARKDOWN_DIR
-DATABASE_URL
-SWAPI_DATABASE_URL
-```
-
-Если задан `DATABASE_URL` или `SWAPI_DATABASE_URL`, MCP server использует
-PostgreSQL mode. Иначе используется local index mode.
+Подробная схема находится в [карте проекта](../../PROJECT_MAP.md).

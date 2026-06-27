@@ -1,4 +1,4 @@
-# Product Release Plan
+﻿# Product Release Plan
 
 The public product should be an installable MCP server package. The private
 build pipeline can remain separate.
@@ -41,25 +41,25 @@ MVP runtime:
 2. Export the release dump:
 
 ```powershell
-.\packaging\windows\export-postgres-dump.ps1 -ApiVersion 2024
+.\02_mcp_server\packaging\windows\export-postgres-dump.ps1 -ApiVersion 2024
 ```
 
 3. Build the Windows package:
 
 ```powershell
-.\packaging\windows\build-release.ps1 `
+.\02_mcp_server\packaging\windows\build-release.ps1 `
   -Version 0.1.0-alpha.1 `
   -ApiVersion 2024 `
-  -DatabaseDump .\release-assets\solidworks_api_2024.dump
+  -DatabaseDump .\01_parsing_API\release-assets\solidworks_api_2024.dump
 ```
 
 4. Create a GitHub Release from a tag such as `v0.1.0-alpha.1`.
-5. Upload `dist/solidworks-api-mcp-0.1.0-alpha.1-windows-x64.zip`.
+5. Upload `02_mcp_server/dist/solidworks-api-mcp-0.1.0-alpha.1-windows-x64.zip`.
 
 With GitHub CLI installed:
 
 ```powershell
-.\packaging\windows\publish-github-release.ps1 `
+.\02_mcp_server\packaging\windows\publish-github-release.ps1 `
   -Tag v0.1.0-alpha.1 `
   -PackagePath .\dist\solidworks-api-mcp-0.1.0-alpha.1-windows-x64.zip `
   -Draft

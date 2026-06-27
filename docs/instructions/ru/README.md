@@ -1,36 +1,27 @@
 # Центр инструкций
 
-Эта папка содержит русскую версию документации проекта SOLIDWORKS API Knowledge
-Base и его MCP server.
+Эта папка содержит русскую версию документации проекта.
 
 [English version](../README.md)
 
 ## Руководства
 
-- [Обзор проекта](PROJECT_OVERVIEW.md) - что содержит проект, как части связаны
-  между собой и какие артефакты публикуются.
-- [Build pipeline](BUILD_PIPELINE.md) - как maintainers пересобирают корпус из
-  SOLIDWORKS API CHM files.
-- [Использование базы знаний](USING_KNOWLEDGE_BASE.md) - как Codex, агенты и
-  люди должны пользоваться Markdown-корпусом и LLM index.
-- [Windows release](WINDOWS_RELEASE.md) - как собрать, установить, настроить и
-  опубликовать Windows MCP package.
-- [Публикация репозитория](REPOSITORY_PUBLISHING.md) - что хранить в Git, а что
-  оставлять приватным или публиковать как release assets.
+- [Карта проекта](../../PROJECT_MAP.md) - подробная карта папок, файлов и
+  зависимостей.
+- [Обзор проекта](PROJECT_OVERVIEW.md) - назначение двух главных зон
+  репозитория.
+- [Build pipeline](BUILD_PIPELINE.md) - пересборка корпуса из CHM в Markdown,
+  LLM index и PostgreSQL.
+- [Использование базы знаний](USING_KNOWLEDGE_BASE.md) - как агенту и человеку
+  искать API-документацию.
+- [Windows release](WINDOWS_RELEASE.md) - сборка, установка и публикация
+  installable MCP package.
+- [Публикация репозитория](REPOSITORY_PUBLISHING.md) - что коммитить, а что
+  держать как generated/release-only artifacts.
 
-## Связанные справочные материалы
+## Связанные материалы
 
 - [MCP server reference](../../MCP_SERVER.md)
 - [Product release plan](../../PRODUCT_RELEASE.md)
-- [Script reference](../../../scripts/README.md)
+- [Script reference](../../../01_parsing_API/scripts/README.md)
 - [Agent instructions](../../../AGENTS.md)
-
-## Рекомендуемый порядок чтения
-
-1. Прочитайте [Обзор проекта](PROJECT_OVERVIEW.md), чтобы понять архитектуру.
-2. Прочитайте [Использование базы знаний](USING_KNOWLEDGE_BASE.md), если хотите
-   использовать Codex или другого агента для ответов по SOLIDWORKS API.
-3. Прочитайте [Build pipeline](BUILD_PIPELINE.md), только если вы поддерживаете
-   или пересобираете корпус документации.
-4. Прочитайте [Windows release](WINDOWS_RELEASE.md), когда готовите
-   installable MCP package.
