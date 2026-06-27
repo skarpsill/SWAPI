@@ -246,7 +246,7 @@ class SetupWizard(tk.Tk):
             self._step_postgres(bundle, password)
             self._step_restore_db(bundle, password)
             self._step_copy_exe(bundle)
-            self._step_mcp_config()
+            self._step_mcp_config(password)
             self._log("\n✓  Установка завершена успешно!")
             self.after(0, lambda: self.title(_TITLE + " — Готово"))
             self.after(0, lambda: self._progress.set_finish_command(self.destroy))
@@ -312,10 +312,11 @@ class SetupWizard(tk.Tk):
         shutil.copy2(src, _INSTALL_DIR / "swapi-mcp-server.exe")
         self._log(f"✓  Установлен в {_INSTALL_DIR}")
 
-    def _step_mcp_config(self) -> None:
+    def _step_mcp_config(self, password: str) -> None:
         self._log("\n── Настройка MCP-клиентов ───────────────────────")
         exe = _INSTALL_DIR / "swapi-mcp-server.exe"
-        db_url = f"postgresql://{_DB_USER}@{_DB_HOST}:{_DB_PORT}/{_DATABASE}"
+        auth = f"{_DB_USER}:{password}" if password else _DB_USER
+        db_url = f"postgresql://{auth}@{_DB_HOST}:{_DB_PORT}/{_DATABASE}"
         env = {
             "SWAPI_DATABASE_URL": db_url,
             "SWAPI_DEFAULT_VERSION": _API_VERSION,
