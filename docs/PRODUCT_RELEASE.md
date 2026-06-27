@@ -32,7 +32,8 @@ MVP runtime:
 - Python server packaged as a Windows `.exe` with PyInstaller.
 - PostgreSQL remains the local database backend.
 - The release includes a ready PostgreSQL custom-format dump.
-- The install script restores the database and prints MCP configuration.
+- The install script restores the database and can optionally write Codex or
+  VS Code MCP configuration.
 
 ## Maintainer Flow
 
@@ -47,20 +48,20 @@ MVP runtime:
 
 ```powershell
 .\packaging\windows\build-release.ps1 `
-  -Version 0.1.0 `
+  -Version 0.1.0-alpha.1 `
   -ApiVersion 2024 `
   -DatabaseDump .\release-assets\solidworks_api_2024.dump
 ```
 
-4. Create a GitHub Release from a tag such as `v0.1.0`.
-5. Upload `dist/solidworks-api-mcp-0.1.0-windows-x64.zip`.
+4. Create a GitHub Release from a tag such as `v0.1.0-alpha.1`.
+5. Upload `dist/solidworks-api-mcp-0.1.0-alpha.1-windows-x64.zip`.
 
 With GitHub CLI installed:
 
 ```powershell
 .\packaging\windows\publish-github-release.ps1 `
-  -Tag v0.1.0 `
-  -PackagePath .\dist\solidworks-api-mcp-0.1.0-windows-x64.zip `
+  -Tag v0.1.0-alpha.1 `
+  -PackagePath .\dist\solidworks-api-mcp-0.1.0-alpha.1-windows-x64.zip `
   -Draft
 ```
 
