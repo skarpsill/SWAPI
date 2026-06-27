@@ -13,7 +13,10 @@ from .runner import run_command
 
 
 def log(message: str) -> None:
-    print(message, flush=True)
+    try:
+        print(message, flush=True)
+    except UnicodeEncodeError:
+        print(message.encode("ascii", errors="replace").decode("ascii"), flush=True)
 
 
 def parse_args() -> argparse.Namespace:
@@ -91,6 +94,8 @@ def main() -> None:
                 "--windowed",
                 "--name",
                 "swapi-release-manager",
+                "--paths",
+                paths.product_root,
                 "--distpath",
                 resolve_under(paths.repo_root, args.output_dir),
                 "--workpath",
@@ -104,4 +109,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

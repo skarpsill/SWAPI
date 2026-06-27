@@ -42,6 +42,8 @@ def build_server_package(
             "--onefile",
             "--name",
             "swapi-mcp-server",
+            "--paths",
+            paths.product_root,
             "--distpath",
             package_dir,
             "--workpath",
@@ -67,4 +69,3 @@ def build_server_package(
                 archive.write(path, path.relative_to(package_dir))
     log(f"Release package: {zip_path}")
     return zip_path
-
