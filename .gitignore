@@ -36,3 +36,6 @@ Thumbs.db
 02_mcp_server/packaging/windows/*.exe
 
 02_mcp_server/build/
+
+# Local build counter — incremented by build_release.py, not tracked in git
+02_mcp_server/.build_number
