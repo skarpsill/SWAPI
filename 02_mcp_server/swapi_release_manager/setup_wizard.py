@@ -205,7 +205,15 @@ class SetupWizard(tk.Tk):
         page.pack(fill=tk.BOTH, expand=True)
 
     def _show_welcome(self) -> None:
-        self._switch(_WelcomePage(self, on_next=self._show_password))
+        self._switch(_WelcomePage(self, on_next=self._show_password_or_skip))
+
+    def _show_password_or_skip(self) -> None:
+        if is_postgres_installed() and is_database_populated(
+            database=_DATABASE, user=_DB_USER, host=_DB_HOST, port=_DB_PORT
+        ):
+            self._start_install("")
+        else:
+            self._switch(_PasswordPage(self, on_install=self._start_install))
 
     def _show_password(self) -> None:
         self._switch(_PasswordPage(self, on_install=self._start_install))

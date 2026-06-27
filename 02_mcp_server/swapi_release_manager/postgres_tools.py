@@ -34,10 +34,15 @@ def find_postgres_tool(name: str) -> Path:
 
 
 def is_postgres_installed() -> bool:
-    """Return True if PostgreSQL 18 binaries are available."""
+    """Return True if PostgreSQL binaries are available (any supported version)."""
     if shutil.which("pg_restore"):
         return True
-    return (Path("C:/Program Files/PostgreSQL") / POSTGRES_MAJOR / "bin" / "pg_restore.exe").exists()
+    pg_base = Path("C:/Program Files/PostgreSQL")
+    if pg_base.is_dir():
+        for version_dir in pg_base.iterdir():
+            if (version_dir / "bin" / "pg_restore.exe").exists():
+                return True
+    return False
 
 
 def install_postgres_silent(installer_path: Path, password: str, log: LogFn) -> None:
