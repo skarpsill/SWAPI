@@ -12,8 +12,12 @@ from pathlib import Path
 from tkinter import messagebox, ttk
 
 from .mcp_config import (
+    default_claude_code_config,
+    default_codex_config,
     default_vscode_config,
     default_vscodium_config,
+    write_claude_code_config,
+    write_codex_config,
     write_vscode_config,
     write_vscodium_config,
 )
@@ -331,13 +335,21 @@ class SetupWizard(tk.Tk):
             "SWAPI_DEFAULT_VERSION": _API_VERSION,
         }
 
+        claude_code_path = default_claude_code_config()
+        write_claude_code_config(claude_code_path, exe, env)
+        self._log(f"✓  Claude Code: {claude_code_path}")
+
+        codex_path = default_codex_config()
+        write_codex_config(codex_path, exe, env)
+        self._log(f"✓  OpenAI Codex: {codex_path}")
+
         vscode_path = default_vscode_config()
         write_vscode_config(vscode_path, exe, env)
-        self._log(f"✓  VS Code:    {vscode_path}")
+        self._log(f"✓  VS Code:     {vscode_path}")
 
         vscodium_path = default_vscodium_config()
         write_vscodium_config(vscodium_path, exe, env)
-        self._log(f"✓  VS Codium:  {vscodium_path}")
+        self._log(f"✓  VS Codium:   {vscodium_path}")
 
     # ── close guard ───────────────────────────────────────────────────────
 

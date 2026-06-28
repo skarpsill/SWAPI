@@ -17,6 +17,10 @@ def toml_literal(value: str) -> str:
     return '"' + value.replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
+def default_claude_code_config() -> Path:
+    return Path.home() / ".claude.json"
+
+
 def default_codex_config() -> Path:
     return Path.home() / ".codex" / "config.toml"
 
@@ -27,6 +31,21 @@ def default_vscode_config() -> Path:
 
 def default_vscodium_config() -> Path:
     return Path(os.environ.get("APPDATA", Path.home() / "AppData" / "Roaming")) / "VSCodium" / "User" / "mcp.json"
+
+
+def write_claude_code_config(config_path: Path, command: Path, env: dict[str, str]) -> None:
+    """Write MCP server to ~/.claude.json user-scope mcpServers (Claude Code CLI + extension)."""
+    config_path.parent.mkdir(parents=True, exist_ok=True)
+    if config_path.exists():
+        try:
+            config = json.loads(config_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            config = {}
+    else:
+        config = {}
+    config.setdefault("mcpServers", {})
+    config["mcpServers"][SERVER_NAME] = {"command": str(command), "env": dict(sorted(env.items()))}
+    config_path.write_text(json.dumps(config, indent=2), encoding="utf-8")
 
 
 def write_codex_config(config_path: Path, command: Path, env: dict[str, str]) -> None:
